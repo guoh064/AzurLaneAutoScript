@@ -8,26 +8,28 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      run:
-        git config --global user.name 'guoh064'
-        git config --global user.email 'guoh064@126.com'
-        
-        # "git checkout master" is unnecessary, already here by default
-        git pull --unshallow  # this option is very important, you would get
-                              # complains about unrelated histories without it.
-                              # (but actions/checkout@v2 can also be instructed
-                              # to fetch all git depth right from the start)
+      - uses: actions/checkout@v2
+      - name: Merge upstream
+        run:
+          git config --global user.name 'guoh064'
+          git config --global user.email 'guoh064@126.com'
 
-        git remote add upstream https://github.com/LmeSzinc/AzurLaneAutoScript.git
-        git fetch upstream
+          # "git checkout master" is unnecessary, already here by default
+          git pull --unshallow  # this option is very important, you would get
+                                # complains about unrelated histories without it.
+                                # (but actions/checkout@v2 can also be instructed
+                                # to fetch all git depth right from the start)
 
-        # Neither forget the -b opt,
-        # the feature/x ref is ambiguous at this stage
-        git checkout -b upstream_sync
-        git merge --no-edit upstream/master
-        git push origin upstream_sync
+          git remote add upstream https://github.com/LmeSzinc/AzurLaneAutoScript.git
+          git fetch upstream
 
-        git checkout master
-        git merge --no-edit origin/upstream_sync
-        git push origin master
-      
+          # Neither forget the -b opt,
+          # the feature/x ref is ambiguous at this stage
+          git checkout -b upstream_sync
+          git merge --no-edit upstream/master
+          git push origin upstream_sync
+
+          git checkout master
+          git merge --no-edit origin/upstream_sync
+          git push origin master
+
