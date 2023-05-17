@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Merge upstream
-        run:
+        run: |
           git config --global user.name 'guoh064'
           git config --global user.email 'guoh064@126.com'
 
