@@ -2,13 +2,13 @@ name: sync-with-upstream
 run-name: Sync with Upstream
 on: 
   schedule:
-    - cron: '0 2 * * *'
+    - cron: '0 18 * * *'
 
 jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Merge upstream
         run: |
           git config --global user.name 'guoh064'
