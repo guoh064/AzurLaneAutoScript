@@ -8909,6 +8909,16 @@
       "TargetZone": {
         "type": "input",
         "value": 0
+      },
+      "CollectionFarming": {
+        "type": "select",
+        "value": "do_nothing",
+        "option": [
+          "do_nothing",
+          "archive",
+          "achievement",
+          "achievement_archive"
+        ]
       }
     },
     "OpsiFleet": {

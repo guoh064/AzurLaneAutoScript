@@ -2306,6 +2306,14 @@
     "TargetZone": {
       "name": "指定海域",
       "help": "僅出擊指定的海域，可以用來獲取大世界成就星星\n自動更新的數值，填0可重置進度，重置後自動跳過已開荒的海域\n支持海域ID、國服/國際服/日服/台服海域名稱，例如 \"51\", \"NA海域東南E\", \"NA Ocean SE Sector E\"\n填入默認值0，或者刪除數值即可取消指定"
+    },
+    "CollectionFarming": {
+      "name": "成就和檔案刷取",
+      "help": "利用短貓相接刷取海域成就星和海域檔案",
+      "do_nothing": "無操作",
+      "archive": "刷取檔案",
+      "achievement": "刷取海域成就星",
+      "achievement_archive": "我全都要"
     }
   },
   "OpsiHazard1Leveling": {

@@ -2306,6 +2306,14 @@
     "TargetZone": {
       "name": "Target Zone ID",
       "help": "Supports either Zone ID or Name in CN/EN/JP/TW, i.e. \"51\", \"NA Ocean SE Sector E\"\nIf specified, Alas will loop on this same zone after each clear\nUse default value 0 or clear the field to remove the specification\nZone information can be acquired from <./module/os/map_data.py>"
+    },
+    "CollectionFarming": {
+      "name": "Collection Farming",
+      "help": "Use MeowfficerFarming for zone explore rewards and files.",
+      "do_nothing": "Do nothing",
+      "archive": "Files",
+      "achievement": "Achievement",
+      "achievement_archive": "Achievement and Files"
     }
   },
   "OpsiHazard1Leveling": {

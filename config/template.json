@@ -1844,7 +1844,8 @@
     "OpsiMeowfficerFarming": {
       "ActionPointPreserve": 1000,
       "HazardLevel": 5,
-      "TargetZone": 0
+      "TargetZone": 0,
+      "CollectionFarming": "do_nothing"
     },
     "OpsiFleet": {
       "Fleet": 1,

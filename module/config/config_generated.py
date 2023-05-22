@@ -406,6 +406,7 @@ class GeneratedConfig:
     OpsiMeowfficerFarming_ActionPointPreserve = 1000
     OpsiMeowfficerFarming_HazardLevel = 5  # 3, 4, 5, 6, 10
     OpsiMeowfficerFarming_TargetZone = 0
+    OpsiMeowfficerFarming_CollectionFarming = 'do_nothing'  # do_nothing, archive, achievement, achievement_archive
 
     # Group `OpsiHazard1Leveling`
     OpsiHazard1Leveling_TargetZone = 0  # 0, 44, 22

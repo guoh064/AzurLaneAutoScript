@@ -9,9 +9,11 @@ from module.config.utils import (get_nearest_weekday_date,
 from module.exception import RequestHumanTakeover, GameStuckError, ScriptError
 from module.logger import logger
 from module.map.map_grids import SelectedGrids
+from module.os.assets import TEMPLATE_OS_ACHIEVEMENT_RED_DOT, OS_ACHIEVEMENT
 from module.os.fleet import BossFleet
 from module.os.globe_operation import OSExploreError
 from module.os.map import OSMap
+from module.os_collection.achievement import OSAchievementHandler
 from module.os_handler.action_point import OCR_OS_ADAPTABILITY
 from module.os_handler.assets import OS_MONTHBOSS_NORMAL, OS_MONTHBOSS_HARD, EXCHANGE_CHECK, EXCHANGE_ENTER
 from module.shop.shop_voucher import VoucherShop
@@ -337,6 +339,20 @@ class OperationSiren(OSMap):
                     keep_current_ap = False
                 self.action_point_set(cost=0, keep_current_ap=keep_current_ap, check_rest_ap=check_rest_ap)
                 ap_checked = True
+
+            # Deal with OS Archive.
+            is_collection_set = False
+            if "archive" in self.config.OpsiMeowfficerFarming_CollectionFarming:
+                pass
+            if not is_collection_set and "achievement" in self.config.OpsiMeowfficerFarming_CollectionFarming:
+                self.os_map_goto_globe()
+                if self.appear(TEMPLATE_OS_ACHIEVEMENT_RED_DOT):
+                    self.device.click(OS_ACHIEVEMENT)
+                    zone = OSAchievementHandler.run()
+                    if zone is not None:
+                        self.config.override(
+                            OpsiMeowfficerFarming_TargetZone = zone
+                        )
 
             # (1252, 1012) is the coordinate of zone 134 (the center zone) in os_globe_map.png
             if self.config.OpsiMeowfficerFarming_TargetZone != 0:

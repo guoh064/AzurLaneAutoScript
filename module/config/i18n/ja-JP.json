@@ -2306,6 +2306,14 @@
     "TargetZone": {
       "name": "OpsiMeowfficerFarming.TargetZone.name",
       "help": "OpsiMeowfficerFarming.TargetZone.help"
+    },
+    "CollectionFarming": {
+      "name": "OpsiMeowfficerFarming.CollectionFarming.name",
+      "help": "OpsiMeowfficerFarming.CollectionFarming.help",
+      "do_nothing": "do_nothing",
+      "archive": "archive",
+      "achievement": "achievement",
+      "achievement_archive": "achievement_archive"
     }
   },
   "OpsiHazard1Leveling": {

@@ -2306,6 +2306,14 @@
     "TargetZone": {
       "name": "指定海域",
       "help": "仅出击指定的海域，可以用来获取大世界成就星星\n支持海域ID、国服/国际服/日服/台服海域名称，例如 \"51\", \"NA海域东南E\", \"NA Ocean SE Sector E\"\n填入默认值0，或者删除数值即可取消指定"
+    },
+    "CollectionFarming": {
+      "name": "成就和档案刷取",
+      "help": "利用短猫相接刷取海域成就星和海域档案",
+      "do_nothing": "无操作",
+      "archive": "刷取档案",
+      "achievement": "刷取海域成就星",
+      "achievement_archive": "我全都要"
     }
   },
   "OpsiHazard1Leveling": {
