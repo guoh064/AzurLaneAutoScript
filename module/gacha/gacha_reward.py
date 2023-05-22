@@ -1,5 +1,5 @@
 from module.base.timer import Timer
-from module.combat.assets import GET_SHIP
+from module.combat.assets import GET_SHIP, NEW_SHIP
 from module.exception import ScriptError
 from module.gacha.assets import *
 from module.gacha.ui import GachaUI
@@ -223,6 +223,15 @@ class RewardGacha(GachaUI, GeneralShop, Retirement):
                 continue
 
             if self.appear(GET_SHIP, interval=1):
+                if self.appear(NEW_SHIP):
+                    logger.info('Get a new SHIP')
+                    with self.stat.new(
+                        genre='new_ship',
+                        method=self.config.DropRecord_NewShipRecord,
+                    ) as record:
+                        self.device.sleep(0.5) # waiting for full animation of new ship
+                        self.device.screenshot()
+                        record.add(self.device.image)
                 self.device.click(STORY_SKIP)  # Fast forward for multiple orders
                 confirm_timer.reset()
                 continue
