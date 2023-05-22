@@ -348,7 +348,7 @@ class OperationSiren(OSMap):
                 self.os_map_goto_globe()
                 if self.appear(OS_ACHIEVEMENT_RED_DOT):
                     self.device.click(OS_ACHIEVEMENT)
-                    zone = OSAchievementHandler.run(self.config, self.device)
+                    zone = OSAchievementHandler(self.config, self.device).run()
                     if zone is not None:
                         self.config.override(
                             OpsiMeowfficerFarming_TargetZone = zone
