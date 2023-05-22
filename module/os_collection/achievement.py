@@ -25,13 +25,13 @@ class OSAchievementHandler(OSAchievement, Combat, UI):
         """
         Switch to zones with unachieved stars.
         """
-        self.ui_click(INFO_UNFINISHED, INFO_UNFINISHED, INFO_UNFINISHED_CHECK)
+        self.ui_click(INFO_UNFINISHED, INFO_UNFINISHED_CHECK, INFO_UNFINISHED)
         
     def switch_to_all(self):
         """
         Switch to all zones.
         """
-        self.ui_click(INFO_ALL, INFO_ALL, INFO_ALL_CHECK)
+        self.ui_click(INFO_ALL, INFO_ALL_CHECK, INFO_ALL)
 
     def _receive_reward_all(self, skip_first_screenshot=True):
         """
@@ -79,21 +79,16 @@ class OSAchievementHandler(OSAchievement, Combat, UI):
                 self.device.screenshot()
 
             # End
+            if not self.appear(JUMP_RIGHT) and not self.appear(JUMP_LEFT):
+                break
             if self.appear(RECEIVE_SINGLE):
                 found = True
                 break
 
-            if self.appear(JUMP_RIGHT):
-                self.device.click(JUMP_RIGHT)
+            if self.appear_then_click(JUMP_RIGHT):
                 continue
-            if self.appear(JUMP_LEFT):
-                self.device.click(JUMP_LEFT)
-                continue
-            self.ui_ensure_index(44, ZONE_ID, RIGHT_BUTTON, LEFT_BUTTON, fast=False)
-            if self.appear(JUMP_LEFT):
-                self.device.click(JUMP_LEFT)
-                continue
-        
+            if self.appear_then_click(JUMP_LEFT):
+                continue        
         return found
 
     def _receive_reward_single(self, skip_first_screenshot=True):
@@ -110,18 +105,15 @@ class OSAchievementHandler(OSAchievement, Combat, UI):
                 skip_first_screenshot = True
             else:
                 self.device.screenshot()
-            
-            if self.appear_then_click(RECEIVE_SINGLE, offset=(10, 10), interval=3):
-                confirm_timer.reset()
-                continue
-            if self.handle_popup_confirm('RECEIVE_SINGLE'):
-                confirm_timer.reset()
-                continue
+
             if self.handle_get_items():
                 received = True
                 confirm_timer.reset()
                 continue
-
+            if self.appear_then_click(RECEIVE_SINGLE, offset=(10, 10), interval=3):
+                confirm_timer.reset()
+                continue
+            
             # End
             if self.image_color_count(RECEIVE_SINGLE, color=(76, 117, 184), threshold=220, count=400):
                 if confirm_timer.reached():
@@ -162,26 +154,31 @@ class OSAchievementHandler(OSAchievement, Combat, UI):
         Toggle to zone with unfinished safe star.
 
         Returns:
-            found_pair(int): The zone_id and index with unfinished safe star
+            found_zone(int): The zone_id with unfinished safe star
         """
         self.switch_to_unachieved()
-        found_pair = None
+        found_zone = None
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
             else:
                 self.device.screenshot()
-            
+           
             zone_id = ZONE_ID.ocr(self.device.image)
             finished = [self._is_finished(button.area) for button in self._star_grid().buttons]
+            logger.info(f'Zone {zone_id}: {str(finished)}')
             for index in range(1, 5):  # The first area is control and is finished after os_explore, skip checking
-                if not finished[index] and self.is_safe(zone_id, index):
-                    logger.info(f'No. {index+1} of Zone {zone_id} is safe for MeowfficerFarming.')
-                    found_pair = (zone_id, index)
-                    break
-            if found_pair is not None:
+                if not finished[index]:
+                    logger.info(f'index: {index}, found_zone: {found_zone}')
+                    if self.is_safe(zone_id, index):
+                        logger.info(f'No. {index+1} of Zone {zone_id} is safe for MeowfficerFarming.')
+                        found_zone = zone_id
+                        break
+            if found_zone is not None:
                 break
             else:
+                self.device.sleep(0.3)
+                self.device.screenshot()
                 if not self.appear(RIGHT_BUTTON):
                     logger.info(f'All remaining stars can only be finished at os_explore')
                     break
@@ -189,7 +186,7 @@ class OSAchievementHandler(OSAchievement, Combat, UI):
                     self.device.click(RIGHT_BUTTON)
                     continue
         
-        return found_pair
+        return found_zone
             
     def run(self):
         """
@@ -200,12 +197,6 @@ class OSAchievementHandler(OSAchievement, Combat, UI):
         """
         self.receive_reward()
 
-        zone, _ = self.find_unfinished_safe_star_zone()
+        zone = self.find_unfinished_safe_star_zone()
         return zone
             
-
-
-
-
-
-

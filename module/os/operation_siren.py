@@ -17,6 +17,7 @@ from module.os_collection.achievement import OSAchievementHandler
 from module.os_handler.action_point import OCR_OS_ADAPTABILITY
 from module.os_handler.assets import OS_MONTHBOSS_NORMAL, OS_MONTHBOSS_HARD, EXCHANGE_CHECK, EXCHANGE_ENTER
 from module.shop.shop_voucher import VoucherShop
+from module.ui.ui import page_os
 
 
 class OperationSiren(OSMap):
@@ -333,7 +334,7 @@ class OperationSiren(OSMap):
                 # When not running CL1 and use oil
                 keep_current_ap = True
                 check_rest_ap = True
-                if self.is_cl1_enabled:
+                if self.is_cl1_enabled and self.get_yellow_coins() >= self.config.OS_CL1_YELLOW_COINS_PRESERVE:
                     check_rest_ap = False
                 if not self.is_cl1_enabled and self.config.OpsiGeneral_BuyActionPointLimit > 0:
                     keep_current_ap = False
@@ -346,13 +347,14 @@ class OperationSiren(OSMap):
                 pass
             if not is_collection_set and "achievement" in self.config.OpsiMeowfficerFarming_CollectionFarming:
                 self.os_map_goto_globe()
-                if self.appear(OS_ACHIEVEMENT_RED_DOT):
-                    self.device.click(OS_ACHIEVEMENT)
-                    zone = OSAchievementHandler(self.config, self.device).run()
-                    if zone is not None:
-                        self.config.override(
-                            OpsiMeowfficerFarming_TargetZone = zone
-                        )
+                # if self.appear(OS_ACHIEVEMENT_RED_DOT):
+                self.device.click(OS_ACHIEVEMENT)
+                zone = OSAchievementHandler(self.config, self.device).run()
+                if zone is not None:
+                    self.config.override(
+                        OpsiMeowfficerFarming_TargetZone = zone
+                    )
+                self.ui_back(page_os.check_button)
 
             # (1252, 1012) is the coordinate of zone 134 (the center zone) in os_globe_map.png
             if self.config.OpsiMeowfficerFarming_TargetZone != 0:
