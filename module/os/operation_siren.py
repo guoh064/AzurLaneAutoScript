@@ -9,7 +9,7 @@ from module.config.utils import (get_nearest_weekday_date,
 from module.exception import RequestHumanTakeover, GameStuckError, ScriptError
 from module.logger import logger
 from module.map.map_grids import SelectedGrids
-from module.os.assets import TEMPLATE_OS_ACHIEVEMENT_RED_DOT, OS_ACHIEVEMENT
+from module.os.assets import OS_ACHIEVEMENT, OS_ACHIEVEMENT_RED_DOT
 from module.os.fleet import BossFleet
 from module.os.globe_operation import OSExploreError
 from module.os.map import OSMap
@@ -346,7 +346,7 @@ class OperationSiren(OSMap):
                 pass
             if not is_collection_set and "achievement" in self.config.OpsiMeowfficerFarming_CollectionFarming:
                 self.os_map_goto_globe()
-                if self.appear(TEMPLATE_OS_ACHIEVEMENT_RED_DOT):
+                if self.appear(OS_ACHIEVEMENT_RED_DOT):
                     self.device.click(OS_ACHIEVEMENT)
                     zone = OSAchievementHandler.run()
                     if zone is not None:
