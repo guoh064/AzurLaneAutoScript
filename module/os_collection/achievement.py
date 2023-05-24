@@ -79,15 +79,18 @@ class OSAchievementHandler(OSAchievement, Combat, UI):
                 self.device.screenshot()
 
             # End
-            if not self.appear(JUMP_RIGHT) and not self.appear(JUMP_LEFT):
-                break
             if self.appear(RECEIVE_SINGLE):
                 found = True
                 break
+            if not self.appear(JUMP_RIGHT) and not self.appear(JUMP_LEFT):
+                break
+            
 
             if self.appear_then_click(JUMP_RIGHT):
+                self.device.sleep(0.5)
                 continue
             if self.appear_then_click(JUMP_LEFT):
+                self.device.sleep(0.5)
                 continue        
         return found
 
@@ -102,7 +105,7 @@ class OSAchievementHandler(OSAchievement, Combat, UI):
         received = False
         while 1:
             if skip_first_screenshot:
-                skip_first_screenshot = True
+                skip_first_screenshot = False
             else:
                 self.device.screenshot()
 
@@ -115,7 +118,7 @@ class OSAchievementHandler(OSAchievement, Combat, UI):
                 continue
             
             # End
-            if self.image_color_count(RECEIVE_SINGLE, color=(76, 117, 184), threshold=220, count=400):
+            if not self.image_color_count(RECEIVE_SINGLE, color=(76, 117, 184), threshold=220, count=400):
                 if confirm_timer.reached():
                     break
 
