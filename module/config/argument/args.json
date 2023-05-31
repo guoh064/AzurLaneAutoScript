@@ -8912,11 +8912,6 @@
         "type": "checkbox",
         "value": false
       },
-      "IsSafeTargetFinished": {
-        "type": "checkbox",
-        "value": false,
-        "display": "hide"
-      },
       "TargetZone": {
         "type": "input",
         "value": 0

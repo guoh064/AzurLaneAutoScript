@@ -406,7 +406,6 @@ class GeneratedConfig:
     OpsiMeowfficerFarming_ActionPointPreserve = 1000
     OpsiMeowfficerFarming_HazardLevel = 5  # 3, 4, 5, 6, 10
     OpsiMeowfficerFarming_TargetFarming = False
-    OpsiMeowfficerFarming_IsSafeTargetFinished = False
     OpsiMeowfficerFarming_TargetZone = 0
 
     # Group `OpsiHazard1Leveling`
