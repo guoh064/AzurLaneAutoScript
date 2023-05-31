@@ -153,6 +153,18 @@ class OSTargetHandler(OSTarget, Combat, UI):
             grid_shape=(1, 5)
         )
     
+    def scan_current_zone(self):
+        """
+        Scan current zone information.
+        
+        Returns:
+            zone_id: int
+            finished: list(bool)
+        """
+        zone_id = ZONE_ID.ocr(self.device.image)
+        finished = [self._is_finished(button.area) for button in self._star_grid().buttons]
+        logger.info(f'Zone {zone_id} target progress: {str(finished)}')
+
     def find_unfinished_safe_star_zone(self, skip_first_screenshot=True):
         """
         Find a zone with unfinished safe star by searching through unfinished zone.
@@ -168,9 +180,7 @@ class OSTargetHandler(OSTarget, Combat, UI):
             else:
                 self.device.screenshot()
 
-            zone_id = ZONE_ID.ocr(self.device.image)
-            finished = [self._is_finished(button.area) for button in self._star_grid().buttons]
-            logger.info(f'Zone {zone_id} target progress: {str(finished)}')
+            zone_id, finished = self.scan_current_zone()
             for index in range(1, 5):
                 if not finished[index]:
                     if self.is_file(zone_id, index):
