@@ -2549,6 +2549,10 @@
       "6": "6",
       "10": "Center Zones"
     },
+    "TargetFarming": {
+      "name": "Farm for Star objectives",
+      "help": "Will skip file objectives.\nWhen enabled and found other suitable zones, will override user input of Target Zone."
+    },
     "TargetZone": {
       "name": "Target Zone ID",
       "help": "Supports either Zone ID or Name in CN/EN/JP/TW, i.e. \"51\", \"NA Ocean SE Sector E\"\nIf specified, Alas will loop on this same zone after each clear\nUse default value 0 or clear the field to remove the specification\nZone information can be acquired from <./module/os/map_data.py>"

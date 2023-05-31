@@ -1914,6 +1914,8 @@
     "OpsiMeowfficerFarming": {
       "ActionPointPreserve": 1000,
       "HazardLevel": 5,
+      "TargetFarming": false,
+      "IsSafeTargetFinished": false,
       "TargetZone": 0
     },
     "OpsiFleet": {
