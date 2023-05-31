@@ -2305,6 +2305,10 @@
       "6": "6",
       "10": "10"
     },
+    "TargetFarming": {
+      "name": "OpsiMeowfficerFarming.TargetFarming.name",
+      "help": "OpsiMeowfficerFarming.TargetFarming.help"
+    },
     "TargetZone": {
       "name": "OpsiMeowfficerFarming.TargetZone.name",
       "help": "OpsiMeowfficerFarming.TargetZone.help"
