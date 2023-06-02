@@ -379,9 +379,7 @@ class Combat(Level, HPBalancer, Retirement, SubmarineCall, CombatAuto, CombatMan
                     genre='new_ship',
                     method=self.config.DropRecord_NewShipRecord,
                 ) as record:
-                    self.device.sleep(0.5) # waiting for full animation of new ship
-                    self.device.screenshot()
-                    record.add(self.device.image)
+                    record.handle_add(self, before=1)
                 self.config.GET_SHIP_TRIGGERED = True
             return True
 
