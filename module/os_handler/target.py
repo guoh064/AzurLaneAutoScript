@@ -62,7 +62,7 @@ class OSTargetHandler(OSTarget, Combat, UI):
                 continue
                 
             # End
-            if self.image_color_count(TARGET_RECEIVE_ALL, color=(230, 187, 67), threshold=220, count=400):
+            if not self.image_color_count(TARGET_RECEIVE_ALL, color=(230, 187, 67), threshold=220, count=400):
                 if confirm_timer.reached():
                     break
 
