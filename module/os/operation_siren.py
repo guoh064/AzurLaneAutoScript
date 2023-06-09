@@ -341,8 +341,9 @@ class OperationSiren(OSMap):
 
             # OSTarget
             if self.config.OpsiMeowfficerFarming_TargetFarming:
+                self.os_map_goto_globe()
                 if OSTargetHandler(self.config, self.device).run(receive=True):
-                    logger.hr('Received new target rewards, update target zone.')
+                    logger.info('Received new target rewards, update target zone.')
                     zone_id = OSTargetHandler(self.config, self.device).run(receive=False, find=True)
                     if zone_id == 0:
                         logger.info('Safe zone targets all finished, disable TargetFarming and initialize target zone.')
@@ -355,7 +356,7 @@ class OperationSiren(OSMap):
                             OpsiMeowfficerFarming_TargetZone=zone_id
                         )
                 else:
-                    logger.hr('No rewards received, continue with current settings.')
+                    logger.info('No rewards received, continue with current settings.')
 
             # (1252, 1012) is the coordinate of zone 134 (the center zone) in os_globe_map.png
             if self.config.OpsiMeowfficerFarming_TargetZone != 0:
