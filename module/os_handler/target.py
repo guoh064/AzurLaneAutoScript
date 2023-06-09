@@ -193,9 +193,11 @@ class OSTargetHandler(OSTarget, Combat, UI):
                     else:
                         logger.info(f"No. {index+1} of Zone {zone_id} can only be done in danger zone, skipped.")
                         continue
-            if self.appear_then_click(TARGET_NEXT_ZONE, offset=(10, 10), interval=3):
+            if self.appear(TARGET_NEXT_ZONE):
+                self.device.click(TARGET_NEXT_ZONE)
                 # It is possible to click more than 15 times.
                 self.device.click_record.pop()
+                self.device.sleep(0.7)
                 continue
             else:
                 logger.info(f'All remaining stars can only be finished in danger zone.')
