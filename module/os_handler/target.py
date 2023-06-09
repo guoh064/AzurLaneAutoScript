@@ -164,6 +164,7 @@ class OSTargetHandler(OSTarget, Combat, UI):
         zone_id = ZONE_ID.ocr(self.device.image)
         finished = [self._is_finished(button.area) for button in self._star_grid().buttons]
         logger.info(f'Zone {zone_id} target progress: {str(finished)}')
+        return zone_id, finished
 
     def find_unfinished_safe_star_zone(self, skip_first_screenshot=True):
         """
