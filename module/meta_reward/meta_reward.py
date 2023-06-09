@@ -203,6 +203,70 @@ class MetaReward(Combat, UI):
             if self.appear(REWARD_ENTER, offset=(20, 20)):
                 return
 
+    def masked_meta_reward_notice_appear(self):
+        """
+        Returns:
+            bool: If appear.
+            
+        Page:
+            in: page_meta
+        """
+        if self.appear(MASKED_META_REWARD_NOTICE, threshold=30):
+            logger.info('Found masked meta reward red dot')
+            return True
+        else:
+            logger.info('No meta reward red dot')
+            return False
+        
+    def masked_meta_reward_receive(self, skip_first_screenshot=True):
+        """
+        Args:
+            skip_first_screenshot:
+
+        Returns:
+            bool: If received.
+
+        Pages:
+            in: page_meta
+            out: page_meta
+        """
+        logger.hr('Meta reward receive', level=1)
+        confirm_timer = Timer(1, count=3).start()
+        received = False
+        while 1:
+            if skip_first_screenshot:
+                skip_first_screenshot = False
+            else:
+                self.device.screenshot()
+
+            if self.appear(MASKED_META_REWARD_NOTICE):
+                self.device.click(MASKED_META_REWARD_RECEIVE)
+                confirm_timer.reset()
+                continue
+            if self.handle_popup_confirm('META_REWARD'):
+                # Lock new META ships
+                confirm_timer.reset()
+                continue
+            if self.handle_get_items():
+                received = True
+                confirm_timer.reset()
+                continue
+            if self.handle_get_ship():
+                received = True
+                confirm_timer.reset()
+                continue
+
+            # End
+            if not self.appear(MASKED_META_REWARD_NOTICE):
+                if confirm_timer.reached():
+                    break
+            else:
+                confirm_timer.reset()
+        
+        logger.info(f'Meta reward receive finished, received={received}')
+        return received
+            
+
     def get_meta_reward(self):
         '''
         Wrapper for actual meta reward check and obtain process.
@@ -214,6 +278,8 @@ class MetaReward(Combat, UI):
             self.meta_reward_enter()
             self.meta_reward_receive()
             self.meta_reward_exit()
+        elif self.masked_meta_reward_notice_appear():  # Deal with cases where pt < 5000
+            self.masked_meta_reward_receive()
     
     def search_for_dossier_reward(self):
         # Check for red dots on dossier ship lists
