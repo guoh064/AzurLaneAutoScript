@@ -1,5 +1,5 @@
 from module.base.timer import Timer
-from module.combat.assets import GET_SHIP
+from module.combat.assets import GET_SHIP, NEW_SHIP
 from module.exception import ScriptError
 from module.gacha.assets import *
 from module.gacha.ui import GachaUI
@@ -8,6 +8,7 @@ from module.logger import logger
 from module.ocr.ocr import Digit
 from module.retire.retirement import Retirement
 from module.shop.shop_general import GeneralShop
+from module.log_res.log_res import LogRes
 
 RECORD_GACHA_OPTION = ('RewardRecord', 'gacha')
 RECORD_GACHA_SINCE = (0,)
@@ -120,6 +121,8 @@ class RewardGacha(GachaUI, GeneralShop, Retirement):
         logger.info(f'Able to submit up to {target_count} build orders')
         self._currency -= gold_total
         self.build_cube_count -= cube_total
+        LogRes(self.config).Cube = self.build_cube_count
+        self.config.update()
         return target_count
 
     def gacha_goto_pool(self, target_pool):
@@ -220,6 +223,15 @@ class RewardGacha(GachaUI, GeneralShop, Retirement):
                 continue
 
             if self.appear(GET_SHIP, interval=1):
+                if self.appear(NEW_SHIP):
+                    logger.info('Get a new SHIP')
+                    with self.stat.new(
+                        genre='new_ship',
+                        method=self.config.DropRecord_NewShipRecord,
+                    ) as record:
+                        self.device.sleep(0.5) # waiting for full animation of new ship
+                        self.device.screenshot()
+                        record.add(self.device.image)
                 self.device.click(STORY_SKIP)  # Fast forward for multiple orders
                 confirm_timer.reset()
                 continue

@@ -375,6 +375,11 @@ class Combat(Level, HPBalancer, Retirement, SubmarineCall, CombatAuto, CombatMan
                 logger.info('Get a new SHIP')
                 if drop:
                     drop.handle_add(self)
+                with self.stat.new(
+                    genre='new_ship',
+                    method=self.config.DropRecord_NewShipRecord,
+                ) as record:
+                    record.handle_add(self, before=1)
                 self.config.GET_SHIP_TRIGGERED = True
             return True
 
