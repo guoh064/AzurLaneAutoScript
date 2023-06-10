@@ -287,6 +287,8 @@ class MetaReward(Combat, UI):
         while self.meta_labo_sidebar_swipe():
             # After clicking the ship icon will enlarge.
             self.meta_labo_sidebar_icon_button_click()
+            self.device.sleep(0.3)
+            self.device.screenshot()
             logger.info('Check dossier ship')
             self.get_meta_reward()
 
