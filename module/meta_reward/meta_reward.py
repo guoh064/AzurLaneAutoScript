@@ -278,8 +278,11 @@ class MetaReward(Combat, UI):
             self.meta_reward_enter()
             self.meta_reward_receive()
             self.meta_reward_exit()
-        elif self.masked_meta_reward_notice_appear():  # Deal with cases where pt < 5000
-            self.masked_meta_reward_receive()
+        else:
+            self.device.sleep(0.3)
+            self.device.screenshot()
+            if self.masked_meta_reward_notice_appear():  # Deal with cases where pt < 5000
+                self.masked_meta_reward_receive()
     
     def search_for_dossier_reward(self):
         # Check for red dots on dossier ship lists
