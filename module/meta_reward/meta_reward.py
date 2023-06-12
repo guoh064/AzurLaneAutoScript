@@ -203,6 +203,45 @@ class MetaReward(Combat, UI):
             if self.appear(REWARD_ENTER, offset=(20, 20)):
                 return
 
+    def receive_masked_meta_reward(self, skip_first_screenshot=True):
+        logger.hr('Masked meta reward receive', level=1)
+        confirm_timer = Timer(1, count=3).start()
+        received = False
+        while 1:
+            if skip_first_screenshot:
+                skip_first_screenshot = False
+            else:
+                self.device.screenshot()
+
+            if self.appear(MASKED_META_REWARD_NOTICE):
+                self.device.click(MASKED_META_REWARD_RECEIVE)
+                confirm_timer.reset()
+                continue
+            if self.handle_popup_confirm('META_REWARD'):
+                # Lock new META ships
+                confirm_timer.reset()
+                continue
+            if self.handle_get_items():
+                received = True
+                confirm_timer.reset()
+                continue
+            if self.handle_get_ship():
+                received = True
+                confirm_timer.reset()
+                continue
+
+            # End 
+            if self.appear(MASKED_META_REWARD_RECEIVE, offset=(20, 20)) and \
+               not self.image_color_count(MASKED_META_REWARD_NOTICE, color=(247, 182, 58), count=20):
+                if confirm_timer.reached():
+                    break
+            else:
+                confirm_timer.reset()
+            
+        logger.info(f'Masked meta reward receive finished, received={received}')
+        return received  
+            
+    
     def get_meta_reward(self):
         '''
         Wrapper for actual meta reward check and obtain process.
@@ -210,10 +249,29 @@ class MetaReward(Combat, UI):
         Pages: page_meta
         '''
         logger.info('Check meta ship reward status')
-        if self.meta_reward_notice_appear():
-            self.meta_reward_enter()
-            self.meta_reward_receive()
-            self.meta_reward_exit()
+        if self.appear(REWARD_ENTER):
+            # pt is more than 5000
+            if self.meta_reward_notice_appear():
+                self.meta_reward_enter()
+                self.meta_reward_receive()
+                self.meta_reward_exit()
+        else:
+            # pt is less than 5000
+            confirm_timer = Timer(5, count=1).start()
+            loaded = False
+            while 1:
+                self.device.screenshot()
+
+                if self.appear(MASKED_META_REWARD_RECEIVE):
+                    loaded = True
+                    break
+                if confirm_timer.reached():
+                    break
+            if loaded:
+                self.receive_masked_meta_reward(skip_first_screenshot=True)
+            else:
+                logger.warning('Masked meta loaded animation not detected, Consider getting 5000 pt already')
+
     
     def search_for_dossier_reward(self):
         # Check for red dots on dossier ship lists
