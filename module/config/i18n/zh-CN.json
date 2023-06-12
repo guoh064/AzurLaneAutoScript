@@ -765,12 +765,6 @@
       "do_not": "无操作",
       "save": "保存"
     },
-    "NewShipRecord": {
-      "name": "获得新舰船截图",
-      "help": "",
-      "do_not": "无操作",
-      "save": "保存"
-    },
     "OpsiRecord": {
       "name": "大世界掉落截图",
       "help": "",
