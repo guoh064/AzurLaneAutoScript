@@ -231,8 +231,7 @@ class MetaReward(Combat, UI):
                 continue
 
             # End 
-            if self.appear(MASKED_META_REWARD_RECEIVE, offset=(20, 20)) and \
-               not self.image_color_count(MASKED_META_REWARD_NOTICE, color=(247, 182, 58), count=20):
+            if not self.appear(MASKED_META_REWARD_NOTICE):
                 if confirm_timer.reached():
                     break
             else:
