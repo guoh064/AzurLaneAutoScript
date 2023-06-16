@@ -294,7 +294,7 @@ class OperationSiren(OSMap):
 
     def _os_target_exit(self):
         self.ui_back(check_button=TARGET_ENTER, appear_button=TARGET_INFO_ALL_CHECK,
-                     offset=(200, 20), retry_wair=3, skip_first_screenshot=True)  
+                     offset=(200, 20), retry_wait=3, skip_first_screenshot=True)  
         self.os_globe_goto_map()
 
     def os_target(self):
