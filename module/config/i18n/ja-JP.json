@@ -214,6 +214,10 @@
       "name": "OpSi Daily",
       "help": ""
     },
+    "OpsiCollection": {
+      "name": "Opsi Collection",
+      "help": "Task.OpsiCollection.help"
+    },
     "OpsiObscure": {
       "name": "Obscure Zones",
       "help": ""
@@ -2237,6 +2241,24 @@
       "help": "OpsiDaily.UseTuningSample.help"
     }
   },
+  "OpsiCollection": {
+    "_info": {
+      "name": "OpsiCollection._info.name",
+      "help": "OpsiCollection._info.help"
+    },
+    "Collect": {
+      "name": "OpsiCollection.Collect.name",
+      "help": "OpsiCollection.Collect.help"
+    },
+    "TargetFarming": {
+      "name": "OpsiCollection.TargetFarming.name",
+      "help": "OpsiCollection.TargetFarming.help"
+    },
+    "LastZone": {
+      "name": "OpsiCollection.LastZone.name",
+      "help": "OpsiCollection.LastZone.help"
+    }
+  },
   "OpsiObscure": {
     "_info": {
       "name": "OpsiObscure._info.name",
@@ -2304,10 +2326,6 @@
       "5": "5",
       "6": "6",
       "10": "10"
-    },
-    "TargetFarming": {
-      "name": "OpsiMeowfficerFarming.TargetFarming.name",
-      "help": "OpsiMeowfficerFarming.TargetFarming.help"
     },
     "TargetZone": {
       "name": "OpsiMeowfficerFarming.TargetZone.name",

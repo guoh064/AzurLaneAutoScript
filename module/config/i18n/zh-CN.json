@@ -214,6 +214,10 @@
       "name": "大世界每日",
       "help": ""
     },
+    "OpsiCollection": {
+      "name": "大世界收集",
+      "help": ""
+    },
     "OpsiObscure": {
       "name": "隐秘海域",
       "help": ""
@@ -2237,6 +2241,24 @@
       "help": "使用所有六种效能样本和强力效能样本"
     }
   },
+  "OpsiCollection": {
+    "_info": {
+      "name": "海域成就",
+      "help": ""
+    },
+    "Collect": {
+      "name": "收获海域成就奖励",
+      "help": ""
+    },
+    "TargetFarming": {
+      "name": "检查安全海域成就星完成情况",
+      "help": "会跳过档案目标"
+    },
+    "LastZone": {
+      "name": "上一个刷取的海域",
+      "help": "自动更新，一般不必手动修改"
+    }
+  },
   "OpsiObscure": {
     "_info": {
       "name": "隐秘海域",
@@ -2304,10 +2326,6 @@
       "5": "5",
       "6": "6",
       "10": "中心海域"
-    },
-    "TargetFarming": {
-      "name": "刷取安全海域成就星",
-      "help": "会跳过档案成就星。启用后若找到其它可刷海域，将覆盖玩家指定海域选择。"
     },
     "TargetZone": {
       "name": "指定海域",
