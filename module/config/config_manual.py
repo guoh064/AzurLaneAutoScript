@@ -18,7 +18,7 @@ class ManualConfig:
     > ShopFrequent > ShopOnce > Shipyard > Freebies
     > OpsiExplore
     > OpsiAshBeacon
-    > OpsiDaily > OpsiShop > OpsiVoucher
+    > OpsiDaily > OpsiShop > OpsiVoucher > OpsiCollection
     > OpsiAbyssal > OpsiStronghold > OpsiObscure > OpsiArchive
     > Daily > Hard > OpsiAshBeacon > OpsiAshAssist  > OpsiMonthBoss
     > Sos > EventSp > EventA > EventB > EventC > EventD

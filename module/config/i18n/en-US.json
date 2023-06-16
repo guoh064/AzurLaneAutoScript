@@ -210,6 +210,10 @@
       "name": "OpSi Daily",
       "help": ""
     },
+    "OpsiCollection": {
+      "name": "Opsi Collection",
+      "help": ""
+    },
     "OpsiObscure": {
       "name": "Obscure Zones",
       "help": ""
@@ -2469,6 +2473,24 @@
       "help": "Use all tuning samples and quality tuning samples"
     }
   },
+  "OpsiCollection": {
+    "_info": {
+      "name": "OpSi Achievements",
+      "help": ""
+    },
+    "Collect": {
+      "name": "Collect Opsi Acheivement Rewards",
+      "help": ""
+    },
+    "TargetFarming": {
+      "name": "Find next zone for safe objectives",
+      "help": "Will skip file objectives."
+    },
+    "LastZone": {
+      "name": "Last Zone Checked",
+      "help": "Updated automatically after completing the task to set next zone, typically not manually modified\nHowever you can force a recheck if you clear this text field"
+    }
+  },
   "OpsiObscure": {
     "_info": {
       "name": "OpSi Obscure Settings",
@@ -2536,10 +2558,6 @@
       "5": "5",
       "6": "6",
       "10": "Center Zones"
-    },
-    "TargetFarming": {
-      "name": "Farm for Star objectives",
-      "help": "Will skip file objectives.\nWhen enabled and found other suitable zones, will override user input of Target Zone."
     },
     "TargetZone": {
       "name": "Target Zone ID",

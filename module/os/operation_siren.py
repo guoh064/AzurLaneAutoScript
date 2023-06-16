@@ -13,7 +13,7 @@ from module.os.fleet import BossFleet
 from module.os.globe_operation import OSExploreError
 from module.os.map import OSMap
 from module.os_handler.action_point import OCR_OS_ADAPTABILITY
-from module.os_handler.assets import OS_MONTHBOSS_NORMAL, OS_MONTHBOSS_HARD, EXCHANGE_CHECK, EXCHANGE_ENTER
+from module.os_handler.assets import OS_MONTHBOSS_NORMAL, OS_MONTHBOSS_HARD, EXCHANGE_CHECK, EXCHANGE_ENTER, TARGET_ENTER, TARGET_INFO_ALL_CHECK
 from module.os_handler.target import OSTargetHandler
 from module.shop.shop_voucher import VoucherShop
 
@@ -287,6 +287,32 @@ class OperationSiren(OSMap):
         logger.attr('OpsiNextReset', next_reset)
         self.config.task_delay(target=next_reset)
 
+    def _os_target_enter(self):
+        self.os_map_goto_globe(unpin=False)
+        self.ui_click(click_button=TARGET_ENTER, check_button=TARGET_INFO_ALL_CHECK,
+                      offset=(200, 20), retry_wait=3, skip_first_screenshot=True)
+
+    def _os_target_exit(self):
+        self.ui_back(check_button=TARGET_ENTER, appear_button=TARGET_INFO_ALL_CHECK,
+                     offset=(200, 20), retry_wait=3, skip_first_screenshot=True)  
+        self.os_globe_goto_map()
+
+    def os_target(self):
+        next_reset = get_os_next_reset()
+        now = datetime.now()
+        logger.attr('OpsiNextReset', next_reset)
+        if next_reset - now < timedelta(days=1):
+            logger.error('Only one day to next reset, received loggers may be wasted.'
+                         'Running OpsiTarget is undesirable, delayed to next reset.')
+            self.config.task_delay(target=get_os_next_reset())
+            self.config.task_stop()
+        logger.hr('OS target', level=1)
+        self._os_target_enter()
+        OSTargetHandler(self.config, self.device).run()
+        self._os_target_exit()
+
+        self.config.task_delay(server_update=True)
+
     def os_meowfficer_farming(self):
         """
         Recommend 3 or 5 for higher meowfficer searching point per action points ratio.
@@ -340,23 +366,12 @@ class OperationSiren(OSMap):
                 ap_checked = True
 
             # OSTarget
-            if self.config.OpsiMeowfficerFarming_TargetFarming:
-                self.os_map_goto_globe()
-                if OSTargetHandler(self.config, self.device).run(receive=True):
-                    logger.info('Received new target rewards, update target zone.')
-                    zone_id = OSTargetHandler(self.config, self.device).run(receive=False, find=True)
-                    if zone_id == 0:
-                        logger.info('Safe zone targets all finished, disable TargetFarming and initialize target zone.')
-                        self.config.OpsiMeowfficerFarming_TargetFarming = False
-                        # Reset overridden target zone
-                        self.config.OpsiMeowfficerFarming_TargetZone = 0
-                    else:
-                        logger.info(f'Override target zone to {zone_id}.')
-                        self.config.override(
-                            OpsiMeowfficerFarming_TargetZone=zone_id
-                        )
-                else:
-                    logger.info('No rewards received, continue with current settings.')
+            if self.config.OpsiCollection_TargetFarming:
+                zone = self.config.OpsiCollection_LastZone
+                if zone != 0:
+                    self.config.override(
+                        OpsiMeowOpsiMeowfficerFarming_TargetZone = zone
+                    )                
 
             # (1252, 1012) is the coordinate of zone 134 (the center zone) in os_globe_map.png
             if self.config.OpsiMeowfficerFarming_TargetZone != 0:

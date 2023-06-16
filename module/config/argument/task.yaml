@@ -253,6 +253,9 @@ OpsiDaily:
   - Scheduler
   - OpsiDaily
   - OpsiFleet
+OpsiCollection:
+  - Scheduler
+  - OpsiCollection
 OpsiObscure:
   - Scheduler
   - OpsiObscure

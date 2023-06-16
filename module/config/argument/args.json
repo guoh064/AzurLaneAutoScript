@@ -8384,6 +8384,61 @@
       }
     }
   },
+  "OpsiCollection": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "OpsiCollection",
+        "display": "hide"
+      },
+      "SuccessInterval": {
+        "type": "input",
+        "value": 0,
+        "display": "hide"
+      },
+      "FailureInterval": {
+        "type": "input",
+        "value": 120,
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "00:00",
+        "display": "hide"
+      }
+    },
+    "OpsiCollection": {
+      "Collect": {
+        "type": "checkbox",
+        "value": false
+      },
+      "TargetFarming": {
+        "type": "checkbox",
+        "value": false
+      },
+      "LastZone": {
+        "type": "input",
+        "value": 0
+      }
+    },
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
   "OpsiObscure": {
     "Scheduler": {
       "Enable": {
@@ -8722,10 +8777,6 @@
           6,
           10
         ]
-      },
-      "TargetFarming": {
-        "type": "checkbox",
-        "value": false
       },
       "TargetZone": {
         "type": "input",

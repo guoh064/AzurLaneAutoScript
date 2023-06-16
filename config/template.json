@@ -1728,6 +1728,24 @@
       "Storage": {}
     }
   },
+  "OpsiCollection": {
+    "Scheduler": {
+      "Enable": false,
+      "NextRun": "2020-01-01 00:00:00",
+      "Command": "OpsiCollection",
+      "SuccessInterval": 0,
+      "FailureInterval": 120,
+      "ServerUpdate": "00:00"
+    },
+    "OpsiCollection": {
+      "Collect": false,
+      "TargetFarming": false,
+      "LastZone": 0
+    },
+    "Storage": {
+      "Storage": {}
+    }
+  },
   "OpsiObscure": {
     "Scheduler": {
       "Enable": false,
@@ -1836,7 +1854,6 @@
     "OpsiMeowfficerFarming": {
       "ActionPointPreserve": 1000,
       "HazardLevel": 5,
-      "TargetFarming": false,
       "TargetZone": 0
     },
     "OpsiFleet": {
