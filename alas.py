@@ -303,7 +303,7 @@ class AzurLaneAutoScript:
 
     def opsi_collection(self):
         from module.os_handler.target import OSTargetHandler
-        OSTargetHandler(config=self.config, device=self.device).run(find=True)
+        OSTargetHandler(config=self.config, device=self.device).run()
 
     def opsi_obscure(self):
         from module.campaign.os_run import OSCampaignRun
