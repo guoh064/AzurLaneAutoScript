@@ -626,6 +626,10 @@ OpsiVoucher:
 OpsiDaily:
   DoMission: true
   UseTuningSample: true
+OpsiCollection:
+  Collect: false
+  TargetFarming: false
+  LastZone: 0
 OpsiObscure:
   ForceRun: false
 OpsiAbyssal:
@@ -643,7 +647,6 @@ OpsiMeowfficerFarming:
   HazardLevel:
     value: 5
     option: [ 3, 4, 5, 6, 10 ]
-  TargetFarming: false
   TargetZone:
     value: 0
 OpsiHazard1Leveling:

@@ -173,8 +173,7 @@ class OSTargetHandler(OSTarget, Combat, UI):
         Returns:
             found_zone(int): The zone id with unfinished safe star. If such zone does not exist, return 0.
         """
-        self.switch_to_unfinished()
-        
+        last_zone = self.config.OpsiCollection_LastZone
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
@@ -182,17 +181,19 @@ class OSTargetHandler(OSTarget, Combat, UI):
                 self.device.screenshot()
 
             zone_id, finished = self.scan_current_zone()
-            for index in range(1, 5):
-                if not finished[index]:
-                    if self.is_file(zone_id, index):
-                        logger.info(f'No. {index+1} of Zone {zone_id} is a file target, skipped.')
-                        continue
-                    elif self.is_safe(zone_id, index):
-                        logger.info(f'No. {index+1} of Zone {zone_id} is safe for MeowfficerFarming.')
-                        return zone_id
-                    else:
-                        logger.info(f"No. {index+1} of Zone {zone_id} can only be done in danger zone, skipped.")
-                        continue
+
+            if zone_id >= last_zone:                
+                for index in range(1, 5):
+                    if not finished[index]:
+                        if self.is_file(zone_id, index):
+                            logger.info(f'No. {index+1} of Zone {zone_id} is a file target, skipped.')
+                            continue
+                        elif self.is_safe(zone_id, index):
+                            logger.info(f'No. {index+1} of Zone {zone_id} is safe for MeowfficerFarming.')
+                            return zone_id
+                        else:
+                            logger.info(f"No. {index+1} of Zone {zone_id} can only be done in danger zone, skipped.")
+                            continue
             if self.appear(TARGET_NEXT_ZONE):
                 self.device.click(TARGET_NEXT_ZONE)
                 # It is possible to click more than 15 times.
@@ -203,16 +204,24 @@ class OSTargetHandler(OSTarget, Combat, UI):
                 logger.info(f'All remaining stars can only be finished in danger zone.')
                 return 0
 
-    def run(self, receive=True, find=False):
-        if receive and self.appear(TARGET_RED_DOT):
-            logger.info('Found Target red dot, enter target reward page.')
-            self.ui_click(TARGET_ENTER, TARGET_INFO_ALL_CHECK)
+    def run(self):
+        if self.config.OpsiCollection_Collect:
+            self.switch_to_all()
             received = self.receive_reward()
-            self.ui_back(page_os.check_button)
-            return received
-        if find:
-            self.ui_click(TARGET_ENTER, TARGET_INFO_ALL_CHECK)
-            logger.info('Find possible safe zone for MeowfficerFarming.')
+            if received:
+                logger.info(f'Opsi target reward collection received')
+            else:
+                logger.info(f'No Opsi target reward available')
+        if self.config.OpsiCollection_TargetFarming:
+            self.switch_to_unfinished()
             zone = self.find_unfinished_safe_star_zone()
-            self.ui_back(page_os.check_button)
-            return zone
+            with self.config.multi_set():
+                if zone == 0:
+                    logger.info('Disable Safe Target Farming')
+                    self.config.OpsiCollection_LastZone = 0
+                    self.config.OpsiCollection_TargetFarming = False
+                else:
+                    logger.info(f'Successfully found safe target zone, zone_id={zone}')
+                    self.config.OpsiCollection_LastZone = zone
+            self.switch_to_all()
+            

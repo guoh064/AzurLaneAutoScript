@@ -388,6 +388,11 @@ class GeneratedConfig:
     OpsiDaily_DoMission = True
     OpsiDaily_UseTuningSample = True
 
+    # Group `OpsiCollection`
+    OpsiCollection_Collect = False
+    OpsiCollection_TargetFarming = False
+    OpsiCollection_LastZone = 0
+
     # Group `OpsiObscure`
     OpsiObscure_ForceRun = False
 
@@ -405,7 +410,6 @@ class GeneratedConfig:
     # Group `OpsiMeowfficerFarming`
     OpsiMeowfficerFarming_ActionPointPreserve = 1000
     OpsiMeowfficerFarming_HazardLevel = 5  # 3, 4, 5, 6, 10
-    OpsiMeowfficerFarming_TargetFarming = False
     OpsiMeowfficerFarming_TargetZone = 0
 
     # Group `OpsiHazard1Leveling`
