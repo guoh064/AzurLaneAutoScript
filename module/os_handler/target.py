@@ -5,14 +5,17 @@ from module.logger import logger
 from module.ocr.ocr import Digit
 from module.os_handler.assets import (
     OCR_TARGET_ZONE_ID, TARGET_ENTER, 
-    TARGET_INFO_ALL, TARGET_INFO_ALL_CHECK, TARGET_INFO_UNFINISHED, TARGET_INFO_UNFINISHED_CHECK, 
+    TARGET_ALL_OFF, TARGET_ALL_ON, TARGET_UNFINISHED_OFF, TARGET_UNFINISHED_ON, 
     TARGET_NEXT_REWARD, TARGET_NEXT_ZONE, TARGET_PREVIOUS_REWARD, TARGET_PREVIOUS_ZONE, 
     TARGET_RECEIVE_ALL, TARGET_RECEIVE_SINGLE, TARGET_RED_DOT
 )
 from module.os_handler.target_data import DIC_OS_TARGET
+from module.ui.switch import Switch
 from module.ui.ui import UI, page_os
 
-
+TARGET_SWITCH = Switch('Opsi_Target_switch', is_selector=True)
+TARGET_SWITCH.add_status('all', TARGET_ALL_ON, sleep=0.5)
+TARGET_SWITCH.add_status('unfinished', TARGET_UNFINISHED_ON, sleep=0.5)
 ZONE_ID = Digit(OCR_TARGET_ZONE_ID, name='TARGET_ZONE_ID')
 
 class OSTarget:
@@ -23,18 +26,6 @@ class OSTarget:
         return DIC_OS_TARGET[zone][index] == True
 
 class OSTargetHandler(OSTarget, Combat, UI):
-    def switch_to_unfinished(self):
-        """
-        Switch to unfinished zone list.
-        """
-        self.ui_click(TARGET_INFO_UNFINISHED, TARGET_INFO_UNFINISHED_CHECK, TARGET_INFO_UNFINISHED)
-
-    def switch_to_all(self):
-        """
-        Swtich to all zone list.
-        """
-        self.ui_click(TARGET_INFO_ALL, TARGET_INFO_ALL_CHECK, TARGET_INFO_ALL)
-
     def _receive_reward_all(self, skip_first_screenshot=True):
         """
         Receive all target rewards if there are two or more.
@@ -76,7 +67,7 @@ class OSTargetHandler(OSTarget, Combat, UI):
             bool: if found
         """
         # Ensure at all zone list
-        self.switch_to_all()  
+        TARGET_SWITCH.set('all', main=self)
 
         while 1:
             if skip_first_screenshot:
@@ -206,14 +197,14 @@ class OSTargetHandler(OSTarget, Combat, UI):
 
     def run(self):
         if self.config.OpsiCollection_Collect:
-            self.switch_to_all()
+            TARGET_SWITCH.set('all', main=self)
             received = self.receive_reward()
             if received:
                 logger.info(f'Opsi target reward collection received')
             else:
                 logger.info(f'No Opsi target reward available')
         if self.config.OpsiCollection_TargetFarming:
-            self.switch_to_unfinished()
+            TARGET_SWITCH.set('unfinished', main=self)
             zone = self.find_unfinished_safe_star_zone()
             with self.config.multi_set():
                 if zone == 0:
@@ -223,5 +214,5 @@ class OSTargetHandler(OSTarget, Combat, UI):
                 else:
                     logger.info(f'Successfully found safe target zone, zone_id={zone}')
                     self.config.OpsiCollection_LastZone = zone
-            self.switch_to_all()
+            TARGET_SWITCH.set('all', main=self)
             
