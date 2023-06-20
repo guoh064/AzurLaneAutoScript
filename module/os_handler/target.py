@@ -13,7 +13,6 @@ from module.os_handler.target_data import DIC_OS_TARGET
 from module.ui.switch import Switch
 from module.ui.ui import UI
 
-
 TARGET_SWITCH = Switch('Opsi_Target_switch', is_selector=True)
 TARGET_SWITCH.add_status('all', TARGET_ALL_ON)
 TARGET_SWITCH.add_status('unfinished', TARGET_UNFINISHED_ON)
@@ -80,15 +79,14 @@ class OSTargetHandler(OSTarget, Combat, UI):
             if not self.appear(TARGET_PREVIOUS_REWARD) and not self.appear(TARGET_NEXT_REWARD):
                 return False
 
-            if self.appear(TARGET_RECEIVE_SINGLE):
+              if self.appear(TARGET_RECEIVE_SINGLE):
                 return True
             
             if self.appear_then_click(TARGET_NEXT_REWARD, offset=(10, 10), interval=2):
                 continue
             if self.appear_then_click(TARGET_PREVIOUS_REWARD, offset=(10, 10), interval=2):
                 continue
-            
-            
+
     def _receive_reward_single(self, skip_first_screenshot=True):
         """
         Receive single target reward.
@@ -168,18 +166,18 @@ class OSTargetHandler(OSTarget, Combat, UI):
         """
         last_zone = self.config.OpsiCollection_LastZone
         info_timer = Timer(1)
-        
+
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
             else:
                 self.device.screenshot()
 
+
             if not info_timer.reached():
                 continue
-
+          
             zone_id, finished = self.scan_current_zone()
-
             if zone_id >= last_zone:                
                 for index in range(1, 5):
                     if not finished[index]:

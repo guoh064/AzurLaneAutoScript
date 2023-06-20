@@ -140,6 +140,15 @@ class ConfigGenerator:
         return read_file(filepath_argument('gui'))
 
     @cached_property
+    def dashboard(self):
+        """
+        <dashboard>
+          - <group>
+        """
+        return read_file(filepath_argument('dashboard'))
+
+
+    @cached_property
     @timer
     def args(self):
         """
