@@ -14,8 +14,8 @@ from module.ui.switch import Switch
 from module.ui.ui import UI, page_os
 
 TARGET_SWITCH = Switch('Opsi_Target_switch', is_selector=True)
-TARGET_SWITCH.add_status('all', TARGET_ALL_ON, sleep=0.5)
-TARGET_SWITCH.add_status('unfinished', TARGET_UNFINISHED_ON, sleep=0.5)
+TARGET_SWITCH.add_status('all', TARGET_ALL_ON)
+TARGET_SWITCH.add_status('unfinished', TARGET_UNFINISHED_ON)
 ZONE_ID = Digit(OCR_TARGET_ZONE_ID, name='TARGET_ZONE_ID')
 
 class OSTarget:
