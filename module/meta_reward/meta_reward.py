@@ -203,6 +203,44 @@ class MetaReward(Combat, UI):
             if self.appear(REWARD_ENTER, offset=(20, 20)):
                 return
 
+    def receive_masked_meta_reward(self, skip_first_screenshot=True):
+        logger.hr('Masked meta reward receive', level=1)
+        confirm_timer = Timer(1, count=3).start()
+        received = False
+        while 1:
+            if skip_first_screenshot:
+                skip_first_screenshot = False
+            else:
+                self.device.screenshot()
+
+            if self.appear(MASKED_META_REWARD_NOTICE):
+                self.device.click(MASKED_META_REWARD_RECEIVE)
+                confirm_timer.reset()
+                continue
+            if self.handle_popup_confirm('META_REWARD'):
+                # Lock new META ships
+                confirm_timer.reset()
+                continue
+            if self.handle_get_items():
+                received = True
+                confirm_timer.reset()
+                continue
+            if self.handle_get_ship():
+                received = True
+                confirm_timer.reset()
+                continue
+
+            # End 
+            if not self.appear(MASKED_META_REWARD_NOTICE):
+                if confirm_timer.reached():
+                    break
+            else:
+                confirm_timer.reset()
+            
+        logger.info(f'Masked meta reward receive finished, received={received}')
+        return received  
+            
+    
     def get_meta_reward(self):
         '''
         Wrapper for actual meta reward check and obtain process.
@@ -210,10 +248,29 @@ class MetaReward(Combat, UI):
         Pages: page_meta
         '''
         logger.info('Check meta ship reward status')
-        if self.meta_reward_notice_appear():
-            self.meta_reward_enter()
-            self.meta_reward_receive()
-            self.meta_reward_exit()
+        if self.appear(REWARD_ENTER):
+            # pt is more than 5000
+            if self.meta_reward_notice_appear():
+                self.meta_reward_enter()
+                self.meta_reward_receive()
+                self.meta_reward_exit()
+        else:
+            # pt is less than 5000
+            confirm_timer = Timer(5, count=1).start()
+            loaded = False
+            while 1:
+                self.device.screenshot()
+
+                if self.appear(MASKED_META_REWARD_RECEIVE):
+                    loaded = True
+                    break
+                if confirm_timer.reached():
+                    break
+            if loaded:
+                self.receive_masked_meta_reward(skip_first_screenshot=True)
+            else:
+                logger.warning('Masked meta loaded animation not detected, Consider getting 5000 pt already')
+
     
     def search_for_dossier_reward(self):
         # Check for red dots on dossier ship lists
@@ -245,8 +302,8 @@ class MetaReward(Combat, UI):
         # If dossier beacon is not enabled, or MetaReward is invoked 
         # by AshBeaconAssist, do not need to check dossier 
         if self.has_possible_dossier_reward(is_dossier=dossier):
-            # self.search_for_dossier_reward()
-            logger.info('Dossier meta reward receiving feature is temporarily disabled by the developer. \nPlease receive it by yourself for the time.')
+            self.search_for_dossier_reward()
+            # logger.info('Dossier meta reward receiving feature is temporarily disabled by the developer. \nPlease receive it by yourself for the time.')
         else:
             logger.info('MetaReward is called by current beacon, skip dossier reward check')
             return
