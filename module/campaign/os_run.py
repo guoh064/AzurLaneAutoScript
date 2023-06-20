@@ -43,8 +43,11 @@ class OSCampaignRun(OSMapOperation):
             self.config.opsi_task_delay(ap_limit=True)
 
     def opsi_collection(self):
-        self.load_campaign()
-        self.campaign.os_target()
+        try:
+            self.load_campaign()
+            self.campaign.os_target()
+        except ActionPointLimit:
+            self.config.opsi_task_delay(ap_limit=True)
 
     def opsi_daily(self):
         try:
