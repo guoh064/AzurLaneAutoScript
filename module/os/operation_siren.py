@@ -5,6 +5,7 @@ import numpy as np
 from module.config.utils import (get_nearest_weekday_date,
                                  get_os_next_reset,
                                  get_os_reset_remain,
+                                 get_server_last_update,
                                  DEFAULT_TIME)
 from module.exception import RequestHumanTakeover, GameStuckError, ScriptError
 from module.logger import logger
@@ -306,6 +307,11 @@ class OperationSiren(OSMap):
                          'Running OpsiTarget is undesirable, delayed to next reset.')
             self.config.task_delay(target=get_os_next_reset())
             self.config.task_stop()
+        elif self.config.OpsiCollection_LastRun > get_server_last_update('00:00'):
+            logger.warning('Task Opsi Collection has already been run today, stop')
+            self.config.task_delay(server_update=True)
+            self.config.task_stop()
+        
         logger.hr('OS target', level=1)
         self._os_target_enter()
         OSTargetHandler(self.config, self.device).run()

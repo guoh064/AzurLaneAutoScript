@@ -392,6 +392,7 @@ class GeneratedConfig:
     OpsiCollection_Collect = False
     OpsiCollection_TargetFarming = False
     OpsiCollection_LastZone = 0
+    OpsiCollection_LastRun = datetime.datetime(2020, 1, 1, 0, 0)
 
     # Group `OpsiObscure`
     OpsiObscure_ForceRun = False

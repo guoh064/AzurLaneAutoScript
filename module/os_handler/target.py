@@ -11,7 +11,8 @@ from module.os_handler.assets import (
 )
 from module.os_handler.target_data import DIC_OS_TARGET
 from module.ui.switch import Switch
-from module.ui.ui import UI, page_os
+from module.ui.ui import UI
+
 
 TARGET_SWITCH = Switch('Opsi_Target_switch', is_selector=True)
 TARGET_SWITCH.add_status('all', TARGET_ALL_ON)
@@ -75,6 +76,10 @@ class OSTargetHandler(OSTarget, Combat, UI):
             else:
                 self.device.screenshot()
 
+            # End
+            if not self.appear(TARGET_PREVIOUS_REWARD) and not self.appear(TARGET_NEXT_REWARD):
+                return False
+
             if self.appear(TARGET_RECEIVE_SINGLE):
                 return True
             
@@ -83,9 +88,7 @@ class OSTargetHandler(OSTarget, Combat, UI):
             if self.appear_then_click(TARGET_PREVIOUS_REWARD, offset=(10, 10), interval=2):
                 continue
             
-            if not self.appear(TARGET_PREVIOUS_REWARD) and not self.appear(TARGET_NEXT_REWARD):
-                return False
-        
+            
     def _receive_reward_single(self, skip_first_screenshot=True):
         """
         Receive single target reward.
@@ -125,7 +128,6 @@ class OSTargetHandler(OSTarget, Combat, UI):
             bool: if received.
         """
         logger.hr('OS Achievement Reward Receive', level=2)
-        self.device.screenshot()
         if self.appear(TARGET_RECEIVE_ALL):
             return self._receive_reward_all()
         elif self.find_unreceived_zone():
@@ -165,11 +167,16 @@ class OSTargetHandler(OSTarget, Combat, UI):
             found_zone(int): The zone id with unfinished safe star. If such zone does not exist, return 0.
         """
         last_zone = self.config.OpsiCollection_LastZone
+        info_timer = Timer(1)
+        
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
             else:
                 self.device.screenshot()
+
+            if not info_timer.reached():
+                continue
 
             zone_id, finished = self.scan_current_zone()
 
@@ -189,7 +196,7 @@ class OSTargetHandler(OSTarget, Combat, UI):
                 self.device.click(TARGET_NEXT_ZONE)
                 # It is possible to click more than 15 times.
                 self.device.click_record.pop()
-                self.device.sleep(0.7)
+                info_timer.reset()
                 continue
             else:
                 logger.info(f'All remaining stars can only be finished in danger zone.')
