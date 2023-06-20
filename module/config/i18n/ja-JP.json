@@ -2257,6 +2257,10 @@
     "LastZone": {
       "name": "OpsiCollection.LastZone.name",
       "help": "OpsiCollection.LastZone.help"
+    },
+    "LastRun": {
+      "name": "OpsiCollection.LastRun.name",
+      "help": "OpsiCollection.LastRun.help"
     }
   },
   "OpsiObscure": {

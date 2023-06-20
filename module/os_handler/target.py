@@ -11,7 +11,8 @@ from module.os_handler.assets import (
 )
 from module.os_handler.target_data import DIC_OS_TARGET
 from module.ui.switch import Switch
-from module.ui.ui import UI, page_os
+from module.ui.ui import UI
+
 
 TARGET_SWITCH = Switch('Opsi_Target_switch', is_selector=True)
 TARGET_SWITCH.add_status('all', TARGET_ALL_ON)

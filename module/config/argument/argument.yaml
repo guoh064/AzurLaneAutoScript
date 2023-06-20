@@ -630,6 +630,7 @@ OpsiCollection:
   Collect: false
   TargetFarming: false
   LastZone: 0
+  LastRun: 2020-01-01 00:00:00
 OpsiObscure:
   ForceRun: false
 OpsiAbyssal:
