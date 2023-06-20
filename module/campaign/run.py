@@ -151,7 +151,7 @@ class CampaignRun(CampaignEvent):
 
         return False
 
-    def handle_stage_name(self, name, folder):
+    def handle_stage_name(self, name, folder, mode='normal'):
         """
         Handle wrong stage names.
         In some events, the name of SP may be different, such as 'vsp', muse sp.
@@ -166,6 +166,18 @@ class CampaignRun(CampaignEvent):
         """
         name = re.sub('[ \t\n]', '', str(name)).lower()
         name = to_map_file_name(name)
+        # For GemsFarming, auto choose events or main chapters
+        if self.config.task.command == 'GemsFarming':
+            if self.stage_is_main(name):
+                logger.info(f'Stage name {name} is from campaign_main')
+                folder = 'campaign_main'
+            else:
+                folder = self.config.cross_get('Event.Campaign.Event')
+                if folder is not None:
+                    logger.info(f'Stage name {name} is from event {folder}')
+                else:
+                    logger.warning(f'Cannot get the latest event, fallback to campaign_main')
+                    folder = 'campaign_main'
         # Handle special names SP maps
         if folder == 'event_20201126_cn' and name == 'vsp':
             name = 'sp'
@@ -192,7 +204,11 @@ class CampaignRun(CampaignEvent):
             'd2': 'ht5',
             'd3': 'ht6',
         }
-        if folder in ['event_20200917_cn', 'event_20221124_cn']:
+        if folder in [
+            'event_20200917_cn',
+            'event_20221124_cn',
+            'event_20230525_cn',
+        ]:
             name = convert.get(name, name)
         else:
             reverse = {v: k for k, v in convert.items()}
@@ -225,19 +241,11 @@ class CampaignRun(CampaignEvent):
                                 f'run ordered stage: {stage}')
                 name = stage.lower()
                 self.is_stage_loop = True
-        # For GemsFarming, auto choose events or main chapters
-        if self.config.task.command == 'GemsFarming':
-            if self.stage_is_main(name):
-                logger.info(f'Stage name {name} is from campaign_main')
-                folder = 'campaign_main'
-            else:
-                folder = self.config.cross_get('Event.Campaign.Event')
-                if folder is not None:
-                    logger.info(f'Stage name {name} is from event {folder}')
-                else:
-                    logger.warning(f'Cannot get the latest event, fallback to campaign_main')
-                    folder = 'campaign_main'
-
+        # Convert campaign_main to campaign hard if mode is hard and file exists
+        if mode == 'hard' and folder == 'campaign_main'\
+                and name in map_files('campaign_hard'):
+            folder = 'campaign_hard'
+            
         return name, folder
 
     def can_use_auto_search_continue(self):
@@ -272,7 +280,7 @@ class CampaignRun(CampaignEvent):
             mode (str): `normal` or `hard`
             total (int):
         """
-        name, folder = self.handle_stage_name(name, folder)
+        name, folder = self.handle_stage_name(name, folder, mode=mode)
         self.config.override(Campaign_Name=name, Campaign_Event=folder)
         self.load_campaign(name, folder=folder)
         self.run_count = 0

@@ -537,6 +537,7 @@ class OSMap(OSFleet, Map, GlobeCamera, StrategicSearchHandler):
 
     def interrupt_auto_search(self, skip_first_screenshot=True):
         logger.info('Interrupting auto search')
+        is_loading = False
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
@@ -563,11 +564,18 @@ class OSMap(OSFleet, Map, GlobeCamera, StrategicSearchHandler):
                 continue
             if self.handle_map_event():
                 continue
-            if not self.is_combat_loading():
+            # Only print once when detected
+            if not is_loading:
+                if self.is_combat_loading():
+                    is_loading = True
+                    continue
                 if self.handle_battle_status():
                     continue
                 if self.handle_exp_info():
                     continue
+            elif self.is_combat_executing():
+                is_loading = False
+                continue
 
     def os_auto_search_run(self, drop=None, strategic=False):
         for _ in range(5):
@@ -758,8 +766,8 @@ class OSMap(OSFleet, Map, GlobeCamera, StrategicSearchHandler):
         if 'is_scanning_device' not in self._solved_map_event and grids and grids[0].is_scanning_device:
             grid = grids[0]
             logger.info(f'Found scanning device on {grid}')
-            if self.is_cl1_enabled:
-                logger.info('CL1 leveling enabled, mark scanning device as solved')
+            if self.is_in_task_cl1_leveling:
+                logger.info('In CL1 leveling, mark scanning device as solved')
                 self._solved_map_event.add('is_scanning_device')
                 return True
 
@@ -826,8 +834,8 @@ class OSMap(OSFleet, Map, GlobeCamera, StrategicSearchHandler):
         self.handle_info_bar()
         self.update()
         if self.map_rescan_current(drop=drop):
-            logger.info(f'Map rescan once end, result={result}')
-            return result
+            logger.info(f'Map rescan once end, result={True}')
+            return True
 
         if rescan_mode == 'full':
             logger.hr('Map rescan full', level=2)

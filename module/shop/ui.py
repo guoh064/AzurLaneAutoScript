@@ -1,11 +1,12 @@
 from module.base.button import ButtonGrid
-from module.base.decorator import cached_property
+from module.base.decorator import Config, cached_property
 from module.base.timer import Timer
 from module.handler.assets import POPUP_CONFIRM
+from module.logger import logger
 from module.shop.assets import *
-from module.ui.assets import BACK_ARROW
+from module.ui.assets import ACADEMY_GOTO_MUNITIONS, BACK_ARROW
 from module.ui.navbar import Navbar
-from module.ui.page import page_munitions
+from module.ui.page import page_academy, page_munitions
 from module.ui.ui import UI
 
 
@@ -39,18 +40,8 @@ class ShopUI(UI):
         shop_swipe
 
         Args:
-            left (int):
-                1 for medal
-                2 for guild.
-                3 for prototype.
-                4 for core.
-                5 for merit.
+            left (int): Depends on ship navs
             right (int):
-                5 for medal
-                4 for guild.
-                3 for prototype.
-                2 for core.
-                1 for merit.
 
         Returns:
             bool: if bottom_navbar set ensured
@@ -100,6 +91,7 @@ class ShopUI(UI):
         self.handle_info_bar()
         return refreshed
 
+    @Config.when(SERVER='tw')
     def shop_swipe(self, skip_first_screenshot=True):
         """
         Swipes bottom navbar one way, right only
@@ -114,7 +106,7 @@ class ShopUI(UI):
         detection_area = (480, 640, 960, 660)
         swipe_interval = Timer(0.6, count=2)
 
-        for _ in range(5):
+        for _ in range(3):
             if skip_first_screenshot:
                 skip_first_screenshot = False
             else:
@@ -131,10 +123,102 @@ class ShopUI(UI):
 
         return False
 
+    @Config.when(SERVER='en')
+    def shop_swipe(self, skip_first_screenshot=True):
+        """
+        Swipes bottom navbar one way, right only
+
+        Args:
+            skip_first_screenshot (bool):
+
+        Returns:
+            bool: True if detected correct exit
+                  condition otherwise False
+        """
+        detection_area = (480, 640, 960, 660)
+        swipe_interval = Timer(0.6, count=2)
+        trial = 0
+
+        while 1:
+            if skip_first_screenshot:
+                skip_first_screenshot = False
+            else:
+                self.device.screenshot()
+
+            # End
+            if trial > 5:
+                logger.warning('shop_swipe trail exhausted, assume end reached')
+                return False
+
+            # Swipe to the left, medal shop on the leftmost and merit shop on the right most
+            if self.appear(SHOP_META_SWIPE_END, offset=(15, 5)) or \
+                    self.appear(SHOP_PROTOTYPE_SWIPE_END, offset=(15, 5)):
+                return True
+
+            if swipe_interval.reached():
+                self.device.swipe_vector((360, 0), box=detection_area, random_range=(-50, -10, 50, 10), padding=0)
+                swipe_interval.reset()
+                trial += 1
+
+    @Config.when(SERVER=None)
+    def shop_swipe(self, skip_first_screenshot=True):
+        """
+        Swipes bottom navbar one way, right only
+
+        Args:
+            skip_first_screenshot (bool):
+
+        Returns:
+            bool: True if detected correct exit
+                  condition otherwise False
+        """
+        detection_area = (480, 640, 960, 660)
+        swipe_interval = Timer(0.6, count=2)
+        trial = 0
+
+        while 1:
+            if skip_first_screenshot:
+                skip_first_screenshot = False
+            else:
+                self.device.screenshot()
+
+            # End
+            if trial > 5:
+                logger.warning('shop_swipe trail exhausted, assume end reached')
+                return False
+
+            # Swipe to the left, medal shop on the leftmost and merit shop on the right most
+            if self.appear(SHOP_GIFT_SWIPE_END, offset=(15, 5)) or \
+                    self.appear(SHOP_PROTOTYPE_SWIPE_END, offset=(15, 5)):
+                return True
+
+            if swipe_interval.reached():
+                self.device.swipe_vector((360, 0), box=detection_area, random_range=(-50, -10, 50, 10), padding=0)
+                swipe_interval.reset()
+                trial += 1
+
     def ui_goto_shop(self):
         """
         Goes to page_munitions
         This route guarantees start
         in general shop
+
+        Pages:
+            in: Any
+            out: page_munitions
         """
-        self.ui_ensure(page_munitions)
+        self.ui_ensure(page_academy)
+
+        skip_first_screenshot = True
+        while 1:
+            if skip_first_screenshot:
+                skip_first_screenshot = False
+            else:
+                self.device.screenshot()
+
+            if self.appear(page_munitions.check_button, offset=(20, 20)):
+                break
+
+            # Large offset cause it camera in academy can be move around
+            if self.appear_then_click(ACADEMY_GOTO_MUNITIONS, offset=(200, 200), interval=5):
+                continue
