@@ -13,7 +13,7 @@ from module.os.fleet import BossFleet
 from module.os.globe_operation import OSExploreError
 from module.os.map import OSMap
 from module.os_handler.action_point import OCR_OS_ADAPTABILITY
-from module.os_handler.assets import OS_MONTHBOSS_NORMAL, OS_MONTHBOSS_HARD, EXCHANGE_CHECK, EXCHANGE_ENTER, TARGET_ENTER, TARGET_INFO_ALL_CHECK
+from module.os_handler.assets import OS_MONTHBOSS_NORMAL, OS_MONTHBOSS_HARD, EXCHANGE_CHECK, EXCHANGE_ENTER, TARGET_ENTER, TARGET_ALL_ON
 from module.os_handler.target import OSTargetHandler
 from module.shop.shop_voucher import VoucherShop
 
@@ -289,11 +289,11 @@ class OperationSiren(OSMap):
 
     def _os_target_enter(self):
         self.os_map_goto_globe(unpin=False)
-        self.ui_click(click_button=TARGET_ENTER, check_button=TARGET_INFO_ALL_CHECK,
+        self.ui_click(click_button=TARGET_ENTER, check_button=TARGET_ALL_ON,
                       offset=(200, 20), retry_wait=3, skip_first_screenshot=True)
 
     def _os_target_exit(self):
-        self.ui_back(check_button=TARGET_ENTER, appear_button=TARGET_INFO_ALL_CHECK,
+        self.ui_back(check_button=TARGET_ENTER, appear_button=TARGET_ALL_ON,
                      offset=(200, 20), retry_wait=3, skip_first_screenshot=True)  
         self.os_globe_goto_map()
 
