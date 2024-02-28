@@ -114,8 +114,10 @@ class EquipmentCode(UI):
         else:
             # use clipboard input
             logger.info("Use equipment code from clipboard")
-            self.device.keyevent_input(279)
-        self.device.click(EQUIPMENT_CODE_ENTRANCE) # Works as temporary solution for IME popup
+            # There is no paste action for u2, using adb input keyevent instead
+            self.device.adb_keyevent_input(279)
+        # 6 --> IME_ACTION_DONE
+        self.device.u2_send_action(6)
         self.appear_then_click(EQUIPMENT_CODE_ENTER)
         
     def equipment_code_confirm(self, skip_first_screenshot=True):

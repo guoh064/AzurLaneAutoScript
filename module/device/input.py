@@ -1,7 +1,8 @@
 from module.device.method.adb import Adb
+from module.device.method.uiautomator_2 import Uiautomator2
 
-class Input(Adb):
-    def keyevent_input(self, code=None):
+class Input(Adb, Uiautomator2):
+    def adb_keyevent_input(self, code=None):
         # 0 -->  "KEYCODE_UNKNOWN"
         # 1 -->  "KEYCODE_MENU"
         # 2 -->  "KEYCODE_SOFT_RIGHT"
@@ -13,6 +14,5 @@ class Input(Adb):
         # 279 --> "KEYCODE_PASTE"
         self.adb_shell(['input', 'keyevent', code])
 
-    def text_input(self, text=None):
-        self.adb_shell(['input', 'text', text])
-
+    def text_input(self, text: str=None, clear: bool=False):
+        self.u2_send_keys(text=text, clear=clear)
