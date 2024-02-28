@@ -118,7 +118,10 @@ class EquipmentCode(UI):
             self.device.adb_keyevent_input(279)
         # 6 --> IME_ACTION_DONE
         self.device.u2_send_action(6)
-        self.appear_then_click(EQUIPMENT_CODE_ENTER)
+        while 1:
+            self.device.screenshot()
+            if self.appear_then_click(EQUIPMENT_CODE_ENTER):
+                break
         
     def equipment_code_confirm(self, skip_first_screenshot=True):
         """
