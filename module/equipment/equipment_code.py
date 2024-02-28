@@ -1,9 +1,37 @@
+import yaml
+
 from module.equipment.assets import *
 from module.logger import logger
 from module.ui.assets import BACK_ARROW
 from module.ui.ui import UI
 
 class EquipmentCode(UI):
+
+    @property
+    def flagship_equipment_codes(self):
+        codes = {
+            'langley': None,
+            'bogue': None,
+            'ranger': None,
+            'hermes': None
+        }
+        try:
+            config = {}
+            for item in yaml.safe_load_all(self.config.GemsFarming_EquipmentCode):
+                config.update(item)
+        except Exception:
+            logger.error("Fail to load equipment code config, assuming not specified")
+            return codes
+        for cv in ['langley', 'bogue', 'ranger', 'hermes']:
+            try:
+                code: str = config.pop(cv, None)
+                codes[cv] = code
+            except Exception as e:
+                logger.exception(e)
+        
+        return codes
+
+
     def enter_equipment_code_page(self, skip_first_screenshot=False):
         """
         Pages:
@@ -74,9 +102,9 @@ class EquipmentCode(UI):
     def import_equipment_code(self, text=None):
         """
         Use "adb shell input text" to type in equipment code.
-        If text is None, use clipboard contents to fill in equipment code.
+        If text is None, use clipboard contents instead to fill in equipment code.
         """
-        # deprecated
+        # deprecated, only one click is required.
         # self.enter_equipment_code_input_mode()
         self.appear_then_click(EQUIPMENT_CODE_TEXTBOX, interval=3)
         if text:
@@ -87,7 +115,7 @@ class EquipmentCode(UI):
             # use clipboard input
             logger.info("Use equipment code from clipboard")
             self.device.keyevent_input(279)
-        self.device.keyevent_input(66)
+        self.device.click(EQUIPMENT_CODE_ENTRANCE) # Works as temporary solution for IME popup
         self.appear_then_click(EQUIPMENT_CODE_ENTER)
         
     def equipment_code_confirm(self, skip_first_screenshot=True):

@@ -201,7 +201,8 @@ class GemsFarming(CampaignRun, Dock, EquipmentChange, EquipmentCode):
             logger.hr('Apply flagship equipment code', level=2)
             self._ship_detail_enter(FLEET_ENTER_FLAGSHIP)
             self.enter_equipment_code_page()
-            self.import_equipment_code()
+            code = self.flagship_equipment_codes[self._next_flagship]
+            self.import_equipment_code(text=code)
             self.equipment_code_confirm()
             self.ui_back(page_fleet.check_button)
 
@@ -327,6 +328,8 @@ class GemsFarming(CampaignRun, Dock, EquipmentChange, EquipmentCode):
         scanner.set_limitation(fleet=0)
         return scanner.scan(self.device.image, output=False)
 
+    _next_flagship = None
+
     def flagship_change_execute(self):
         """
         Returns:
@@ -344,7 +347,19 @@ class GemsFarming(CampaignRun, Dock, EquipmentChange, EquipmentCode):
 
         ship = self.get_common_rarity_cv()
         if ship:
-            self._ship_change_confirm(min(ship, key=lambda s: (s.level, -s.emotion)).button)
+            ship_button = min(ship, key=lambda s: (s.level, -s.emotion)).button
+            templates = {
+                'bogue': TEMPLATE_BOGUE,
+                'hermes': TEMPLATE_HERMES,
+                'langley': TEMPLATE_LANGLEY,
+                'ranger': TEMPLATE_RANGER
+            }
+            for template in templates:
+                if templates[template].match(self.image_crop(ship_button), similarity=0.9):
+                    self._next_flagship = template
+                    break
+            logger.attr('Next Flagship', self._next_flagship)
+            self._ship_change_confirm(ship_button)
 
             logger.info('Change flagship success')
             return True
