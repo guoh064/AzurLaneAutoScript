@@ -3,9 +3,9 @@ import yaml
 from module.equipment.assets import *
 from module.logger import logger
 from module.ui.assets import BACK_ARROW
-from module.ui.ui import UI
+from module.storage.storage import StorageHandler
 
-class EquipmentCode(UI):
+class EquipmentCode(StorageHandler):
 
     @property
     def flagship_equipment_codes(self):
@@ -139,6 +139,9 @@ class EquipmentCode(UI):
             if self.appear(EQUIPMENT_CODE_ENTRANCE):
                 break
     
+            if self.handle_storage_full():
+                continue
+
             if self.handle_popup_confirm('EQUIPMENT_CODE'):
                 continue
             
