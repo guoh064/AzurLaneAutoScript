@@ -3,6 +3,7 @@ from module.campaign.run import CampaignRun
 from module.combat.assets import BATTLE_PREPARATION
 from module.equipment.assets import *
 from module.equipment.equipment_change import EquipmentChange
+from module.equipment.equipment_code import EquipmentCode
 from module.equipment.fleet_equipment import OCR_FLEET_INDEX
 from module.exception import CampaignEnd
 from module.handler.assets import AUTO_SEARCH_MAP_OPTION_OFF
@@ -62,7 +63,7 @@ class GemsCampaignOverride(CampaignBase):
             raise CampaignEnd('Emotion withdraw')
 
 
-class GemsFarming(CampaignRun, Dock, EquipmentChange):
+class GemsFarming(CampaignRun, Dock, EquipmentChange, EquipmentCode):
 
     def load_campaign(self, name, folder='campaign_main'):
         super().load_campaign(name, folder)
@@ -169,6 +170,71 @@ class GemsFarming(CampaignRun, Dock, EquipmentChange):
             self._equip_take_off_one()
 
             self.equipment_take_on()
+            self.ui_back(page_fleet.check_button)
+
+        return success
+
+    def flagship_change_new(self):
+        """
+        Change flagship and flagship's equipment using equipment code
+
+        Returns:
+            bool: True if flagship changed.
+        """
+
+        logger.hr('Change flagship', level=1)
+        logger.attr('ChangeFlagship', self.config.GemsFarming_ChangeFlagship)
+        if self.change_flagship_equip:
+            logger.hr('Record flagship equipment code', level=2)
+            self._ship_detail_enter(FLEET_ENTER_FLAGSHIP)
+            self.enter_equipment_code_page()
+            self.export_equipment_code_to_clipboard()
+            self.clear_all_equipments()
+            self.equipment_code_confirm()
+            self.ui_back(page_fleet.check_button)
+        
+        logger.hr('Change flagship', level=2)
+        self._fleet_detail_enter()
+        success = self.flagship_change_execute()
+
+        if self.change_flagship_equip:
+            logger.hr('Apply flagship equipment code', level=2)
+            self._ship_detail_enter(FLEET_ENTER_FLAGSHIP)
+            self.enter_equipment_code_page()
+            self.import_equipment_code()
+            self.equipment_code_confirm()
+            self.ui_back(page_fleet.check_button)
+
+        return success
+            
+    def vanguard_change_new(self):
+        """
+        Change vanguard and vanguard's equipment using equipment code
+
+        Returns:
+            bool: True if vanguard changed
+        """
+        logger.hr('Change vanguard', level=1)
+        logger.attr('ChangeVanguard', self.config.GemsFarming_ChangeVanguard)
+        if self.change_vanguard_equip:
+            logger.hr('Record vanguard equipment code', level=2)
+            self._ship_detail_enter(FLEET_ENTER)
+            self.enter_equipment_code_page()
+            self.export_equipment_code_to_clipboard()
+            self.clear_all_equipments()
+            self.equipment_code_confirm()
+            self.ui_back(page_fleet.check_button)
+        
+        logger.hr('Change vanguard', level=2)
+        self._fleet_detail_enter()
+        success = self.vanguard_change_execute()
+
+        if self.change_vanguard_equip:
+            logger.hr('Apply vanguard equipment code', level=2)
+            self._ship_detail_enter(FLEET_ENTER)
+            self.enter_equipment_code_page()
+            self.import_equipment_code()
+            self.equipment_code_confirm()
             self.ui_back(page_fleet.check_button)
 
         return success
@@ -359,9 +425,9 @@ class GemsFarming(CampaignRun, Dock, EquipmentChange):
             if self._trigger_lv32 or self._trigger_emotion:
                 success = True
                 if self.change_flagship:
-                    success = self.flagship_change()
+                    success = self.flagship_change_new()
                 if self.change_vanguard:
-                    success = success and self.vanguard_change()
+                    success = success and self.vanguard_change_new()
 
                 if is_limit and self.config.StopCondition_RunCount <= 0:
                     logger.hr('Triggered stop condition: Run count')
