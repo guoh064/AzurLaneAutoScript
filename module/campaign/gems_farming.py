@@ -413,6 +413,9 @@ class GemsFarming(CampaignRun, Dock, EquipmentChange, EquipmentCode):
 
         return super().triggered_stop_condition(oil_check=oil_check)
 
+    def _server_support_equipment_code(self):
+        return self.config.SERVER in ['jp']
+
     def run(self, name, folder='campaign_main', mode='normal', total=0):
         """
         Args:
@@ -440,9 +443,15 @@ class GemsFarming(CampaignRun, Dock, EquipmentChange, EquipmentCode):
             if self._trigger_lv32 or self._trigger_emotion:
                 success = True
                 if self.change_flagship:
-                    success = self.flagship_change_new()
+                    if self._server_support_equipment_code():
+                        success = self.flagship_change_new()
+                    else:
+                        success = self.flagship_change()
                 if self.change_vanguard:
-                    success = success and self.vanguard_change_new()
+                    if self._server_support_equipment_code():
+                        success = success and self.vanguard_change_new()
+                    else:
+                        success = success and self.vanguard_change()
 
                 if is_limit and self.config.StopCondition_RunCount <= 0:
                     logger.hr('Triggered stop condition: Run count')
