@@ -192,7 +192,7 @@ class GemsFarming(CampaignRun, Dock, EquipmentChange, EquipmentCode):
             self.clear_all_equipments()
             self.equipment_code_confirm()
             self.ui_back(page_fleet.check_button)
-        
+
         logger.hr('Change flagship', level=2)
         self._fleet_detail_enter()
         success = self.flagship_change_execute()
@@ -207,7 +207,7 @@ class GemsFarming(CampaignRun, Dock, EquipmentChange, EquipmentCode):
             self.ui_back(page_fleet.check_button)
 
         return success
-            
+
     def vanguard_change_new(self):
         """
         Change vanguard and vanguard's equipment using equipment code
@@ -225,7 +225,7 @@ class GemsFarming(CampaignRun, Dock, EquipmentChange, EquipmentCode):
             self.clear_all_equipments()
             self.equipment_code_confirm()
             self.ui_back(page_fleet.check_button)
-        
+
         logger.hr('Change vanguard', level=2)
         self._fleet_detail_enter()
         success = self.vanguard_change_execute()
@@ -414,7 +414,7 @@ class GemsFarming(CampaignRun, Dock, EquipmentChange, EquipmentCode):
         return super().triggered_stop_condition(oil_check=oil_check)
 
     def _server_support_equipment_code(self):
-        return self.config.SERVER in ['jp']
+        return self.config.SERVER in ['cn', 'jp']
 
     def run(self, name, folder='campaign_main', mode='normal', total=0):
         """
