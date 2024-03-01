@@ -201,7 +201,7 @@ class GemsFarming(CampaignRun, Dock, EquipmentChange, EquipmentCode):
             logger.hr('Apply flagship equipment code', level=2)
             self._ship_detail_enter(FLEET_ENTER_FLAGSHIP)
             self.enter_equipment_code_page()
-            code = self.flagship_equipment_codes[self._next_flagship]
+            code = self.flagship_equipment_codes[self._next_flagship] if success else None
             self.import_equipment_code(text=code)
             self.equipment_code_confirm()
             self.ui_back(page_fleet.check_button)
