@@ -15,4 +15,5 @@ class Input(Adb, Uiautomator2):
         self.adb_shell(['input', 'keyevent', code])
 
     def text_input(self, text: str=None, clear: bool=False):
+        self.u2_set_fastinput_ime(True)
         self.u2_send_keys(text=text, clear=clear)
