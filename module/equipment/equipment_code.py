@@ -137,10 +137,10 @@ class EquipmentCode(StorageHandler):
 
             # End
             if self.appear(EQUIPMENT_CODE_ENTRANCE):
-                break
+                return True
     
             if self.handle_storage_full():
-                continue
+                return False
 
             if self.handle_popup_confirm('EQUIPMENT_CODE'):
                 continue

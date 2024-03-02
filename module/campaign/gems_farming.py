@@ -203,7 +203,9 @@ class GemsFarming(CampaignRun, Dock, EquipmentChange, EquipmentCode):
             self.enter_equipment_code_page()
             code = self.flagship_equipment_codes[self._next_flagship] if success else None
             self.import_equipment_code(text=code)
-            self.equipment_code_confirm()
+            if not self.equipment_code_confirm():
+                self.import_equipment_code(text=code)
+                self.equipment_code_confirm()
             self.ui_back(page_fleet.check_button)
 
         return success
