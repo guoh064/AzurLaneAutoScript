@@ -80,7 +80,6 @@ class EquipmentCode(StorageHandler):
         self.appear_then_click(EQUIPMENT_CODE_CLEAR)
 
     def _enter_equipment_code_input_mode(self, skip_first_screenshot=True):
-        count = 0
         while 1:
             if skip_first_screenshot:
                 skip_first_screenshot = False
@@ -88,14 +87,11 @@ class EquipmentCode(StorageHandler):
                 self.device.screenshot()
             
             # End
-            if not self.appear(EQUIPMENT_CODE_TEXTBOX):
+            if not self.appear(EQUIPMENT_CODE_ENTER):
                 break
-            if count >= 3:
-                logger.info("Tried 3 times, assuming cursor is at textbox.")
-                break
-
-            if self.appear_then_click(EQUIPMENT_CODE_TEXTBOX, interval=3):
-                count += 1
+            
+            if self.appear(EQUIPMENT_CODE_ENTER):
+                self.device.click(EQUIPMENT_CODE_TEXTBOX)
                 continue
 
     def import_equipment_code(self, text=None):
@@ -104,24 +100,25 @@ class EquipmentCode(StorageHandler):
         If text is None, use clipboard contents instead to fill in equipment code.
         """
         self._enter_equipment_code_input_mode()
-
-        if text:
-            # use text input
-            logger.info(f"Use equipment code from config: {text}")
-            self.device.text_input(text)
-        else:
-            # use clipboard input
-            logger.info("Use equipment code from clipboard")
-            # There is no paste action for u2, using adb input keyevent instead
-            self.device.adb_keyevent_input(279)
-        
-        # 6 --> IME_ACTION_DONE
-        self.device.u2_send_action(6)
-        
+    
         while 1:
             self.device.screenshot()
             if self.appear_then_click(EQUIPMENT_CODE_ENTER):
                 break
+
+            if text:
+                # use text input
+                logger.info(f"Use equipment code from config: {text}")
+                self.device.text_input(text, clear=True)
+            else:
+                # use clipboard input
+                logger.info("Use equipment code from clipboard")
+                self.device.u2_clear_text()
+                # There is no paste action for u2, using adb input keyevent instead
+                self.device.adb_keyevent_input(279)
+            
+            # 6 --> IME_ACTION_DONE
+            self.device.u2_send_action(6)
         
     def equipment_code_confirm(self, skip_first_screenshot=True):
         """
