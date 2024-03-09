@@ -99,9 +99,9 @@ class EquipmentCode(StorageHandler):
         Type in equipment code.
         If text is None, use clipboard contents instead to fill in equipment code.
         """
+        self._enter_equipment_code_input_mode()
         fail_count = 0
         while 1:
-            self._enter_equipment_code_input_mode()
             self.device.screenshot()
             if self.appear_then_click(EQUIPMENT_CODE_ENTER):
                 break
@@ -125,6 +125,8 @@ class EquipmentCode(StorageHandler):
                 logger.exception(e + f"(Retry {fail_count}/3)")
                 if fail_count > 3:
                     raise e
+                else:
+                    self._enter_equipment_code_input_mode()
 
     def equipment_code_confirm(self, skip_first_screenshot=True):
         """
