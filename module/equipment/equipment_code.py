@@ -5,6 +5,7 @@ from module.logger import logger
 from module.ui.assets import BACK_ARROW
 from module.storage.storage import StorageHandler
 
+
 class EquipmentCode(StorageHandler):
 
     @property
@@ -28,9 +29,8 @@ class EquipmentCode(StorageHandler):
                 codes[cv] = code
             except Exception as e:
                 logger.exception(e)
-        
-        return codes
 
+        return codes
 
     def enter_equipment_code_page(self, skip_first_screenshot=False):
         """
@@ -43,10 +43,10 @@ class EquipmentCode(StorageHandler):
                 skip_first_screenshot = False
             else:
                 self.device.screenshot()
-            
+
             if self.appear_then_click(EQUIPMENT_CODE_ENTRANCE):
                 continue
-            
+
             # End
             if self.appear(EQUIPMENT_CODE_PAGE_CHECK):
                 break
@@ -68,11 +68,11 @@ class EquipmentCode(StorageHandler):
                 skip_first_screenshot = False
             else:
                 self.device.screenshot()
-            
+
             # End
             if self.info_bar_count():
                 break
-            
+
             if self.appear_then_click(EQUIPMENT_CODE_EXPORT):
                 continue
 
@@ -85,11 +85,11 @@ class EquipmentCode(StorageHandler):
                 skip_first_screenshot = False
             else:
                 self.device.screenshot()
-            
+
             # End
             if not self.appear(EQUIPMENT_CODE_ENTER):
                 break
-            
+
             if self.appear(EQUIPMENT_CODE_ENTER):
                 self.device.click(EQUIPMENT_CODE_TEXTBOX)
                 continue
@@ -99,9 +99,9 @@ class EquipmentCode(StorageHandler):
         Type in equipment code.
         If text is None, use clipboard contents instead to fill in equipment code.
         """
-        self._enter_equipment_code_input_mode()
-    
+        fail_count = 0
         while 1:
+            self._enter_equipment_code_input_mode()
             self.device.screenshot()
             if self.appear_then_click(EQUIPMENT_CODE_ENTER):
                 break
@@ -116,10 +116,16 @@ class EquipmentCode(StorageHandler):
                 self.device.u2_clear_text()
                 # There is no paste action for u2, using adb input keyevent instead
                 self.device.adb_keyevent_input(279)
-            
-            # 6 --> IME_ACTION_DONE
-            self.device.u2_send_action(6)
-        
+
+            try:
+                # 6 --> IME_ACTION_DONE
+                self.device.u2_send_action(6)
+            except EnvironmentError as e:
+                fail_count += 1
+                logger.exception(e + f"(Retry {fail_count}/3)")
+                if fail_count > 3:
+                    raise e
+
     def equipment_code_confirm(self, skip_first_screenshot=True):
         """
         Pages:
@@ -135,12 +141,12 @@ class EquipmentCode(StorageHandler):
             # End
             if self.appear(EQUIPMENT_CODE_ENTRANCE):
                 return True
-    
+
             if self.handle_storage_full():
                 return False
 
             if self.handle_popup_confirm('EQUIPMENT_CODE'):
                 continue
-            
+
             if self.appear_then_click(EQUIPMENT_CODE_CONFIRM, interval=5):
                 continue
