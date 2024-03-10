@@ -333,3 +333,6 @@ class Uiautomator2(Connection):
     # Ref: https://uiautomator2.readthedocs.io/en/latest/api.html#uiautomator2.Session.send_action
     def u2_send_action(self, code):
         self.u2.send_action(code=code)
+
+    def u2_clear_text(self):
+        self.u2.clear_text()
