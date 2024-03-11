@@ -357,7 +357,8 @@ class GemsFarming(CampaignRun, Dock, EquipmentChange, EquipmentCode):
                 'ranger': TEMPLATE_RANGER
             }
             for template in templates:
-                if templates[template].match(self.image_crop(ship_button), similarity=0.9):
+                # 2024.03.11, Langley fails similarity=0.9 test when in fleet.
+                if templates[template].match(self.image_crop(ship_button), similarity=0.85):
                     self._next_flagship = template
                     break
             logger.attr('Next Flagship', self._next_flagship)
