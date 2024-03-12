@@ -122,7 +122,7 @@ class EquipmentCode(StorageHandler):
                 self.device.u2_send_action(6)
             except EnvironmentError as e:
                 fail_count += 1
-                logger.exception(e + f"(Retry {fail_count}/3)")
+                logger.exception(str(e) + f" (Retry {fail_count}/3)")
                 if fail_count > 3:
                     raise e
                 else:
