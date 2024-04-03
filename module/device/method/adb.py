@@ -149,6 +149,19 @@ class Adb(Connection):
         raise OSError(f'cannot load screenshot')
 
     @retry
+    def _keyevent_input(self, code):
+        # 0 -->  "KEYCODE_UNKNOWN"
+        # 1 -->  "KEYCODE_MENU"
+        # 2 -->  "KEYCODE_SOFT_RIGHT"
+        # 3 -->  "KEYCODE_HOME"
+        # 4 -->  "KEYCODE_BACK"
+        # 5 -->  "KEYCODE_CALL"
+        # 6 -->  "KEYCODE_ENDCALL"
+        # 66 --> "KEYCODE_ENTER"
+        # 279 --> "KEYCODE_PASTE"
+        self.adb_shell(['input', 'keyevent', code])
+
+    @retry
     @Config.when(DEVICE_OVER_HTTP=False)
     def screenshot_adb(self):
         data = self.adb_shell(['screencap', '-p'], stream=True)
@@ -185,6 +198,9 @@ class Adb(Connection):
     def swipe_adb(self, p1, p2, duration=0.1):
         duration = int(duration * 1000)
         self.adb_shell(['input', 'swipe', *p1, *p2, duration])
+
+    def paste_adb(self):
+        self._keyevent_input(279)
 
     @retry
     def app_current_adb(self):

@@ -81,6 +81,12 @@ def retry(func):
 
                 def init():
                     pass
+            # FastInputIME started failed
+            except EnvironmentError as e:
+                logger.error(e)
+
+                def init():
+                    pass
             # Unknown
             except Exception as e:
                 logger.exception(e)
@@ -139,6 +145,20 @@ class Uiautomator2(Connection):
     @retry
     def swipe_uiautomator2(self, p1, p2, duration=0.1):
         self.u2.swipe(*p1, *p2, duration=duration)
+
+    @retry
+    def text_input_uiautomator2(self, text: str = '', clear: bool = True):
+        self.u2.send_keys(text=text, clear=clear)
+
+    @retry
+    def clear_text_uiautomator2(self):
+        self.u2.clear_text()
+
+    @retry
+    def close_edittext_uiautomator2(self):
+        # Ref: https://uiautomator2.readthedocs.io/en/latest/api.html#uiautomator2.Session.send_action
+        # 6 --> IME_ACTION_DONE
+        self.u2.send_action(6)
 
     @retry
     def _drag_along(self, path):
@@ -323,16 +343,3 @@ class Uiautomator2(Connection):
             description=resp.get('description', '')
         )
         return resp
-
-    def u2_set_fastinput_ime(self, enable: bool):
-        self.u2.set_fastinput_ime(enable)
-
-    def u2_send_keys(self, text: str, clear: bool=False):
-        self.u2.send_keys(text=text, clear=clear)
-
-    # Ref: https://uiautomator2.readthedocs.io/en/latest/api.html#uiautomator2.Session.send_action
-    def u2_send_action(self, code):
-        self.u2.send_action(code=code)
-
-    def u2_clear_text(self):
-        self.u2.clear_text()

@@ -2,7 +2,6 @@ import yaml
 
 from module.equipment.assets import *
 from module.logger import logger
-from module.ui.assets import BACK_ARROW
 from module.storage.storage import StorageHandler
 
 
@@ -99,34 +98,29 @@ class EquipmentCode(StorageHandler):
         Type in equipment code.
         If text is None, use clipboard contents instead to fill in equipment code.
         """
-        self._enter_equipment_code_input_mode()
-        fail_count = 0
+        self.device.screenshot()
         while 1:
-            self.device.screenshot()
-            if self.appear_then_click(EQUIPMENT_CODE_ENTER):
+            if self.appear(EQUIPMENT_CODE_ENTER) and not self.appear(EQUIPMENT_CODE_TEXTBOX):
+                self.device.click(EQUIPMENT_CODE_ENTER)
                 break
+
+            self._enter_equipment_code_input_mode()
 
             if text:
                 # use text input
                 logger.info(f"Use equipment code from config: {text}")
-                self.device.text_input(text, clear=True)
+                self.device.set_text(text)
             else:
                 # use clipboard input
                 logger.info("Use equipment code from clipboard")
-                self.device.u2_clear_text()
-                # There is no paste action for u2, using adb input keyevent instead
-                self.device.adb_keyevent_input(279)
+                self.device.paste()
 
-            try:
-                # 6 --> IME_ACTION_DONE
-                self.device.u2_send_action(6)
-            except EnvironmentError as e:
-                fail_count += 1
-                logger.exception(str(e) + f" (Retry {fail_count}/3)")
-                if fail_count > 3:
-                    raise e
-                else:
-                    self._enter_equipment_code_input_mode()
+            while 1:
+                self.device.close_edittext()
+                self.device.sleep((0.2, 0.3))
+                self.device.screenshot()
+                if self.appear(EQUIPMENT_CODE_ENTER):
+                    break
 
     def equipment_code_confirm(self, skip_first_screenshot=True):
         """

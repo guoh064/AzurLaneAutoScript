@@ -167,4 +167,41 @@ class Control(Hermit, Minitouch, Scrcpy, MaaTouch):
             logger.warning(f'Control method {method} does not support drag well, '
                            f'falling back to ADB swipe may cause unexpected behaviour')
             self.swipe_adb(p1, p2, duration=ensure_time(swipe_duration * 2))
-            self.click(Button(area=(), color=(), button=area_offset(point_random, p2), name=name ),False)
+            self.click(Button(area=(), color=(), button=area_offset(point_random, p2), name=name), False)
+
+    def clear_text(self):
+        logger.info('Clear text')
+        self.handle_control_check('CLEAR_TEXT')
+        method = self.config.Emulator_ControlMethod
+        if method != 'uiautomator2':
+            logger.warning(f'Control method {method} does not support text clear, '
+                           f'falling back to uiautomator2 text clear')
+        self.clear_text_uiautomator2()
+
+    def paste(self, clear: bool = True):
+        method = self.config.Emulator_ControlMethod
+        if clear:
+            self.clear_text()
+        logger.info('Paste')
+        self.handle_control_check('PASTE')
+        if method != 'adb':
+            logger.warning(f'Control method {method} does not support paste, falling back to ADB paste')
+        self.paste_adb()
+
+    def set_text(self, text: str = ''):
+        logger.info(f'Input text: {text}')
+        self.handle_control_check('SET_TEXT')
+        method = self.config.Emulator_ControlMethod
+        if method != 'uiautomator2':
+            logger.warning(f'Control method {method} does not support text input, '
+                           f'falling back to uiautomator2 text input')
+        self.text_input_uiautomator2(text=text, clear=True)
+
+    def close_edittext(self):
+        logger.info(f'Close edittext')
+        self.handle_control_check('CLOSE_EDITTEXT')
+        method = self.config.Emulator_ControlMethod
+        if method != 'uiautomator2':
+            logger.warning(f'Control method {method} does not support close edittext, '
+                           f'falling back to uiautomator2 close edittext')
+        self.close_edittext_uiautomator2()

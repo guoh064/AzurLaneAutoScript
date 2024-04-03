@@ -6,7 +6,6 @@ from module.base.timer import Timer
 from module.config.utils import get_server_next_update
 from module.device.app_control import AppControl
 from module.device.control import Control
-from module.device.input import Input
 from module.device.screenshot import Screenshot
 from module.exception import (GameNotRunningError, GameStuckError,
                               GameTooManyClickError, RequestHumanTakeover)
@@ -60,7 +59,7 @@ def show_function_call():
     logger.info('Function calls:' + ''.join(func_list))
 
 
-class Device(Screenshot, Control, AppControl, EmulatorManager, Input):
+class Device(Screenshot, Control, AppControl, EmulatorManager):
     _screen_size_checked = False
     detect_record = set()
     click_record = collections.deque(maxlen=15)
