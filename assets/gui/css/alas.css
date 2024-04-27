@@ -484,11 +484,8 @@ pre.rich-traceback-code {
     display: grid;
 }
 
-/* .bs-title-option,
+.bs-title-option,
 .form-check-input[id*="ch_S"] {
-    display: none;
-} */
-.bs-title-option{
     display: none;
 }
 
