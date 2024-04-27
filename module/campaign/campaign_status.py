@@ -56,7 +56,6 @@ class CampaignStatus(UI):
             logger.warning(f'Invalid pt result: {pt}')
             pt = 0
         self.config.update()
-        self.config.update（）
         return pt
 
     def get_oil(self, skip_first_screenshot=True):
@@ -145,7 +144,7 @@ class CampaignStatus(UI):
             ocr = Digit(_button, name=name, letter=(247, 247, 247), threshold=128)
         elif color_similar(color, (59, 59, 64)):
             # With black overlay
-            ocr = Digit(_button, name=name, letter=(247, 247, 247), threshold=128)
+            ocr = Digit(_button, name=name, letter=(165, 165, 165), threshold=128)
         else:
             logger.warning(f'Unexpected OCR_OIL_CHECK color')
             ocr = Digit(_button, name=name, letter=(247, 247, 247), threshold=128)
