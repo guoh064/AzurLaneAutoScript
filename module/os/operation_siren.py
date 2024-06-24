@@ -431,7 +431,12 @@ class OperationSiren(OSMap):
                     .sort_by_clock_degree(center=(1252, 1012), start=self.zone.location)
 
                 logger.hr(f'OS meowfficer farming, zone_id={zones[0].zone_id}', level=1)
-                self.globe_goto(zones[0])
+                try:
+                    self.globe_goto(zones[0])
+                except ActionPointLimit:
+                    if self.is_cl1_enabled and self.get_yellow_coins() >= self.config.OS_CL1_YELLOW_COINS_PRESERVE:
+                        self.config.task_call('OpsiHazard1Leveling')
+                    raise ActionPointLimit
                 self.fleet_set(self.config.OpsiFleet_Fleet)
                 self.os_order_execute(
                     recon_scan=False,
@@ -464,6 +469,11 @@ class OperationSiren(OSMap):
                 with self.config.multi_set():
                     self.config.task_delay(server_update=True)
                     if not self.is_in_opsi_explore():
+                        cd = self.nearest_task_cooling_down
+                        if cd is None:
+                            self.config.task_call('OpsiAbyssal')
+                            self.config.task_call('OpsiStronghold')
+                            self.config.task_call('OpsiObscure')
                         self.config.task_call('OpsiMeowfficerFarming')
                 self.config.task_stop()
 
@@ -479,6 +489,11 @@ class OperationSiren(OSMap):
                 with self.config.multi_set():
                     self.config.task_delay(server_update=True)
                     if not self.is_in_opsi_explore():
+                        cd = self.nearest_task_cooling_down
+                        if cd is None:
+                            self.config.task_call('OpsiAbyssal')
+                            self.config.task_call('OpsiStronghold')
+                            self.config.task_call('OpsiObscure')
                         self.config.task_call('OpsiMeowfficerFarming')
                 self.config.task_stop()
 
