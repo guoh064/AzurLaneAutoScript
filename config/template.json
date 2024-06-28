@@ -570,7 +570,7 @@
       "ServerUpdate": "00:00"
     },
     "Campaign": {
-      "Name": "TC-3",
+      "Name": "dynamic",
       "Event": "campaign_main",
       "Mode": "normal",
       "UseClearMode": true,
@@ -580,6 +580,7 @@
       "AmbushEvade": true
     },
     "Coalition": {
+      "Mode": "hard",
       "Fleet": "single"
     },
     "StopCondition": {
@@ -1150,6 +1151,7 @@
       "AmbushEvade": true
     },
     "Coalition": {
+      "Mode": "hard",
       "Fleet": "single"
     },
     "StopCondition": {
