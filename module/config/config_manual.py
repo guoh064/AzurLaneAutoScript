@@ -113,6 +113,7 @@ class ManualConfig:
     """
     module.map.fleet
     """
+    MAP_HAS_MODE_SWITCH = False  # event_20240725_cn has mode switch in map preparation
     MAP_HAS_CLEAR_PERCENTAGE = True
     MAP_HAS_WALK_SPEEDUP = False
     MAP_HAS_AMBUSH = True
@@ -353,7 +354,6 @@ class ManualConfig:
     """
     DOCK_FULL_TRIGGERED = False
     GET_SHIP_TRIGGERED = False
-    RETIRE_KEEP_COMMON_CV = False
     COMMON_CV_THRESHOLD = 0.9
 
     """

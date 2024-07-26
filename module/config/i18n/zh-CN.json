@@ -410,7 +410,8 @@
       "DroidCast": "DroidCast",
       "DroidCast_raw": "DroidCast_raw",
       "scrcpy": "scrcpy",
-      "nemu_ipc": "nemu_ipc"
+      "nemu_ipc": "nemu_ipc",
+      "ldopengl": "ldopengl"
     },
     "ControlMethod": {
       "name": "模拟器控制方案",
@@ -732,6 +733,7 @@
       "event_20240229_cn": "雪境迷踪",
       "event_20240425_cn": "共鸣的PASSION",
       "event_20240521_cn": "绽放于辉光之城",
+      "event_20240725_cn": "幻梦间奏曲",
       "raid_20200624": "复刻特别演习埃塞克斯级",
       "raid_20210708": "复刻穿越彼方的水线",
       "raid_20220127": "演习神秘事件调查",
@@ -1936,15 +1938,19 @@
       "name": "领取邮件",
       "help": ""
     },
-    "Collect": {
-      "name": "领取邮件",
+    "ClaimMerit": {
+      "name": "领取功勋邮件",
       "help": ""
     },
-    "Filter": {
-      "name": "邮件过滤器",
-      "help": "默认只领取演习功勋邮件"
+    "ClaimMaintenance": {
+      "name": "领取维护邮件",
+      "help": ""
     },
-    "Delete": {
+    "ClaimTradeLicense": {
+      "name": "领取月卡邮件",
+      "help": ""
+    },
+    "DeleteCollected": {
       "name": "删除已读邮件",
       "help": ""
     }

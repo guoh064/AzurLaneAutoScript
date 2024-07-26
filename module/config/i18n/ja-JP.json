@@ -410,7 +410,8 @@
       "DroidCast": "DroidCast",
       "DroidCast_raw": "DroidCast_raw",
       "scrcpy": "scrcpy",
-      "nemu_ipc": "nemu_ipc"
+      "nemu_ipc": "nemu_ipc",
+      "ldopengl": "ldopengl"
     },
     "ControlMethod": {
       "name": "Emulator.ControlMethod.name",
@@ -732,6 +733,7 @@
       "event_20240229_cn": "銀界遊廻",
       "event_20240425_cn": "共鳴のパッション",
       "event_20240521_cn": "赫輝のマルティリウム",
+      "event_20240725_cn": "夢幻の間奏曲",
       "raid_20200624": "特別演習超空強襲波（復刻）",
       "raid_20210708": "交錯する新たな波 (復刻)",
       "raid_20220127": "秘密事件調査",
@@ -1936,17 +1938,21 @@
       "name": "Mail._info.name",
       "help": "Mail._info.help"
     },
-    "Collect": {
-      "name": "Mail.Collect.name",
-      "help": "Mail.Collect.help"
+    "ClaimMerit": {
+      "name": "Mail.ClaimMerit.name",
+      "help": "Mail.ClaimMerit.help"
     },
-    "Filter": {
-      "name": "Mail.Filter.name",
-      "help": "Mail.Filter.help"
+    "ClaimMaintenance": {
+      "name": "Mail.ClaimMaintenance.name",
+      "help": "Mail.ClaimMaintenance.help"
     },
-    "Delete": {
-      "name": "Mail.Delete.name",
-      "help": "Mail.Delete.help"
+    "ClaimTradeLicense": {
+      "name": "Mail.ClaimTradeLicense.name",
+      "help": "Mail.ClaimTradeLicense.help"
+    },
+    "DeleteCollected": {
+      "name": "Mail.DeleteCollected.name",
+      "help": "Mail.DeleteCollected.help"
     }
   },
   "SupplyPack": {

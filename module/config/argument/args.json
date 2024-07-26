@@ -117,12 +117,13 @@
           "DroidCast",
           "DroidCast_raw",
           "scrcpy",
-          "nemu_ipc"
+          "nemu_ipc",
+          "ldopengl"
         ]
       },
       "ControlMethod": {
         "type": "select",
-        "value": "minitouch",
+        "value": "MaaTouch",
         "option": [
           "ADB",
           "uiautomator2",
@@ -1715,16 +1716,17 @@
           "event_20231221_cn",
           "event_20240229_cn",
           "event_20240425_cn",
-          "event_20240521_cn"
+          "event_20240521_cn",
+          "event_20240725_cn"
         ],
         "display": "hide",
         "option_bold": [
           "event_20211229_cn",
-          "event_20220526_cn"
+          "event_20240725_cn"
         ],
-        "cn": "event_20220526_cn",
-        "en": "event_20220526_cn",
-        "jp": "event_20220526_cn",
+        "cn": "event_20240725_cn",
+        "en": "event_20240725_cn",
+        "jp": "event_20240725_cn",
         "tw": "event_20211229_cn"
       },
       "Mode": {
@@ -2051,15 +2053,16 @@
           "event_20231221_cn",
           "event_20240229_cn",
           "event_20240425_cn",
-          "event_20240521_cn"
+          "event_20240521_cn",
+          "event_20240725_cn"
         ],
         "option_bold": [
           "event_20211229_cn",
-          "event_20220526_cn"
+          "event_20240725_cn"
         ],
-        "cn": "event_20220526_cn",
-        "en": "event_20220526_cn",
-        "jp": "event_20220526_cn",
+        "cn": "event_20240725_cn",
+        "en": "event_20240725_cn",
+        "jp": "event_20240725_cn",
         "tw": "event_20211229_cn"
       },
       "Mode": {
@@ -2501,15 +2504,16 @@
           "event_20231221_cn",
           "event_20240229_cn",
           "event_20240425_cn",
-          "event_20240521_cn"
+          "event_20240521_cn",
+          "event_20240725_cn"
         ],
         "option_bold": [
           "event_20211229_cn",
-          "event_20220526_cn"
+          "event_20240725_cn"
         ],
-        "cn": "event_20220526_cn",
-        "en": "event_20220526_cn",
-        "jp": "event_20220526_cn",
+        "cn": "event_20240725_cn",
+        "en": "event_20240725_cn",
+        "jp": "event_20240725_cn",
         "tw": "event_20211229_cn"
       },
       "Mode": {
@@ -3910,15 +3914,16 @@
           "event_20231221_cn",
           "event_20240229_cn",
           "event_20240425_cn",
-          "event_20240521_cn"
+          "event_20240521_cn",
+          "event_20240725_cn"
         ],
         "option_bold": [
           "event_20211229_cn",
-          "event_20220526_cn"
+          "event_20240725_cn"
         ],
-        "cn": "event_20220526_cn",
-        "en": "event_20220526_cn",
-        "jp": "event_20220526_cn",
+        "cn": "event_20240725_cn",
+        "en": "event_20240725_cn",
+        "jp": "event_20240725_cn",
         "tw": "event_20211229_cn"
       },
       "Mode": {
@@ -4377,15 +4382,16 @@
           "event_20231221_cn",
           "event_20240229_cn",
           "event_20240425_cn",
-          "event_20240521_cn"
+          "event_20240521_cn",
+          "event_20240725_cn"
         ],
         "option_bold": [
           "event_20211229_cn",
-          "event_20220526_cn"
+          "event_20240725_cn"
         ],
-        "cn": "event_20220526_cn",
-        "en": "event_20220526_cn",
-        "jp": "event_20220526_cn",
+        "cn": "event_20240725_cn",
+        "en": "event_20240725_cn",
+        "jp": "event_20240725_cn",
         "tw": "event_20211229_cn"
       },
       "Mode": {
@@ -4844,15 +4850,16 @@
           "event_20231221_cn",
           "event_20240229_cn",
           "event_20240425_cn",
-          "event_20240521_cn"
+          "event_20240521_cn",
+          "event_20240725_cn"
         ],
         "option_bold": [
           "event_20211229_cn",
-          "event_20220526_cn"
+          "event_20240725_cn"
         ],
-        "cn": "event_20220526_cn",
-        "en": "event_20220526_cn",
-        "jp": "event_20220526_cn",
+        "cn": "event_20240725_cn",
+        "en": "event_20240725_cn",
+        "jp": "event_20240725_cn",
         "tw": "event_20211229_cn"
       },
       "Mode": {
@@ -5311,15 +5318,16 @@
           "event_20231221_cn",
           "event_20240229_cn",
           "event_20240425_cn",
-          "event_20240521_cn"
+          "event_20240521_cn",
+          "event_20240725_cn"
         ],
         "option_bold": [
           "event_20211229_cn",
-          "event_20220526_cn"
+          "event_20240725_cn"
         ],
-        "cn": "event_20220526_cn",
-        "en": "event_20220526_cn",
-        "jp": "event_20220526_cn",
+        "cn": "event_20240725_cn",
+        "en": "event_20240725_cn",
+        "jp": "event_20240725_cn",
         "tw": "event_20211229_cn"
       },
       "Mode": {
@@ -5768,15 +5776,16 @@
           "event_20231221_cn",
           "event_20240229_cn",
           "event_20240425_cn",
-          "event_20240521_cn"
+          "event_20240521_cn",
+          "event_20240725_cn"
         ],
         "option_bold": [
           "event_20211229_cn",
-          "event_20220526_cn"
+          "event_20240725_cn"
         ],
-        "cn": "event_20220526_cn",
-        "en": "event_20220526_cn",
-        "jp": "event_20220526_cn",
+        "cn": "event_20240725_cn",
+        "en": "event_20240725_cn",
+        "jp": "event_20240725_cn",
         "tw": "event_20211229_cn"
       },
       "Mode": {
@@ -8098,17 +8107,21 @@
       }
     },
     "Mail": {
-      "Collect": {
+      "ClaimMerit": {
         "type": "checkbox",
         "value": true
       },
-      "Filter": {
-        "type": "textarea",
-        "value": "Merit > Coolant"
-      },
-      "Delete": {
+      "ClaimMaintenance": {
         "type": "checkbox",
         "value": false
+      },
+      "ClaimTradeLicense": {
+        "type": "checkbox",
+        "value": false
+      },
+      "DeleteCollected": {
+        "type": "checkbox",
+        "value": true
       }
     },
     "SupplyPack": {
