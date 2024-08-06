@@ -132,6 +132,10 @@ class ActionPointHandler(UI, MapEventHandler):
         Returns:
             int: Total action points, including ap boxes.
         """
+        # temporary file save for action points
+        filename = datetime.now().strftime("%d-%m-%Y_%I-%M-%S_%p")
+        self.device.image_save(f"./screenshots/{filename}.png")
+
         items = ACTION_POINT_ITEMS.predict(self.device.image, name=False, amount=True)
         box = [item.amount for item in items]
         current = OCR_ACTION_POINT_REMAIN.ocr(self.device.image)
