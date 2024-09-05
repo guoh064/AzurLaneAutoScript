@@ -193,14 +193,6 @@ class GridInfo:
                 self.is_caught_by_siren = True
             else:
                 return False
-        if info.is_fleet:
-            if self.is_sea:
-                self.is_fleet = True
-                if info.is_current_fleet:
-                    self.is_current_fleet = True
-                return True
-            else:
-                return False
         if info.is_boss:
             if not self.is_land and self.may_boss:
                 self.is_boss = True
@@ -248,6 +240,14 @@ class GridInfo:
                     self.enemy_scale = info.enemy_scale
                 if info.enemy_genre and not (info.enemy_genre == 'Enemy' and self.enemy_genre):
                     self.enemy_genre = info.enemy_genre
+                return True
+            else:
+                return False
+        if info.is_fleet:
+            if self.is_sea:
+                self.is_fleet = True
+                if info.is_current_fleet:
+                    self.is_current_fleet = True
                 return True
             else:
                 return False
