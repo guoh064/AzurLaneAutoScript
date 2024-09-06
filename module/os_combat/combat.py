@@ -156,6 +156,7 @@ class Combat(Combat_, MapEventHandler):
     def combat_status(self, drop=None, expected_end=None):
         self.__os_combat_drop = drop
         super().combat_status(drop=drop, expected_end=self._os_combat_expected_end)
+        self.device.click_record_clear()
 
     def combat(self, *args, save_get_items=False, **kwargs):
         """
