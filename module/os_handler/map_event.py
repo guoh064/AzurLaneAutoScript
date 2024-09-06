@@ -149,6 +149,12 @@ class MapEventHandler(EnemySearchingHandler):
         if self.handle_urgent_commission(drop=drop):
             return True
         if self.handle_story_skip():
+            # Avoid too_many_click exception caused by more than 5 collect points summoned by scanning device
+            if len(self.device.click_record) >= 2\
+                    and self.device.click_record[-2] == 'STORY_OPTION_2_OF_3'\
+                    and self.device.click_record[-1] == 'POPUP_CONFIRM_STORY_SKIP':
+                self.device.click_record.pop()
+                self.device.click_record.pop()
             return True
 
         return False
