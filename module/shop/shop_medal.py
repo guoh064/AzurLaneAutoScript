@@ -222,6 +222,7 @@ class MedalShop2(ShopClerk, ShopStatus):
                 break
             else:
                 MEDAL_SHOP_SCROLL.next_page(main=self, page=0.66)
+                self.device.click_record_clear()
                 del_cached_property(self, 'shop_grid')
                 del_cached_property(self, 'shop_medal_items')
                 continue
