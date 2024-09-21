@@ -7980,10 +7980,9 @@
       },
       "PresetFilter": {
         "type": "select",
-        "value": "high_value",
+        "value": "all",
         "option": [
           "all",
-          "high_value",
           "custom"
         ]
       },
