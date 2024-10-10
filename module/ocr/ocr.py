@@ -140,7 +140,7 @@ class Digit(Ocr):
     Method ocr() returns int, or a list of int.
     """
 
-    def __init__(self, buttons, lang='azur_lane', letter=(255, 255, 255), threshold=128, alphabet='0123456789IDSB',
+    def __init__(self, buttons, lang='azur_lane', letter=(255, 255, 255), threshold=128, alphabet='0123456789IDSBUVT',
                  name=None):
         super().__init__(buttons, lang=lang, letter=letter, threshold=threshold, alphabet=alphabet, name=name)
 
@@ -148,6 +148,7 @@ class Digit(Ocr):
         result = super().after_process(result)
         result = result.replace('I', '1').replace('D', '0').replace('S', '5')
         result = result.replace('B', '8')
+        result = result.replace('V', '0').replace('T', '1').replace('U', '0')
 
         prev = result
         result = int(result) if result else 0
@@ -163,7 +164,7 @@ class DigitYuv(Digit, OcrYuv):
 
 
 class DigitCounter(Ocr):
-    def __init__(self, buttons, lang='azur_lane', letter=(255, 255, 255), threshold=128, alphabet='0123456789/IDSB',
+    def __init__(self, buttons, lang='azur_lane', letter=(255, 255, 255), threshold=128, alphabet='0123456789/IDSBUVT',
                  name=None):
         super().__init__(buttons, lang=lang, letter=letter, threshold=threshold, alphabet=alphabet, name=name)
 
@@ -171,6 +172,7 @@ class DigitCounter(Ocr):
         result = super().after_process(result)
         result = result.replace('I', '1').replace('D', '0').replace('S', '5')
         result = result.replace('B', '8')
+        result = result.replace('V', '0').replace('T', '1').replace('U', '0')
         return result
 
     def ocr(self, image, direct_ocr=False):
