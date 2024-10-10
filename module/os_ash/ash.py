@@ -23,6 +23,10 @@ class DailyDigitCounter(DigitCounter):
             image = cv2.copyMakeBorder(image, 2, 0, 2, 0, cv2.BORDER_CONSTANT, None, [255, 255, 255])
         return image
 
+    def after_process(self, result):
+        result = result.replace('UV', '0/')
+        return super().after_process(result)
+
 
 class AshBeaconFinished(Exception):
     pass
