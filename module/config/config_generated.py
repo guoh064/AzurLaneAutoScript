@@ -230,6 +230,7 @@ class GeneratedConfig:
     MeowfficerTrain_RetainTalentedGold = True
     MeowfficerTrain_RetainTalentedPurple = True
     MeowfficerTrain_EnhanceIndex = 1
+    MeowfficerTrain_MaxFeedLevel = 5
 
     # Group `GuildLogistics`
     GuildLogistics_Enable = True

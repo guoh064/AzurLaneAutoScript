@@ -1718,12 +1718,12 @@
         ],
         "display": "hide",
         "option_bold": [
-          "event_20230914_cn",
-          "event_20240912_cn"
+          "event_20220728_cn",
+          "event_20230914_cn"
         ],
-        "cn": "event_20240912_cn",
-        "en": "event_20240912_cn",
-        "jp": "event_20240912_cn",
+        "cn": "event_20220728_cn",
+        "en": "event_20220728_cn",
+        "jp": "event_20220728_cn",
         "tw": "event_20230914_cn"
       },
       "Mode": {
@@ -2141,12 +2141,12 @@
           "event_20240912_cn"
         ],
         "option_bold": [
-          "event_20230914_cn",
-          "event_20240912_cn"
+          "event_20220728_cn",
+          "event_20230914_cn"
         ],
-        "cn": "event_20240912_cn",
-        "en": "event_20240912_cn",
-        "jp": "event_20240912_cn",
+        "cn": "event_20220728_cn",
+        "en": "event_20220728_cn",
+        "jp": "event_20220728_cn",
         "tw": "event_20230914_cn"
       },
       "Mode": {
@@ -2595,12 +2595,12 @@
           "event_20240912_cn"
         ],
         "option_bold": [
-          "event_20230914_cn",
-          "event_20240912_cn"
+          "event_20220728_cn",
+          "event_20230914_cn"
         ],
-        "cn": "event_20240912_cn",
-        "en": "event_20240912_cn",
-        "jp": "event_20240912_cn",
+        "cn": "event_20220728_cn",
+        "en": "event_20220728_cn",
+        "jp": "event_20220728_cn",
         "tw": "event_20230914_cn"
       },
       "Mode": {
@@ -3225,13 +3225,12 @@
           "coalition_20240627"
         ],
         "option_bold": [
-          "coalition_20230323",
           "coalition_20240627"
         ],
         "cn": "coalition_20240627",
         "en": "coalition_20240627",
         "jp": "coalition_20240627",
-        "tw": "coalition_20230323"
+        "tw": "coalition_20240627"
       },
       "Mode": {
         "type": "select",
@@ -3530,25 +3529,30 @@
           "war_archives_20200820_cn",
           "war_archives_20200903_cn",
           "war_archives_20200917_cn",
+          "war_archives_20201012_cn",
           "war_archives_20201029_cn",
           "war_archives_20201229_cn",
           "war_archives_20210225_cn",
           "war_archives_20210325_cn",
+          "war_archives_20210422_cn",
           "war_archives_20210527_cn",
           "war_archives_20210624_cn",
           "war_archives_20210819_cn",
+          "war_archives_20210916_cn",
           "war_archives_20211014_cn",
           "war_archives_20211028_cn",
+          "war_archives_20211111_cn",
+          "war_archives_20211229_cn",
           "war_archives_20220210_cn",
           "war_archives_20220414_cn"
         ],
         "option_bold": [
-          "war_archives_20210225_cn"
+          "war_archives_20211229_cn"
         ],
-        "cn": "war_archives_20210225_cn",
-        "en": "war_archives_20210225_cn",
-        "jp": "war_archives_20210225_cn",
-        "tw": "war_archives_20210225_cn"
+        "cn": "war_archives_20211229_cn",
+        "en": "war_archives_20211229_cn",
+        "jp": "war_archives_20211229_cn",
+        "tw": "war_archives_20211229_cn"
       },
       "Mode": {
         "type": "select",
@@ -4007,12 +4011,12 @@
           "event_20240912_cn"
         ],
         "option_bold": [
-          "event_20230914_cn",
-          "event_20240912_cn"
+          "event_20220728_cn",
+          "event_20230914_cn"
         ],
-        "cn": "event_20240912_cn",
-        "en": "event_20240912_cn",
-        "jp": "event_20240912_cn",
+        "cn": "event_20220728_cn",
+        "en": "event_20220728_cn",
+        "jp": "event_20220728_cn",
         "tw": "event_20230914_cn"
       },
       "Mode": {
@@ -4478,12 +4482,12 @@
           "event_20240912_cn"
         ],
         "option_bold": [
-          "event_20230914_cn",
-          "event_20240912_cn"
+          "event_20220728_cn",
+          "event_20230914_cn"
         ],
-        "cn": "event_20240912_cn",
-        "en": "event_20240912_cn",
-        "jp": "event_20240912_cn",
+        "cn": "event_20220728_cn",
+        "en": "event_20220728_cn",
+        "jp": "event_20220728_cn",
         "tw": "event_20230914_cn"
       },
       "Mode": {
@@ -4949,12 +4953,12 @@
           "event_20240912_cn"
         ],
         "option_bold": [
-          "event_20230914_cn",
-          "event_20240912_cn"
+          "event_20220728_cn",
+          "event_20230914_cn"
         ],
-        "cn": "event_20240912_cn",
-        "en": "event_20240912_cn",
-        "jp": "event_20240912_cn",
+        "cn": "event_20220728_cn",
+        "en": "event_20220728_cn",
+        "jp": "event_20220728_cn",
         "tw": "event_20230914_cn"
       },
       "Mode": {
@@ -5420,12 +5424,12 @@
           "event_20240912_cn"
         ],
         "option_bold": [
-          "event_20230914_cn",
-          "event_20240912_cn"
+          "event_20220728_cn",
+          "event_20230914_cn"
         ],
-        "cn": "event_20240912_cn",
-        "en": "event_20240912_cn",
-        "jp": "event_20240912_cn",
+        "cn": "event_20220728_cn",
+        "en": "event_20220728_cn",
+        "jp": "event_20220728_cn",
         "tw": "event_20230914_cn"
       },
       "Mode": {
@@ -5881,12 +5885,12 @@
           "event_20240912_cn"
         ],
         "option_bold": [
-          "event_20230914_cn",
-          "event_20240912_cn"
+          "event_20220728_cn",
+          "event_20230914_cn"
         ],
-        "cn": "event_20240912_cn",
-        "en": "event_20240912_cn",
-        "jp": "event_20240912_cn",
+        "cn": "event_20220728_cn",
+        "en": "event_20220728_cn",
+        "jp": "event_20220728_cn",
         "tw": "event_20230914_cn"
       },
       "Mode": {
@@ -6509,13 +6513,12 @@
           "coalition_20240627"
         ],
         "option_bold": [
-          "coalition_20230323",
           "coalition_20240627"
         ],
         "cn": "coalition_20240627",
         "en": "coalition_20240627",
         "jp": "coalition_20240627",
-        "tw": "coalition_20230323"
+        "tw": "coalition_20240627"
       },
       "Mode": {
         "type": "select",
@@ -7124,6 +7127,10 @@
       "EnhanceIndex": {
         "type": "input",
         "value": 1
+      },
+      "MaxFeedLevel": {
+        "type": "input",
+        "value": 5
       }
     },
     "Storage": {
