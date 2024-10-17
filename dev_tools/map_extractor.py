@@ -645,10 +645,17 @@ class ChapterTemplate:
         print('<<< SELECT MAP >>>')
 
         def get_event_id(map_id):
-            return (map_id - 2100000) // 20 + 21000 if map_id // 10000 == 210 else map_id // 10000
+            if map_id // 10000 == 210:
+                result = (map_id - 2100000) // 20 + 21000
+            elif map_id // 10000 == 220:
+                result = (map_id - 2200000) // 10 + 22000
+            else:
+                result = map_id // 10000
+            return result
+
 
         if select:
-            event_id = get_event_id(maps[0].map_id)
+            event_id = get_event_id(maps[-1].map_id)
             new = []
             for map_id, data in DATA.items():
                 if not isinstance(map_id, int) or is_extra(data['chapter_name']):
@@ -659,8 +666,8 @@ class ChapterTemplate:
                     new.append(data)
             maps = new
         else:
-            maps = maps[:1]
-            print(f'Selected: {maps[0]}')
+            maps = maps[-1:]
+            print(f'Selected: {maps[-1]}')
 
         print('')
         return maps
