@@ -8,6 +8,7 @@ from module.config.utils import (get_nearest_weekday_date,
                                  get_server_last_update,
                                  get_server_next_update,
                                  DEFAULT_TIME)
+from module.base.utils import save_image
 from module.exception import RequestHumanTakeover, GameStuckError, ScriptError
 from module.logger import logger
 from module.map.map_grids import SelectedGrids
@@ -478,6 +479,7 @@ class OperationSiren(OSMap):
             logger.attr('OS_ACTION_POINT_PRESERVE', self.config.OS_ACTION_POINT_PRESERVE)
 
             if self.get_yellow_coins() < self.config.OS_CL1_YELLOW_COINS_PRESERVE:
+                save_image(self.device.image, "./screenshot/"+str(int(datetime.now()*1e6))+".png")
                 logger.info(f'Reach the limit of yellow coins, preserve={self.config.OS_CL1_YELLOW_COINS_PRESERVE}')
                 with self.config.multi_set():
                     self.config.task_delay(server_update=True)
