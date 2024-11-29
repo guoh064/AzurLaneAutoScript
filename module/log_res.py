@@ -1,5 +1,4 @@
 from module.logger import logger
-from module.base.base import ModuleBase as Base
 from module.config.utils import deep_get
 from datetime import datetime
 from cached_property import cached_property
@@ -8,7 +7,7 @@ from module.config.utils import read_file, filepath_argument
 def now():
     return datetime.now().replace(microsecond=0)
 
-class LogRes(Base):
+class LogRes:
     """
     set attr--->
     Logres(AzurLaneConfig).<res_name>=resource_value:int
