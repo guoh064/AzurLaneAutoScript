@@ -167,7 +167,7 @@ class Commission:
         self.genre = self.commission_name_parse(self.name)
 
         # Suffix
-        ocr = SuffixOcr(button, lang='azur_lane', letter=(255, 255, 255), threshold=200, alphabet='IV')
+        ocr = SuffixOcr(button, lang='azur_lane', letter=(255, 255, 255), threshold=128, alphabet='IV')
         self.suffix = self.beautify_name(ocr.ocr(self.image))
 
         # Duration time
