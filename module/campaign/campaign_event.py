@@ -48,14 +48,14 @@ class CampaignEvent(CampaignStatus):
         )
         tasks = EVENTS + RAIDS + COALITIONS + GEMS_FARMINGS
         command = self.config.Scheduler_Command
-        if limit <= 0 or command not in tasks:
+        if limit < 0 or command not in tasks:
             return False
         if command == 'GemsFarming' and self.stage_is_main(self.config.Campaign_Name):
             return False
 
         pt = self.get_event_pt()
-        logger.attr('Event_PT_limit', f'{pt}/{limit}')
-        if pt >= limit:
+        if pt >= limit and limit > 0:
+            logger.attr('Event_PT_limit', f'{pt}/{limit}')
             logger.hr(f'Reach event PT limit: {limit}')
             self._disable_tasks(tasks)
             return True
@@ -96,6 +96,7 @@ class CampaignEvent(CampaignStatus):
         """
         limit = self.config.TaskBalancer_CoinLimit
         coin = self.get_coin()
+        logger.attr('Coin Count', coin)
         # Check Coin
         if coin == 0:
             # Avoid wrong/zero OCR result
