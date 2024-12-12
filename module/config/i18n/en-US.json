@@ -1175,6 +1175,10 @@
       "cassin_or_downes": "Cassin or Downes",
       "z20_or_z21": "Z20 or Z21"
     },
+    "EquipmentCode": {
+      "name": "Gear Code",
+      "help": "Only works when 'Change Ship + Gears' is chosen.\nWhen substituting down CV/CVL/DD, if corresponding gear code is not provided, alas will export it\nWhen substituting up corresponding CV/CVL/DD, if corresponding gear code is not provided, alas will use exported gear code from previous ship; otherwise alas will use gear code in the config\nBluestacks users need to enable virtual keyboard first.\nSee https://support.bluestacks.com/hc/en-us/articles/360061968892-How-to-use-a-virtual-on-screen-keyboard-on-BlueStacks-5"
+    },
     "CommissionLimit": {
       "name": "Prevent Too Many Urgent Commissions",
       "help": "When running 7x24, prevent having a lot of urgent commissions and not being able to complete daily commissions. It is recommended to select only short-terms and high-yields in the commission filter"
@@ -1814,6 +1818,37 @@
       "help": "All options have been defined at <https://github.com/LmeSzinc/AzurLaneAutoScript/wiki/reward_shop_filter_string>\nHowever unlike other shops, only Chip and Array are supported\nALAS does not browse, scroll, or recognize any other items displayed besides those two"
     }
   },
+  "EventShop": {
+    "_info": {
+      "name": "Event Shop",
+      "help": "Ships will be bought after event ends, and corresponding pts will be preserved."
+    },
+    "Enable": {
+      "name": "Enable Event Shop",
+      "help": ""
+    },
+    "UnlockShipSSR": {
+      "name": "Unlock event SSR ship",
+      "help": "If not enabled, will discard `ShipSSR` and `Meta` in filter string."
+    },
+    "BuyShipUR": {
+      "name": "Buy X event UR ship",
+      "help": "",
+      "0": "0",
+      "1": "1",
+      "2": "2"
+    },
+    "PresetFilter": {
+      "name": "Preset Filter Select",
+      "help": "",
+      "all": "all",
+      "custom": "custom"
+    },
+    "CustomFilter": {
+      "name": "Custom Filter",
+      "help": "To use your own filter, set \"Preset Filter Select\" to \"custom\". All options have been defined at  <https://github.com/LmeSzinc/AzurLaneAutoScript/wiki/reward_shop_filter_string>"
+    }
+  },
   "ShipyardDr": {
     "_info": {
       "name": "DR Blueprints Purchase Settings",
@@ -2357,6 +2392,10 @@
     "UseTuningSample": {
       "name": "Use Tuning Samples",
       "help": "Use all tuning samples and quality tuning samples"
+    },
+    "CollectTargetReward": {
+      "name": "Collect Achievement Rewards",
+      "help": ""
     }
   },
   "OpsiObscure": {
@@ -2426,10 +2465,24 @@
       "5": "5",
       "6": "6",
       "10": "Center Zones"
+    }
+  },
+  "OpsiTarget": {
+    "_info": {
+      "name": "Opsi Achievement",
+      "help": ""
+    },
+    "TargetFarming": {
+      "name": "Farm for Safe Zone Achievement",
+      "help": ""
     },
     "TargetZone": {
       "name": "Target Zone ID",
       "help": "Supports either Zone ID or Name in CN/EN/JP/TW, i.e. \"51\", \"NA Ocean SE Sector E\"\nIf specified, Alas will loop on this same zone after each clear\nUse default value 0 or clear the field to remove the specification\nZone information can be acquired from <./module/os/map_data.py>"
+    },
+    "LastRun": {
+      "name": "Last Collect Time",
+      "help": "This value is automatically recorded and generally does not need to be modified."
     }
   },
   "OpsiHazard1Leveling": {

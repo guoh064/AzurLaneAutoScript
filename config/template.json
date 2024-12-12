@@ -313,6 +313,7 @@
       "CommonCV": "any",
       "ChangeVanguard": "ship",
       "CommonDD": "any",
+      "EquipmentCode": "DD: null\nbogue: null\nhermes: null\nlangley: null\nranger: null",
       "CommissionLimit": true
     },
     "Campaign": {
@@ -343,6 +344,19 @@
       "Fleet2Mode": "combat_auto",
       "Fleet2Step": 2,
       "FleetOrder": "fleet1_all_fleet2_standby"
+    },
+    "Emotion": {
+      "Mode": "calculate_ignore",
+      "Fleet1Value": 119,
+      "Fleet1Record": "2020-01-01 00:00:00",
+      "Fleet1Control": "prevent_red_face",
+      "Fleet1Recover": "not_in_dormitory",
+      "Fleet1Oath": false,
+      "Fleet2Value": 119,
+      "Fleet2Record": "2020-01-01 00:00:00",
+      "Fleet2Control": "prevent_red_face",
+      "Fleet2Recover": "not_in_dormitory",
+      "Fleet2Oath": false
     },
     "Storage": {
       "Storage": {}
@@ -1467,6 +1481,13 @@
     "CoreShop": {
       "Filter": "Array"
     },
+    "EventShop": {
+      "Enable": false,
+      "UnlockShipSSR": false,
+      "BuyShipUR": 0,
+      "PresetFilter": "all",
+      "CustomFilter": "EquipUR > EquipSSR > GachaTicket\n> DR > PR > Array > Chip > CatT3\n> Meta > Skinbox\n> Oil > Coin > FoodT1\n> AugmentCore > AugmentEnhanceT2 > AugmentChangeT2 > AugmentChangeT1\n> CatT2 > CatT1 > PlateGeneralT3 > PlateT3 > BoxT4\n> ShipSSR"
+    },
     "Storage": {
       "Storage": {}
     }
@@ -1673,7 +1694,8 @@
     },
     "OpsiDaily": {
       "DoMission": true,
-      "UseTuningSample": true
+      "UseTuningSample": true,
+      "CollectTargetReward": false
     },
     "OpsiFleet": {
       "Fleet": 1,
@@ -1790,8 +1812,12 @@
     },
     "OpsiMeowfficerFarming": {
       "ActionPointPreserve": 1000,
-      "HazardLevel": 5,
-      "TargetZone": 0
+      "HazardLevel": 5
+    },
+    "OpsiTarget": {
+      "TargetFarming": false,
+      "TargetZone": 0,
+      "LastRun": "2020-01-01 00:00:00"
     },
     "OpsiFleet": {
       "Fleet": 1,

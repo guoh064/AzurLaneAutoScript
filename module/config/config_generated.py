@@ -152,6 +152,7 @@ class GeneratedConfig:
     GemsFarming_CommonCV = 'any'  # any, langley, bogue, ranger, hermes
     GemsFarming_ChangeVanguard = 'ship'  # disabled, ship, ship_equip
     GemsFarming_CommonDD = 'any'  # any, favourite, aulick_or_foote, cassin_or_downes, z20_or_z21
+    GemsFarming_EquipmentCode = 'DD: null\nbogue: null\nhermes: null\nlangley: null\nranger: null'
     GemsFarming_CommissionLimit = True
 
     # Group `EventGeneral`
@@ -290,6 +291,13 @@ class GeneratedConfig:
     # Group `CoreShop`
     CoreShop_Filter = 'Array'
 
+    # Group `EventShop`
+    EventShop_Enable = False
+    EventShop_UnlockShipSSR = False
+    EventShop_BuyShipUR = 0  # 0, 1, 2
+    EventShop_PresetFilter = 'all'  # all, custom
+    EventShop_CustomFilter = 'EquipUR > EquipSSR > GachaTicket\n> DR > PR > Array > Chip > CatT3\n> Meta > Skinbox\n> Oil > Coin > FoodT1\n> AugmentCore > AugmentEnhanceT2 > AugmentChangeT2 > AugmentChangeT1\n> CatT2 > CatT1 > PlateGeneralT3 > PlateT3 > BoxT4\n> ShipSSR'
+
     # Group `ShipyardDr`
     ShipyardDr_ResearchSeries = 2  # 2, 3
     ShipyardDr_ShipIndex = 0  # 0, 1, 2, 3, 4, 5, 6
@@ -400,6 +408,7 @@ class GeneratedConfig:
     # Group `OpsiDaily`
     OpsiDaily_DoMission = True
     OpsiDaily_UseTuningSample = True
+    OpsiDaily_CollectTargetReward = False
 
     # Group `OpsiObscure`
     OpsiObscure_ForceRun = False
@@ -418,7 +427,11 @@ class GeneratedConfig:
     # Group `OpsiMeowfficerFarming`
     OpsiMeowfficerFarming_ActionPointPreserve = 1000
     OpsiMeowfficerFarming_HazardLevel = 5  # 3, 4, 5, 6, 10
-    OpsiMeowfficerFarming_TargetZone = 0
+
+    # Group `OpsiTarget`
+    OpsiTarget_TargetFarming = False
+    OpsiTarget_TargetZone = 0
+    OpsiTarget_LastRun = datetime.datetime(2020, 1, 1, 0, 0)
 
     # Group `OpsiHazard1Leveling`
     OpsiHazard1Leveling_TargetZone = 0  # 0, 44, 22

@@ -1175,6 +1175,10 @@
       "cassin_or_downes": "卡辛或唐斯",
       "z20_or_z21": "Z20或Z21"
     },
+    "EquipmentCode": {
+      "name": "装备码",
+      "help": "仅当选择“更换舰船 + 装备”时生效。\n在换下舰船时，若设置里当前舰船装备码为null则会导出；在换上舰船时，若设置里当前舰船装备码为null则会使用上一艘舰船导出的装备码，否则使用设置里的装备码\n蓝叠模拟器用户需要先开启虚拟键盘，详见https://support.bluestacks.com/hc/zh-tw/articles/360061968892-%E5%A6%82%E4%BD%95%E5%9C%A8-BlueStacks-5-%E4%B8%8A%E4%BD%BF%E7%94%A8%E5%B0%8F%E9%8D%B5%E7%9B%A4-%E8%99%9B%E6%93%AC%E9%8D%B5%E7%9B%A4"
+    },
     "CommissionLimit": {
       "name": "防止紧急委托数量过多",
       "help": "在7x24运行时防止紧急委托数量过多做不完每日委托，建议在委托过滤器仅选择短时长高收益委托"
@@ -1814,6 +1818,37 @@
       "help": ""
     }
   },
+  "EventShop": {
+    "_info": {
+      "name": "活动商店",
+      "help": "活动船只将会在活动结束后购买"
+    },
+    "Enable": {
+      "name": "启用活动商店",
+      "help": ""
+    },
+    "UnlockShipSSR": {
+      "name": "解锁活动金船",
+      "help": "如果不启用，将会抛掉过滤器中的ShipSSR和Meta"
+    },
+    "BuyShipUR": {
+      "name": "购买X只活动彩船",
+      "help": "",
+      "0": "0",
+      "1": "1",
+      "2": "2"
+    },
+    "PresetFilter": {
+      "name": "活动商店过滤器",
+      "help": "",
+      "all": "全部",
+      "custom": "自定义"
+    },
+    "CustomFilter": {
+      "name": "自定义过滤器",
+      "help": "使用自定义过滤器需将 \"活动商店过滤器\" 设置为 \"自定义\"，并阅读 https://github.com/LmeSzinc/AzurLaneAutoScript/wiki/reward_shop_filter_string"
+    }
+  },
   "ShipyardDr": {
     "_info": {
       "name": "彩科研图纸购买设置",
@@ -2357,6 +2392,10 @@
     "UseTuningSample": {
       "name": "使用效能样本",
       "help": "使用所有六种效能样本和强力效能样本"
+    },
+    "CollectTargetReward": {
+      "name": "领取成就奖励",
+      "help": ""
     }
   },
   "OpsiObscure": {
@@ -2426,10 +2465,24 @@
       "5": "5",
       "6": "6",
       "10": "中心海域"
+    }
+  },
+  "OpsiTarget": {
+    "_info": {
+      "name": "海域成就",
+      "help": ""
+    },
+    "TargetFarming": {
+      "name": "刷取安全海域成就",
+      "help": ""
     },
     "TargetZone": {
       "name": "指定海域",
       "help": "仅出击指定的海域，可以用来获取大世界成就星星\n支持海域ID、国服/国际服/日服/台服海域名称，例如 \"51\", \"NA海域东南E\", \"NA Ocean SE Sector E\"\n填入默认值0，或者删除数值即可取消指定"
+    },
+    "LastRun": {
+      "name": "上一次领取时间",
+      "help": "这个数值是自动记录的，一般不需要修改"
     }
   },
   "OpsiHazard1Leveling": {

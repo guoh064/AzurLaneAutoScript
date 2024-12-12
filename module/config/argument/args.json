@@ -1627,6 +1627,11 @@
           "z20_or_z21"
         ]
       },
+      "EquipmentCode": {
+        "type": "textarea",
+        "value": "DD: null\nbogue: null\nhermes: null\nlangley: null\nranger: null",
+        "mode": "yaml"
+      },
       "CommissionLimit": {
         "type": "checkbox",
         "value": true
@@ -1886,6 +1891,90 @@
           "fleet1_standby_fleet2_all"
         ],
         "display": "display"
+      }
+    },
+    "Emotion": {
+      "Mode": {
+        "type": "select",
+        "value": "calculate_ignore",
+        "option": [
+          "calculate",
+          "ignore",
+          "calculate_ignore"
+        ],
+        "display": "hide"
+      },
+      "Fleet1Value": {
+        "type": "input",
+        "value": 119
+      },
+      "Fleet1Record": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime",
+        "display": "disabled"
+      },
+      "Fleet1Control": {
+        "type": "select",
+        "value": "prevent_red_face",
+        "option": [
+          "keep_exp_bonus",
+          "prevent_green_face",
+          "prevent_yellow_face",
+          "prevent_red_face"
+        ],
+        "display": "hide"
+      },
+      "Fleet1Recover": {
+        "type": "select",
+        "value": "not_in_dormitory",
+        "option": [
+          "not_in_dormitory",
+          "dormitory_floor_1",
+          "dormitory_floor_2"
+        ],
+        "display": "hide"
+      },
+      "Fleet1Oath": {
+        "type": "checkbox",
+        "value": false,
+        "display": "hide"
+      },
+      "Fleet2Value": {
+        "type": "input",
+        "value": 119
+      },
+      "Fleet2Record": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime",
+        "display": "disabled"
+      },
+      "Fleet2Control": {
+        "type": "select",
+        "value": "prevent_red_face",
+        "option": [
+          "keep_exp_bonus",
+          "prevent_green_face",
+          "prevent_yellow_face",
+          "prevent_red_face"
+        ],
+        "display": "hide"
+      },
+      "Fleet2Recover": {
+        "type": "select",
+        "value": "not_in_dormitory",
+        "option": [
+          "not_in_dormitory",
+          "dormitory_floor_1",
+          "dormitory_floor_2"
+        ],
+        "display": "hide"
+      },
+      "Fleet2Oath": {
+        "type": "checkbox",
+        "value": false,
+        "display": "hide"
       }
     },
     "Storage": {
@@ -7878,6 +7967,37 @@
         "value": "Array"
       }
     },
+    "EventShop": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false
+      },
+      "UnlockShipSSR": {
+        "type": "checkbox",
+        "value": false
+      },
+      "BuyShipUR": {
+        "type": "select",
+        "value": 0,
+        "option": [
+          0,
+          1,
+          2
+        ]
+      },
+      "PresetFilter": {
+        "type": "select",
+        "value": "all",
+        "option": [
+          "all",
+          "custom"
+        ]
+      },
+      "CustomFilter": {
+        "type": "textarea",
+        "value": "EquipUR > EquipSSR > GachaTicket\n> DR > PR > Array > Chip > CatT3\n> Meta > Skinbox\n> Oil > Coin > FoodT1\n> AugmentCore > AugmentEnhanceT2 > AugmentChangeT2 > AugmentChangeT1\n> CatT2 > CatT1 > PlateGeneralT3 > PlateT3 > BoxT4\n> ShipSSR"
+      }
+    },
     "Storage": {
       "Storage": {
         "type": "storage",
@@ -8621,6 +8741,10 @@
       "UseTuningSample": {
         "type": "checkbox",
         "value": true
+      },
+      "CollectTargetReward": {
+        "type": "checkbox",
+        "value": false
       }
     },
     "OpsiFleet": {
@@ -9010,10 +9134,21 @@
           6,
           10
         ]
+      }
+    },
+    "OpsiTarget": {
+      "TargetFarming": {
+        "type": "checkbox",
+        "value": false
       },
       "TargetZone": {
         "type": "input",
         "value": 0
+      },
+      "LastRun": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
       }
     },
     "OpsiFleet": {

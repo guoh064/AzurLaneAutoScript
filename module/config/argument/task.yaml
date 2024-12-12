@@ -61,6 +61,7 @@ Farm:
       - Campaign
       - StopCondition
       - Fleet
+      - Emotion
 
 # ==================== Event ====================
 
@@ -240,6 +241,7 @@ DailyMission:
       - MedalShop2
       - MeritShop
       - CoreShop
+      - EventShop
     Shipyard:
       - Scheduler
       - ShipyardDr
@@ -306,6 +308,7 @@ Opsi:
     OpsiMeowfficerFarming:
       - Scheduler
       - OpsiMeowfficerFarming
+      - OpsiTarget
       - OpsiFleet
     OpsiHazard1Leveling:
       - Scheduler

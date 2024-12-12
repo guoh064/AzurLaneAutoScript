@@ -1175,6 +1175,10 @@
       "cassin_or_downes": "卡辛或唐斯",
       "z20_or_z21": "Z20或Z21"
     },
+    "EquipmentCode": {
+      "name": "裝備碼",
+      "help": "僅當選擇「更換艦船 + 裝備」時生效。\n在換下艦船時，若設定裏當前艦船裝備碼為null則會導出；在換上艦船時，若設置裏當前艦船裝備碼為null則會使用上一艘艦船導出的裝備碼，否則使用設定裏的裝備碼\n藍疊模擬器用戶需要先開啟虛擬鍵盤，詳見https://support.bluestacks.com/hc/zh-tw/articles/360061968892-%E5%A6%82%E4%BD%95%E5%9C%A8-BlueStacks-5-%E4%B8%8A%E4%BD%BF%E7%94%A8%E5%B0%8F%E9%8D%B5%E7%9B%A4-%E8%99%9B%E6%93%AC%E9%8D%B5%E7%9B%A4"
+    },
     "CommissionLimit": {
       "name": "防止緊急委託數量過多",
       "help": "在7x24運行時防止緊急委託數量過多做不完每日委託，建議在委託過濾器僅選擇短時長高收益委託"
@@ -1814,6 +1818,37 @@
       "help": ""
     }
   },
+  "EventShop": {
+    "_info": {
+      "name": "活動商店",
+      "help": "活動船只將會在活動結束後購買"
+    },
+    "Enable": {
+      "name": "啟用活動商店",
+      "help": ""
+    },
+    "UnlockShipSSR": {
+      "name": "解鎖活動金船",
+      "help": "如果不啟用，將會拋掉過濾器中的ShipSSR和Meta"
+    },
+    "BuyShipUR": {
+      "name": "購買X只活動彩船",
+      "help": "",
+      "0": "0",
+      "1": "1",
+      "2": "2"
+    },
+    "PresetFilter": {
+      "name": "活動商店過濾器",
+      "help": "",
+      "all": "全部",
+      "custom": "自定義"
+    },
+    "CustomFilter": {
+      "name": "自定義過濾器",
+      "help": "使用自定義過濾器需將 \"活動商店過濾器\" 設定為 \"自定義\"，並閱讀 https://github.com/LmeSzinc/AzurLaneAutoScript/wiki/reward_shop_filter_string"
+    }
+  },
   "ShipyardDr": {
     "_info": {
       "name": "彩科研圖紙購買設定",
@@ -2357,6 +2392,10 @@
     "UseTuningSample": {
       "name": "使用效能樣本",
       "help": "使用所有六種效能樣本和強力效能樣本"
+    },
+    "CollectTargetReward": {
+      "name": "領取成就獎勵",
+      "help": ""
     }
   },
   "OpsiObscure": {
@@ -2426,10 +2465,24 @@
       "5": "5",
       "6": "6",
       "10": "中心海域"
+    }
+  },
+  "OpsiTarget": {
+    "_info": {
+      "name": "海域成就",
+      "help": ""
+    },
+    "TargetFarming": {
+      "name": "刷取安全海域成就",
+      "help": ""
     },
     "TargetZone": {
       "name": "指定海域",
-      "help": "僅出擊指定的海域，可以用來獲取大世界成就星星\n自動更新的數值，填0可重置進度，重置後自動跳過已開荒的海域\n支援海域ID、國服/國際服/日服/台服海域名稱，例如 \"51\", \"NA海域東南E\", \"NA Ocean SE Sector E\"\n填入默認值0，或者刪除數值即可取消指定"
+      "help": "僅出擊指定的海域，可以用來獲取大世界成就星星\n自動更新的數值，填0可重置進度，重置後自動跳過已開荒的海域\n支持海域ID、國服/國際服/日服/台服海域名稱，例如 \"51\", \"NA海域東南E\", \"NA Ocean SE Sector E\"\n填入默認值0，或者刪除數值即可取消指定"
+    },
+    "LastRun": {
+      "name": "上一次領取時間",
+      "help": "這個數值是自動記錄的，一般不需要修改"
     }
   },
   "OpsiHazard1Leveling": {
