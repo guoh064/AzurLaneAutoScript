@@ -544,6 +544,7 @@ class MapData:
         for n in range(1, 4):
             if self.__getattribute__(f'STAR_REQUIRE_{n}') != n:
                 lines.append(f'    STAR_REQUIRE_{n} = 0')
+        lines.append("    STAGE_ENTRANCE = ['half', '20240725']")
         lines.append('    # ===== End of generated config =====')
         lines.append('')
         lines.append('')
@@ -712,7 +713,7 @@ Arguments:
 """
 FILE = '../AzurLaneLuaScripts'
 FOLDER = './campaign/test'
-KEYWORD = ''
+KEYWORD = '星光下的余晖'
 SELECT = True
 OVERWRITE = True
 IS_WAR_ARCHIVES = False
