@@ -29,17 +29,15 @@ class EventShopClerk(EventShopUI):
 
         os.makedirs(os.path.dirname('./assets/shop/event_cost/'), exist_ok=True)
         scaling = 5/6
-        if self.event_shop_has_pt_ur:
-            pt_ssr_icon = self.image_crop((820, 172, 844, 196), copy=False)
-            pt_ur_icon = self.image_crop((1036, 172, 1060, 196), copy=False)
-            pt_ur_icon = cv2.resize(pt_ur_icon, None, fx=scaling, fy=scaling, interpolation=cv2.INTER_AREA)
-            save_image(pt_ur_icon, './assets/shop/event_cost/URPt.png')
-        else:
-            pt_ssr_icon = self.image_crop((1036, 172, 1060, 196), copy=False)
-
+        pt_ssr_icon = self.image_crop((1036, 172, 1060, 196), copy=False)
         pt_ssr_icon = cv2.resize(pt_ssr_icon, None, fx=scaling, fy=scaling, interpolation=cv2.INTER_AREA)
         save_image(pt_ssr_icon, './assets/shop/event_cost/Pt.png')
-
+        if self.event_shop_has_pt_ur:
+            offset = 254
+            pt_ur_icon = self.image_crop((1036 - offset, 172, 1060 - offset, 196), copy=False)
+            pt_ur_icon = cv2.resize(pt_ur_icon, None, fx=scaling, fy=scaling, interpolation=cv2.INTER_AREA)
+            save_image(pt_ur_icon, './assets/shop/event_cost/URPt.png')
+        
     def _get_event_shop_cost(self):
         """
         Returns:
