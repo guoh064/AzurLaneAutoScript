@@ -478,6 +478,8 @@ class OperationSiren(OSMap):
             logger.attr('OS_ACTION_POINT_PRESERVE', self.config.OS_ACTION_POINT_PRESERVE)
 
             if self.get_yellow_coins() < self.config.OS_CL1_YELLOW_COINS_PRESERVE:
+                with self.stat.new(genre="yellow_coin", method="save") as drop:
+                    drop.add(self.device.image)
                 logger.info(f'Reach the limit of yellow coins, preserve={self.config.OS_CL1_YELLOW_COINS_PRESERVE}')
                 with self.config.multi_set():
                     self.config.task_delay(server_update=True)
