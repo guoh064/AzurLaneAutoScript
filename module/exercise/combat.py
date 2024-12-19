@@ -65,6 +65,8 @@ class ExerciseCombat(HpDaemon, OpponentChoose, ExerciseEquipment, Combat):
                     end = True
                     continue
                 if self.appear_then_click(BATTLE_STATUS_D, interval=1):
+                    with self.stat.new(genre="exercise", method="save") as drop:
+                        drop.add(self.device.image)
                     success = True
                     end = True
                     logger.info("Exercise LOST")
