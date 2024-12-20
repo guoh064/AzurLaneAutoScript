@@ -9,7 +9,7 @@ class EventShop(EventShopClerk, EventShopSelector):
     """
     pt_preserve = 0
 
-    def ur_ship_costs(ships, buy=0):
+    def ur_ship_costs(self, ships, buy=0):
         total_price = sum([ship.price for ship in ships])
         if buy == 1:
             if total_price == 500:
