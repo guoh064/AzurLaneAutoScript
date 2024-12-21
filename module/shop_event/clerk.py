@@ -29,17 +29,15 @@ class EventShopClerk(EventShopUI):
 
         os.makedirs(os.path.dirname('./assets/shop/event_cost/'), exist_ok=True)
         scaling = 5/6
-        if self.event_shop_has_pt_ur:
-            pt_ssr_icon = self.image_crop((820, 172, 844, 196), copy=False)
-            pt_ur_icon = self.image_crop((1036, 172, 1060, 196), copy=False)
-            pt_ur_icon = cv2.resize(pt_ur_icon, None, fx=scaling, fy=scaling, interpolation=cv2.INTER_AREA)
-            save_image(pt_ur_icon, './assets/shop/event_cost/URPt.png')
-        else:
-            pt_ssr_icon = self.image_crop((1036, 172, 1060, 196), copy=False)
-
+        pt_ssr_icon = self.image_crop((1036, 172, 1060, 196), copy=False)
         pt_ssr_icon = cv2.resize(pt_ssr_icon, None, fx=scaling, fy=scaling, interpolation=cv2.INTER_AREA)
         save_image(pt_ssr_icon, './assets/shop/event_cost/Pt.png')
-
+        if self.event_shop_has_pt_ur:
+            offset = 254
+            pt_ur_icon = self.image_crop((1036 - offset, 172, 1060 - offset, 196), copy=False)
+            pt_ur_icon = cv2.resize(pt_ur_icon, None, fx=scaling, fy=scaling, interpolation=cv2.INTER_AREA)
+            save_image(pt_ur_icon, './assets/shop/event_cost/URPt.png')
+        
     def _get_event_shop_cost(self):
         """
         Returns:
@@ -184,7 +182,7 @@ class EventShopClerk(EventShopUI):
 
         return False
     
-    def event_shop_handle_amount(self, item, amount=None, skip_first_screenshot=True):
+    def event_shop_calculate_max_amount(self, item):
         count = item.count
         logger.attr("Item_count", count)
 
@@ -206,11 +204,13 @@ class EventShopClerk(EventShopUI):
         else:
             count = min(count, int(self._pt_ur // item.price))
             logger.info(f"should buy: {count}")
-
-        if count == 1:
-            return True
-        elif count == 0:
-            return False
+        
+        return count
+    
+    def event_shop_handle_amount(self, item, amount=None, skip_first_screenshot=True):
+        count = self.event_shop_calculate_max_amount(item)
+        if count <= 1:
+            return count
         
         self.interval_clear(AMOUNT_MAX)
         while 1:
@@ -229,16 +229,17 @@ class EventShopClerk(EventShopUI):
             self.ui_ensure_index(amount, letter=OCR_SHOP_AMOUNT, prev_button=AMOUNT_MINUS, next_button=AMOUNT_PLUS,
                              skip_first_screenshot=True)
             logger.info(f"Set buy count to {amount}")
+            return amount
         else:
             self.ui_ensure_index(count, letter=OCR_SHOP_AMOUNT, prev_button=AMOUNT_MINUS, next_button=AMOUNT_PLUS,
                              skip_first_screenshot=True)
             logger.info(f"Set buy count to {count}")
-        
-        return True
+            return count
 
     def event_shop_buy_item(self, item, amount=None, skip_first_screenshot=True):
-        success = False
-        amount_finish = False
+        bought_all = False
+        amount_handled = False
+        finished = False
         self.interval_clear(SHOP_BUY_CONFIRM)
         self.interval_clear(SHOP_BUY_CONFIRM_AMOUNT)
 
@@ -247,40 +248,42 @@ class EventShopClerk(EventShopUI):
                 skip_first_screenshot = False
             else:
                 self.device.screenshot()
+
             if self.event_shop_obstruct_handle():
                 self.interval_reset(BACK_ARROW)
-                success = True
                 continue
-            if self.appear_then_click(SHOP_BUY_CONFIRM, offset=(50, 50), interval=3):  # enlarge offset for event skin confirm button
-                self.interval_reset(SHOP_BUY_CONFIRM)
-                continue
-            if not amount_finish and self.appear(SHOP_BUY_CONFIRM_AMOUNT, offset=(20, 20)):
-                handled = self.event_shop_handle_amount(item, amount)
-                if handled:
-                    amount_finish = True
-                    continue
-                else:
-                    while 1:
-                        self.device.screenshot()
-                        if self.appear(BACK_ARROW, offset=(20, 20), interval=5):
-                            break
-                        self.device.click(SHOP_CLICK_SAFE_AREA)
-                    logger.warning(f'Cannot buy this item: {item.name}, please check your item storage is not full.')
-                    return False
-            if amount_finish and self.appear_then_click(SHOP_BUY_CONFIRM_AMOUNT, offset=(20, 20), interval=3):
-                self.interval_reset(SHOP_BUY_CONFIRM_AMOUNT)
-                success = True
-                continue
-            if self.handle_popup_confirm('SHOP_BUY'):
-                continue
-            if not success and self.appear(BACK_ARROW, offset=(20, 20), interval=5):
-                amount_finish = False
+
+            if not finished and self.appear(BACK_ARROW, offset=(20, 20), interval=5):
                 self.device.click(item)
                 continue
+
+            if self.appear(AMOUNT_MAX, offset=(20, 20)):
+                if amount_handled:
+                    self.device.click(SHOP_BUY_CONFIRM_AMOUNT)
+                    continue
+                else:
+                    count = self.event_shop_handle_amount(item, amount)
+                    amount_handled = True
+                    if count == 0:
+                        logger.warning(f'Cannot buy this item: {item.name}, please check your item storage is not full.')
+                        self.device.click(SHOP_CLICK_SAFE_AREA)
+                        finished = True
+                        continue
+                    if count == item.count:
+                        bought_all = True
+                    continue
+            if self.appear_then_click(SHOP_BUY_CONFIRM, offset=(50, 50), interval=3):
+                finished = True
+                continue
+
+            if self.handle_popup_confirm('SHOP_BUY'):
+                continue
+
             # End
-            if success and self.appear(BACK_ARROW, offset=(20, 20)):
+            if finished and self.appear(BACK_ARROW, offset=(20, 20), interval=5):
                 break
-        return success
+
+        return bought_all
 
     def event_shop_get_items_to_buy(self, name, price, tag):
         """
@@ -311,7 +314,7 @@ class EventShopClerk(EventShopUI):
             item: Item to buy
 
         Returns:
-            bool: if bought
+            bool: if bought all of the item
         """
         while 1:
             if skip_first_screenshot:
@@ -334,8 +337,5 @@ class EventShopClerk(EventShopUI):
             logger.info(f'Bought item: {_item.name}.')
             return True
         else:
-            logger.info(f'Buying item: {_item.name} failed, possibly because you have too much of this item.')
-            # This will mostly happen when buying oils.
-            self.pt_preserve += _item.price * _item.count
-            logger.attr("Pt_preserve", self.pt_preserve)
-        self.device.click_record.clear()
+            logger.info(f'Cannot buy all of item: {_item.name}.')
+            return False
