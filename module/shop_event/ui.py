@@ -96,8 +96,8 @@ class EventShopUI(UI):
         """
         Event pts are aligned as follows:
             - SSR event:    nothing,    pt
-            - UR event:     pt,         pt_ur
-            - assets: EVENT_SHOP_PT_UR,  EVENT_SHOP_PT
+            - UR event:     pt_ur,      pt
+            - assets: EVENT_SHOP_PT_UR, EVENT_SHOP_PT
         Therefore we detect pt_ur by scanning the `nothing` part.
         For SSR event Ocr() should get nothing, 
         while Digit() will always return 0.
@@ -109,8 +109,8 @@ class EventShopUI(UI):
         """
         Event pts are aligned as follows:
             - SSR event:    nothing,    pt
-            - UR event:     pt,         pt_ur
-            - assets: EVENT_SHOP_PT_UR,  EVENT_SHOP_PT
+            - UR event:     pt_ur,      pt
+            - assets: EVENT_SHOP_PT_UR, EVENT_SHOP_PT
 
         Returns:
             pt (int):
@@ -123,8 +123,8 @@ class EventShopUI(UI):
         """
         Event pts are aligned as follows:
             - SSR event:    nothing,    pt
-            - UR event:     pt,         pt_ur
-            - assets: EVENT_SHOP_PT_UR,  EVENT_SHOP_PT
+            - UR event:     pt_ur,      pt
+            - assets: EVENT_SHOP_PT_UR, EVENT_SHOP_PT
 
         Returns:
             pt_ur (int):
