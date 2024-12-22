@@ -259,6 +259,7 @@ class EventShopClerk(EventShopUI):
 
             if self.appear(AMOUNT_MAX, offset=(20, 20)):
                 if amount_handled:
+                    finished = True
                     self.device.click(SHOP_BUY_CONFIRM_AMOUNT)
                     continue
                 else:
@@ -273,6 +274,7 @@ class EventShopClerk(EventShopUI):
                         bought_all = True
                     continue
             if self.appear_then_click(SHOP_BUY_CONFIRM, offset=(50, 50), interval=3):
+                bought_all = True
                 finished = True
                 continue
 
