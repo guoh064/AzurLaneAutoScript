@@ -672,6 +672,9 @@ Sos:
 
 OpsiAshAssist:
   Tier: 15
+  RewardAutoReceive:
+    value: true
+    display: disabled
 OpsiGeneral:
   UseLogger: true
   BuyActionPointLimit:
@@ -690,6 +693,9 @@ OpsiAshBeacon:
   DossierAutoAttackMode: false
   RequestAssist: true
   EnsureFullyCollected: true
+  RewardAutoReceive:
+    value: all
+    option: [ all, no_current_ship, none ]
 OpsiFleetFilter:
   Filter: |-
     Fleet-4 > CallSubmarine > Fleet-2 > Fleet-3 > Fleet-1
