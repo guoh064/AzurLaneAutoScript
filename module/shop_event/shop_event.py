@@ -88,8 +88,12 @@ class EventShop(EventShopClerk, EventShopSelector):
             self._pt_ur = self.event_shop_get_pt_ur()
 
         if self.should_buy_ship_ur(ships):
-            for idx in range(self.config.EventShop_BuyShipUR):
-                self.event_shop_buy(ships[idx])
+            if self.config.EventShop_BuyShipUR == 2:
+                for ship in ships:
+                    self.event_shop_buy(ship)
+                    self._pt_ur = self.event_shop_get_pt_ur()
+            else:
+                self.event_shop_buy(ships[0])
                 self._pt_ur = self.event_shop_get_pt_ur()
 
         # If event ends and there is extra UR pt, add UR coin buys to last.        
@@ -188,6 +192,8 @@ class EventShop(EventShopClerk, EventShopSelector):
                 item.count -= 1
                 if item.count > 0:
                     items.append(item)
+            if item.name == "PtUR":
+                self._pt_ur = self.event_shop_get_pt_ur()
             if item.cost == "Pt":
                 self._pt = self.event_shop_get_pt()
             else:
