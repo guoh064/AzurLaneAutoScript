@@ -2240,6 +2240,10 @@
     "Tier": {
       "name": "OpsiAshAssist.Tier.name",
       "help": "OpsiAshAssist.Tier.help"
+    },
+    "RewardAutoReceive": {
+      "name": "OpsiAshAssist.RewardAutoReceive.name",
+      "help": "OpsiAshAssist.RewardAutoReceive.help"
     }
   },
   "OpsiGeneral": {
@@ -2304,6 +2308,13 @@
     "EnsureFullyCollected": {
       "name": "OpsiAshBeacon.EnsureFullyCollected.name",
       "help": "OpsiAshBeacon.EnsureFullyCollected.help"
+    },
+    "RewardAutoReceive": {
+      "name": "OpsiAshBeacon.RewardAutoReceive.name",
+      "help": "OpsiAshBeacon.RewardAutoReceive.help",
+      "all": "all",
+      "no_current_ship": "no_current_ship",
+      "none": "none"
     }
   },
   "OpsiFleetFilter": {

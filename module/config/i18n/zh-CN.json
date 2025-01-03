@@ -2240,6 +2240,10 @@
     "Tier": {
       "name": "寻找等级大于 X 的信标",
       "help": "如果尝试若干次仍找不到符合条件的信标，随缘打"
+    },
+    "RewardAutoReceive": {
+      "name": "自动收取信标奖励",
+      "help": "这一设定与 \"META作战\" 中的同名设定同步"
     }
   },
   "OpsiGeneral": {
@@ -2304,6 +2308,13 @@
     "EnsureFullyCollected": {
       "name": "保证收集满每日200信标数据",
       "help": "在收集满为前，暂时无视保留行动力设置，需要同时开启 \"短猫相接\""
+    },
+    "RewardAutoReceive": {
+      "name": "自动收取信标奖励",
+      "help": "每次结束META战斗后自动收取奖励，默认自动领取已同步完成的META舰船",
+      "all": "全部奖励",
+      "no_current_ship": "不领取当期META舰船",
+      "none": "不自动收集"
     }
   },
   "OpsiFleetFilter": {
