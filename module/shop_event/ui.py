@@ -2,9 +2,9 @@ import re
 
 from datetime import datetime, timedelta
 
-from module.base.button import ButtonGrid
 from module.base.decorator import cached_property
 from module.base.timer import Timer
+from module.base.utils import random_rectangle_vector
 from module.config.utils import server_time_offset
 from module.exception import GameStuckError, ScriptError
 from module.logger import logger
@@ -96,8 +96,8 @@ class EventShopUI(UI):
         """
         Event pts are aligned as follows:
             - SSR event:    nothing,    pt
-            - UR event:     pt,         pt_ur
-            - assets: EVENT_SHOP_PT_UR,  EVENT_SHOP_PT
+            - UR event:     pt_ur,      pt
+            - assets: EVENT_SHOP_PT_UR, EVENT_SHOP_PT
         Therefore we detect pt_ur by scanning the `nothing` part.
         For SSR event Ocr() should get nothing, 
         while Digit() will always return 0.
@@ -109,16 +109,13 @@ class EventShopUI(UI):
         """
         Event pts are aligned as follows:
             - SSR event:    nothing,    pt
-            - UR event:     pt,         pt_ur
-            - assets: EVENT_SHOP_PT_UR,  EVENT_SHOP_PT
+            - UR event:     pt_ur,      pt
+            - assets: EVENT_SHOP_PT_UR, EVENT_SHOP_PT
 
         Returns:
             pt (int):
         """
-        if self.event_shop_has_pt_ur:
-            amount = OCR_EVENT_SHOP_PT_UR.ocr(self.device.image)
-        else:
-            amount = OCR_EVENT_SHOP_PT_SSR.ocr(self.device.image)
+        amount = OCR_EVENT_SHOP_PT_SSR.ocr(self.device.image)
         logger.attr("Pt", amount)
         return amount
 
@@ -126,8 +123,8 @@ class EventShopUI(UI):
         """
         Event pts are aligned as follows:
             - SSR event:    nothing,    pt
-            - UR event:     pt,         pt_ur
-            - assets: EVENT_SHOP_PT_UR,  EVENT_SHOP_PT
+            - UR event:     pt_ur,      pt
+            - assets: EVENT_SHOP_PT_UR, EVENT_SHOP_PT
 
         Returns:
             pt_ur (int):
@@ -136,7 +133,7 @@ class EventShopUI(UI):
             ScriptError: if wrongly scans pt_ur when there isn't one.
         """
         if self.event_shop_has_pt_ur:
-            amount = OCR_EVENT_SHOP_PT_SSR.ocr(self.device.image)
+            amount = OCR_EVENT_SHOP_PT_UR.ocr(self.device.image)
         else:
             raise ScriptError('Should not scan UR pt at this shop')
         logger.attr("URPt", amount)
