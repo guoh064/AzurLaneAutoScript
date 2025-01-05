@@ -2240,6 +2240,10 @@
     "Tier": {
       "name": "Target Level Beacons >= X",
       "help": "If target level beacon cannot be found, Alas will choose the next available level beacon regardless of conditions"
+    },
+    "RewardAutoReceive": {
+      "name": "Auto Receive Reward",
+      "help": "This setting is synced with the same one in \"META Battles\""
     }
   },
   "OpsiGeneral": {
@@ -2304,6 +2308,13 @@
     "EnsureFullyCollected": {
       "name": "Ensure 200 Beacon Data Fully Collected",
       "help": "Ignore AP limit setting temporarily before ash beacon fully collected. \"Meowfficer Farming\" must be enabled"
+    },
+    "RewardAutoReceive": {
+      "name": "Auto Receive Reward",
+      "help": "Automatically receive rewards after the META attack. The META ship will be automatically retrieved by default",
+      "all": "Receive everything",
+      "no_current_ship": "Everything except current META ship",
+      "none": "Nothing"
     }
   },
   "OpsiFleetFilter": {

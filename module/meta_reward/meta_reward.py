@@ -121,7 +121,11 @@ class BeaconReward(Combat, UI):
                 continue
             if self.handle_get_items():
                 continue
+
             if self.match_template_color(META_PROGRESS_FINISHED, interval=1):
+                if self.config.OpsiAshBeacon_RewardAutoReceive == "no_current_ship":
+                    logger.info("Skip collect current META ship.")
+                    break
                 self.device.click(META_SHIP_RECEIVE)
                 received = True
                 continue
@@ -256,9 +260,12 @@ class DossierReward(Combat, UI):
 
 class MetaReward(BeaconReward, DossierReward):
     def run(self, category="beacon"):
-        if category == "beacon":
-            BeaconReward(self.config, self.device).run()
-        elif category == "dossier":
-            DossierReward(self.config, self.device).run()
+        if self.config.OpsiAshBeacon_RewardAutoReceive == "none":
+            logger.info("Skipping meta reward auto receive.")
         else:
-            logger.info(f'Possible wrong parameter {category}, please contact the developers.')
+            if category == "beacon":
+                BeaconReward(self.config, self.device).run()
+            elif category == "dossier":
+                DossierReward(self.config, self.device).run()
+            else:
+                logger.info(f'Possible wrong parameter {category}, please contact the developers.')

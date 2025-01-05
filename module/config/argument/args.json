@@ -8463,6 +8463,15 @@
       "EnsureFullyCollected": {
         "type": "checkbox",
         "value": true
+      },
+      "RewardAutoReceive": {
+        "type": "select",
+        "value": "all",
+        "option": [
+          "all",
+          "no_current_ship",
+          "none"
+        ]
       }
     },
     "Storage": {
@@ -8514,6 +8523,11 @@
       "Tier": {
         "type": "input",
         "value": 15
+      },
+      "RewardAutoReceive": {
+        "type": "checkbox",
+        "value": true,
+        "display": "disabled"
       }
     },
     "Storage": {

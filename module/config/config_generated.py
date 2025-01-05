@@ -370,6 +370,7 @@ class GeneratedConfig:
 
     # Group `OpsiAshAssist`
     OpsiAshAssist_Tier = 15
+    OpsiAshAssist_RewardAutoReceive = True
 
     # Group `OpsiGeneral`
     OpsiGeneral_UseLogger = True
@@ -385,6 +386,7 @@ class GeneratedConfig:
     OpsiAshBeacon_DossierAutoAttackMode = False
     OpsiAshBeacon_RequestAssist = True
     OpsiAshBeacon_EnsureFullyCollected = True
+    OpsiAshBeacon_RewardAutoReceive = 'all'  # all, no_current_ship, none
 
     # Group `OpsiFleetFilter`
     OpsiFleetFilter_Filter = 'Fleet-4 > CallSubmarine > Fleet-2 > Fleet-3 > Fleet-1'
