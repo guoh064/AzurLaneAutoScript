@@ -458,6 +458,10 @@ Reward:
   CollectExp: true
   CollectMission: true
   CollectWeeklyMission: true
+Awaken:
+  LevelCap:
+    value: level120
+    option: [ level120, level125 ]
 GeneralShop:
   UseGems: false
   Refresh: false
