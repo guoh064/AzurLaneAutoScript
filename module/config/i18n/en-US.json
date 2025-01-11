@@ -146,6 +146,10 @@
       "name": "Reward",
       "help": ""
     },
+    "Awaken": {
+      "name": "Awaken",
+      "help": ""
+    },
     "Daily": {
       "name": "Daily",
       "help": ""
@@ -276,7 +280,7 @@
     },
     "NextRun": {
       "name": "Next Run",
-      "help": "Updated automatically after completing the task to set next scheduled run, typically not manually modified\nHowever you can force immediate scheduling if you clear this text field"
+      "help": "Updated automatically after completing the task to set next scheduled run, typically not manually modified\nHowever you can force immediate scheduling if text field cleared"
     },
     "Command": {
       "name": "Command",
@@ -411,7 +415,6 @@
       "aScreenCap_nc": "aScreenCap_nc",
       "DroidCast": "DroidCast",
       "DroidCast_raw": "DroidCast_raw",
-      "scrcpy": "scrcpy",
       "nemu_ipc": "nemu_ipc",
       "ldopengl": "ldopengl"
     },
@@ -717,7 +720,7 @@
       "event_20220818_cn": "Operation Convergence",
       "event_20220915_cn": "Violet Tempest Blooming Lycoris Rerun",
       "event_20221124_cn": "The Alchemist and the Archipelago of Secrets",
-      "event_20221222_cn": "Parallel Superimposition",
+      "event_20221222_cn": "Parallel Superimposition Rerun",
       "event_20230223_cn": "Revelations of Dust",
       "event_20230525_cn": "Confluence of Nothingness",
       "event_20230803_cn": "Anthem of Remembrance",
@@ -735,6 +738,7 @@
       "event_20240912_cn": "Ode of Everblooming Crimson",
       "event_20241024_cn": "Tempesta and the Sleeping Sea",
       "event_20241121_cn": "Dangerous Inventions Incoming",
+      "event_20241219_cn": "Substellar Crepuscule",
       "raid_20200624": "Air Raid Drills with Essex Rerun",
       "raid_20210708": "Cross Wave rerun",
       "raid_20220127": "Mystery Investigation",
@@ -1594,6 +1598,18 @@
       "help": ""
     }
   },
+  "Awaken": {
+    "_info": {
+      "name": "Cognitive Awakening Settings",
+      "help": "Awaken all ships in dock til cognitive chips/arrays exhausted"
+    },
+    "LevelCap": {
+      "name": "To Level Cap",
+      "help": "",
+      "level120": "Lv.120",
+      "level125": "Lv.125"
+    }
+  },
   "GeneralShop": {
     "_info": {
       "name": "General Shop Settings",
@@ -2339,8 +2355,8 @@
       "help": "At the beginning of each month OpSi is reset\nThe following must be satisfied:\n- OpSi story and practice battles must be complete\nEach zone will be visited in a clockwise direction every 27 minutes until world has been been completely opened\nNo need to consume 5000 oil for special radar in OpSi voucher shop"
     },
     "SpecialRadar": {
-      "name": "SpecialRadar Bought",
-      "help": "Enable if you have purchased the special radar\nAllows Alas to explore OpSi continously without having to wait 27 minutes between each zone clear\nCannot be selected when not purchased and used manually"
+      "name": "OpSi Data Logger Bought (5k oil item)",
+      "help": "Purchase Operation Siren Data Logger is not a must, enable if you have purchased.\nAllows Alas to explore OpSi continously without having to wait 27 minutes between each zone clear\nCannot be selected when not purchased and used manually"
     },
     "ForceRun": {
       "name": "Force Run",

@@ -146,6 +146,10 @@
       "name": "收穫",
       "help": ""
     },
+    "Awaken": {
+      "name": "認知覺醒",
+      "help": ""
+    },
     "Daily": {
       "name": "每日任務",
       "help": ""
@@ -411,7 +415,6 @@
       "aScreenCap_nc": "aScreenCap_nc",
       "DroidCast": "DroidCast",
       "DroidCast_raw": "DroidCast_raw",
-      "scrcpy": "scrcpy",
       "nemu_ipc": "nemu_ipc",
       "ldopengl": "ldopengl"
     },
@@ -725,7 +728,7 @@
       "event_20230914_cn": "須臾望月抄",
       "event_20231026_cn": "飓風與青春之泉",
       "event_20231123_cn": "蒼閃忍法帖",
-      "event_20231221_cn": "Light-Chasing Sea of Stars",
+      "event_20231221_cn": "星海逐光",
       "event_20240229_cn": "雪境迷蹤",
       "event_20240425_cn": "共鳴的PASSION",
       "event_20240521_cn": "Light of the Martyrium",
@@ -735,6 +738,7 @@
       "event_20240912_cn": "Ode of Everblooming Crimson",
       "event_20241024_cn": "Tempesta and the Sleeping Sea",
       "event_20241121_cn": "危險發明逼近中",
+      "event_20241219_cn": "Substellar Crepuscule",
       "raid_20200624": "特別演習埃塞克斯級(復刻)",
       "raid_20210708": "復刻穿越彼方的水線",
       "raid_20220127": "演習神秘事件調查",
@@ -742,7 +746,7 @@
       "raid_20221027": "戰鬥！皇家女僕隊3rd",
       "raid_20230118": "冬日的尋路人",
       "raid_20230629": "綠洲往事",
-      "raid_20240130": "Spring Festive Fiasco",
+      "raid_20240130": "寰昌宇定家事忙",
       "raid_20240328": "從零開始的魔王討伐之旅",
       "war_archives_20180607_cn": "檔案 墨染的鋼鐵之花",
       "war_archives_20180726_cn": "檔案 光與影的鳶尾之華",
@@ -1592,6 +1596,18 @@
     "CollectWeeklyMission": {
       "name": "領取周任務獎勵",
       "help": ""
+    }
+  },
+  "Awaken": {
+    "_info": {
+      "name": "認知覺醒",
+      "help": "認知覺醒船塢內所有的船隻直到心智單元耗盡"
+    },
+    "LevelCap": {
+      "name": "覺醒至等級上限",
+      "help": "",
+      "level120": "120級",
+      "level125": "125級"
     }
   },
   "GeneralShop": {

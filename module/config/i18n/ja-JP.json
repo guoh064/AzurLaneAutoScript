@@ -146,6 +146,10 @@
       "name": "収穫",
       "help": ""
     },
+    "Awaken": {
+      "name": "Task.Awaken.name",
+      "help": "Task.Awaken.help"
+    },
     "Daily": {
       "name": "デイリー",
       "help": ""
@@ -411,7 +415,6 @@
       "aScreenCap_nc": "aScreenCap_nc",
       "DroidCast": "DroidCast",
       "DroidCast_raw": "DroidCast_raw",
-      "scrcpy": "scrcpy",
       "nemu_ipc": "nemu_ipc",
       "ldopengl": "ldopengl"
     },
@@ -717,7 +720,7 @@
       "event_20220818_cn": "結像点作戦",
       "event_20220915_cn": "赫の涙月 菫の暁風（復刻）",
       "event_20221124_cn": "錬金術士と謎の遺跡群島",
-      "event_20221222_cn": "積重なる事象の幻界",
+      "event_20221222_cn": "積重なる事象の幻界（復刻）",
       "event_20230223_cn": "黙示の遺構",
       "event_20230525_cn": "覆天せし万象の塵",
       "event_20230803_cn": "燃ゆる聖都の回想曲",
@@ -735,6 +738,7 @@
       "event_20240912_cn": "絳染む丹華の詠歌",
       "event_20241024_cn": "テンペスタと眠りし海",
       "event_20241121_cn": "危険発明接近中",
+      "event_20241219_cn": "星降る夕影の残光",
       "raid_20200624": "特別演習超空強襲波（復刻）",
       "raid_20210708": "交錯する新たな波 (復刻)",
       "raid_20220127": "秘密事件調査",
@@ -1592,6 +1596,18 @@
     "CollectWeeklyMission": {
       "name": "Reward.CollectWeeklyMission.name",
       "help": "Reward.CollectWeeklyMission.help"
+    }
+  },
+  "Awaken": {
+    "_info": {
+      "name": "Awaken._info.name",
+      "help": "Awaken._info.help"
+    },
+    "LevelCap": {
+      "name": "Awaken.LevelCap.name",
+      "help": "Awaken.LevelCap.help",
+      "level120": "level120",
+      "level125": "level125"
     }
   },
   "GeneralShop": {
