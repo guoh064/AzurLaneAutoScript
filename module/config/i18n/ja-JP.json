@@ -2356,6 +2356,10 @@
     "EnsureFullyCollected": {
       "name": "OpsiAshBeacon.EnsureFullyCollected.name",
       "help": "OpsiAshBeacon.EnsureFullyCollected.help"
+    },
+    "AutoCollectShip": {
+      "name": "OpsiAshBeacon.AutoCollectShip.name",
+      "help": "OpsiAshBeacon.AutoCollectShip.help"
     }
   },
   "OpsiFleetFilter": {
