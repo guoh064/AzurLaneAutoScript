@@ -58,6 +58,7 @@ class Config(ConfigBase):
     MAP_HAS_AMBUSH = True
     # MAP_HAS_MYSTERY = True
     # ===== End of generated config =====
+    MAP_ENSURE_EDGE_INSIGHT_CORNER = 'bottom'
 
     MAP_WALK_USE_CURRENT_FLEET = True
 
