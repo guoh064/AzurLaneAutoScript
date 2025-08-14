@@ -57,8 +57,8 @@ class HpDaemon(ModuleBase):
             text += ' - Low HP: %ss' % str(round(low_hp_time, 3)).ljust(5, '0')
         logger.info(text)
 
-    def _at_low_hp(self, image, pause=PAUSE):
-        if pause == PAUSE:
+    def _at_low_hp(self, image, pause=PAUSE_Old):
+        if pause == PAUSE_Old:
             self.attacker_hp = self._calculate_hp(image, area=ATTACKER_HP_AREA.area, reverse=True)
             self.defender_hp = self._calculate_hp(image, area=DEFENDER_HP_AREA.area, reverse=False)
         elif pause in [

@@ -1,8 +1,10 @@
-from module.base.base import ModuleBase
 from module.combat.assets import *
+from module.combat_ui.assets import *
+from module.combat_ui.combat_ui import CombatUI, READY_AIR_RAID, READY_TORPEDO
+from module.logger import logger
 
 
-class CombatManual(ModuleBase):
+class CombatManual(CombatUI):
     auto_mode_checked = False
     auto_mode_switched = False
     manual_executed = False
@@ -43,9 +45,14 @@ class CombatManual(ModuleBase):
         return True
 
     def handle_combat_weapon_release(self):
-        if self.appear_then_click(READY_AIR_RAID, interval=10):
+        pause_theme = self.get_current_pause_theme()
+        if not pause_theme in ['Old']:
+            logger.info(f'Manual Combat not supported for theme {pause_theme}')
+            return False
+
+        if self.appear_then_click(READY_AIR_RAID[pause_theme], interval=10):
             return True
-        if self.appear_then_click(READY_TORPEDO, interval=10):
+        if self.appear_then_click(READY_TORPEDO[pause_theme], interval=10):
             return True
 
         return False

@@ -9,6 +9,7 @@ from module.combat.hp_balancer import HPBalancer
 from module.combat.level import Level
 from module.combat.submarine import SubmarineCall
 from module.combat_ui.assets import *
+from module.combat_ui.combat_ui import PAUSE, QUIT
 from module.handler.auto_search import AutoSearchHandler
 from module.logger import logger
 from module.map.assets import MAP_OFFENSIVE
@@ -81,83 +82,21 @@ class Combat(Level, HPBalancer, Retirement, SubmarineCall, CombatAuto, CombatMan
         Returns:
             Button: PAUSE button that appears
         """
-        self.device.stuck_record_add(PAUSE)
-        if self.config.SERVER in ['cn', 'en']:
-            if PAUSE.match_luma(self.device.image, offset=(10, 10)):
-                return PAUSE
+        pause_theme = self.get_current_pause_theme()
+        if pause_theme:
+            return PAUSE[pause_theme]
         else:
-            color = get_color(self.device.image, PAUSE.area)
-            if color_similar(color, PAUSE.color) or color_similar(color, (238, 244, 248)):
-                if np.max(self.image_crop(PAUSE_DOUBLE_CHECK, copy=False)) < 153:
-                    return PAUSE
-        if PAUSE_New.match_template_color(self.device.image, offset=(10, 10)):
-            return PAUSE_New
-        if PAUSE_Iridescent_Fantasy.match_luma(self.device.image, offset=(10, 10)):
-            return PAUSE_Iridescent_Fantasy
-        if PAUSE_Christmas.match_luma(self.device.image, offset=(10, 10)):
-            return PAUSE_Christmas
-        # PAUSE_New, PAUSE_Cyber, PAUSE_Neon look similar, check colors
-        if PAUSE_Neon.match_template_color(self.device.image, offset=(10, 10)):
-            return PAUSE_Neon
-        if PAUSE_Cyber.match_template_color(self.device.image, offset=(10, 10)):
-            return PAUSE_Cyber
-        if PAUSE_HolyLight.match_template_color(self.device.image, offset=(10, 10)):
-            return PAUSE_HolyLight
-        # PAUSE_Pharaoh has random animation, assets should avoid the area in the middle and use match_luma
-        if PAUSE_Pharaoh.match_luma(self.device.image, offset=(10, 10)):
-            return PAUSE_Pharaoh
-        # PAUSE_Star may get detected as PAUSE_Nurse, should before it
-        if PAUSE_Star.match_luma(self.device.image, offset=(10, 10)):
-            return PAUSE_Star
-        if PAUSE_Nurse.match_luma(self.device.image, offset=(10, 10)):
-            return PAUSE_Nurse
-        # PAUSE_Devil is in red
-        if PAUSE_Devil.match_template_color(self.device.image, offset=(10, 10)):
-            return PAUSE_Devil
-        # PAUSE_Seaside is in light blue
-        if PAUSE_Seaside.match_template_color(self.device.image, offset=(10, 10)):
-            return PAUSE_Seaside
-        return False
+            return False
 
     def handle_combat_quit(self, offset=(20, 20), interval=3):
-        timer = self.get_interval_timer(QUIT, interval=interval)
+        pause_theme = self.get_current_pause_theme()
+        if not pause_theme:
+            return False
+        timer = self.get_interval_timer(QUIT_Old, interval=interval)
         if not timer.reached():
             return False
-        if QUIT.match_luma(self.device.image, offset=offset):
-            self.device.click(QUIT)
-            timer.reset()
-            return True
-        if QUIT_New.match_luma(self.device.image, offset=offset):
-            self.device.click(QUIT_New)
-            timer.reset()
-            return True
-        if QUIT_Iridescent_Fantasy.match_luma(self.device.image, offset=offset):
-            self.device.click(QUIT_Iridescent_Fantasy)
-            timer.reset()
-            return True
-        # Battle UI PAUSE_Neon uses QUIT_New
-        # Battle UI PAUSE_Cyber uses QUIT_New
-        # [TW] QUIT_New is in bold and PAUSE_Cyber is regular weight
-        if QUIT_Cyber.match_luma(self.device.image, offset=offset):
-            self.device.click(QUIT_Cyber)
-            timer.reset()
-            return True
-        if QUIT_Christmas.match_luma(self.device.image, offset=offset):
-            self.device.click(QUIT_Christmas)
-            timer.reset()
-            return True
-        # Battle UI PAUSE_HolyLight uses QUIT_New
-        if QUIT_Pharaoh.match_luma(self.device.image, offset=offset):
-            self.device.click(QUIT_Pharaoh)
-            timer.reset()
-            return True
-        if QUIT_Nurse.match_luma(self.device.image, offset=offset):
-            self.device.click(QUIT_Nurse)
-            timer.reset()
-            return True
-        # Battle UI PAUSE_Devil uses QUIT_New
-        if QUIT_Seaside.match_luma(self.device.image, offset=offset):
-            self.device.click(QUIT_Seaside)
+        if QUIT[pause_theme].match_luma(self.device.image, offset=offset):
+            self.device.click(QUIT[pause_theme])
             timer.reset()
             return True
         return False

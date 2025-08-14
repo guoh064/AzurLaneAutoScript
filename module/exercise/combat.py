@@ -100,7 +100,7 @@ class ExerciseCombat(HpDaemon, OpponentChoose, ExerciseEquipment, Combat):
                 end = True
                 continue
             if self.appear_then_click(QUIT_RECONFIRM, offset=(20, 20), interval=5):
-                self.interval_reset(QUIT)
+                self.interval_reset(QUIT_Old)
                 pause_interval.reset()
                 continue
             if not end:

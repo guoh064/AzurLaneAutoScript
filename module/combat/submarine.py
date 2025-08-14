@@ -1,10 +1,11 @@
-from module.base.base import ModuleBase
 from module.base.timer import Timer
 from module.combat.assets import *
+from module.combat_ui.assets import *
+from module.combat_ui.combat_ui import CombatUI, SUBMARINE_CALLED, SUBMARINE_READY
 from module.logger import logger
 
 
-class SubmarineCall(ModuleBase):
+class SubmarineCall(CombatUI):
     submarine_call_flag = False
     submarine_call_timer = Timer(5)
     submarine_call_click_timer = Timer(1)
@@ -31,17 +32,22 @@ class SubmarineCall(ModuleBase):
             self.submarine_call_flag = True
             return False
 
-        if not self.appear(SUBMARINE_AVAILABLE_CHECK_1) or not self.appear(SUBMARINE_AVAILABLE_CHECK_2):
+        pause_theme = self.get_current_pause_theme()
+        if not pause_theme in ['Old']:
+            logger.info(f'Submarine call not supported for theme {pause_theme}')
             return False
+        else:
+            if not self.appear(SUBMARINE_AVAILABLE_CHECK_1) or not self.appear(SUBMARINE_AVAILABLE_CHECK_2):
+                return False
 
-        if self.appear(SUBMARINE_CALLED):
+        if self.appear(SUBMARINE_CALLED[pause_theme]):
             logger.info('Submarine called')
             self.submarine_call_flag = True
             return False
         elif self.submarine_call_click_timer.reached():
-            if not self.appear_then_click(SUBMARINE_READY):
+            if not self.appear_then_click(SUBMARINE_READY[pause_theme]):
                 logger.info('Incorrect submarine icon')
-                self.device.click(SUBMARINE_READY)
+                self.device.click(SUBMARINE_READY[pause_theme])
             logger.info('Call submarine')
             self.submarine_call_click_timer.reset()
             return True
