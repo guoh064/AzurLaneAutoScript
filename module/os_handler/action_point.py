@@ -12,6 +12,7 @@ from module.os_handler.map_event import MapEventHandler
 from module.statistics.item import Item, ItemGrid
 from module.ui.assets import OS_CHECK
 from module.ui.ui import UI
+from module.log_res import LogRes
 
 OCR_ACTION_POINT_REMAIN = Digit(ACTION_POINT_REMAIN, letter=(255, 219, 66), name='OCR_ACTION_POINT_REMAIN')
 OCR_ACTION_POINT_REMAIN_OS = Digit(ACTION_POINT_REMAIN_OS, letter=(239, 239, 239),
@@ -141,7 +142,10 @@ class ActionPointHandler(UI, MapEventHandler):
             total += np.sum(np.array(box) * tuple(ACTION_POINT_BOX.values()))
         oil = box[0]
 
+        LogRes(self.config).Oil = oil
         logger.info(f'Action points: {current}({total}), oil: {oil}')
+        LogRes(self.config).ActionPoint = {'Value': current, 'Total': total}
+        self.config.update()
         self._action_point_current = current
         self._action_point_box = box
         self._action_point_total = total
@@ -473,6 +477,8 @@ class ActionPointHandler(UI, MapEventHandler):
                 self.device.click(ACTION_POINT_REMAIN_OS)
                 continue
             if self.handle_map_event():
+                # story is transparent, OS_CHECK may get detected while handling stories
+                self.interval_reset(OS_CHECK)
                 continue
             if self.appear_then_click(AUTO_SEARCH_REWARD, offset=(50, 50)):
                 continue
