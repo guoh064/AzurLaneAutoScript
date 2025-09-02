@@ -144,6 +144,11 @@ class MapEventHandler(EnemySearchingHandler):
 
         return True
 
+    def handle_game_tips(self):
+        if self.is_in_map():
+            return False
+        return super().handle_game_tips()
+
     def handle_map_event(self, drop=None):
         """
         Args:
