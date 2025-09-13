@@ -19,7 +19,7 @@ from module.retire.assets import (
 
 from module.retire.dock import Dock
 from module.retire.scanner import ShipScanner
-from module.ui.assets import BACK_ARROW
+from module.ui.assets import BACK_ARROW, FLEET_CHECK
 from module.ui.page import page_fleet
 
 SIM_VALUE = 0.92
@@ -193,18 +193,18 @@ class GemsFarming(CampaignRun, Dock, FleetEquipment, GemsEquipmentHandler):
         self.fleet_enter(self.fleet_to_attack)
         if self.change_flagship_equip:
             logger.hr('Unmount flagship equipments', level=2)
-            self.fleet_enter_ship(FLEET_DETAIL_ENTER_FLAGSHIP)
+            self.ship_info_enter(FLEET_ENTER_FLAGSHIP)
             self.clear_all_equip()
-            self.fleet_back()
+            self.ui_back(FLEET_CHECK)
 
         logger.hr('Change flagship', level=2)
         success = self.flagship_change_execute()
 
         if self.change_flagship_equip:
             logger.hr('Mount flagship equipments', level=2)
-            self.fleet_enter_ship(FLEET_DETAIL_ENTER_FLAGSHIP)
+            self.ship_info_enter(FLEET_ENTER_FLAGSHIP)
             self.apply_equip_code()
-            self.fleet_back()
+            self.ui_back(FLEET_CHECK)
 
         return success
 
@@ -220,18 +220,18 @@ class GemsFarming(CampaignRun, Dock, FleetEquipment, GemsEquipmentHandler):
         self.fleet_enter(self.fleet_to_attack)
         if self.change_vanguard_equip:
             logger.hr('Unmount vanguard equipments', level=2)
-            self.fleet_enter_ship(FLEET_DETAIL_ENTER)
+            self.ship_info_enter(FLEET_ENTER)
             self.clear_all_equip()
-            self.fleet_back()
+            self.ui_back(FLEET_CHECK)
 
         logger.hr('Change vanguard', level=2)
         success = self.vanguard_change_execute()
 
         if self.change_vanguard_equip:
             logger.hr('Mount vanguard equipments', level=2)
-            self.fleet_enter_ship(FLEET_DETAIL_ENTER)
+            self.ship_info_enter(FLEET_ENTER)
             self.apply_equip_code()
-            self.fleet_back()
+            self.ui_back(FLEET_CHECK)
 
         return success
 
