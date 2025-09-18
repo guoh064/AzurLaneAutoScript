@@ -4,6 +4,7 @@ from module.shop.shop_guild import GuildShop_250814
 from module.shop.shop_medal import MedalShop2_250814
 from module.shop.shop_merit import MeritShop_250814
 from module.shop.ui import ShopUI
+from module.shop_event.shop_event import EventShop
 
 
 class RewardShop(ShopUI):
@@ -28,6 +29,11 @@ class RewardShop(ShopUI):
             self.config.task_stop()
 
         self.ui_goto_shop()
+        self.device.click_record_clear()
+        if self.config.EventShop_Enable and self.shop_tab_250814.get_total(main=self) == 3:
+            self.shop_tab_250814.set(main=self, upper=3)
+            EventShop(self.config, self.device).run()
+
         self.device.click_record_clear()
         self.shop_tab_250814.set(main=self, upper=1)
         self.shop_nav_250814.set(main=self, left=2)
