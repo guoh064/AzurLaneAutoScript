@@ -69,7 +69,10 @@ class CampaignStatus(UI):
         Returns:
             int: Coin amount
         """
-        _coin = {}
+        _coin = {
+            'Value': 0,
+            'Limit': 0
+        }
         timeout = Timer(1, count=2).start()
         while 1:
             if skip_first_screenshot:
@@ -120,7 +123,10 @@ class CampaignStatus(UI):
         Returns:
             int: Oil amount
         """
-        _oil = {}
+        _oil = {
+            'Value': 0,
+            'Limit': 0
+        }
         timeout = Timer(1, count=2).start()
         while 1:
             if skip_first_screenshot:
