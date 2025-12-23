@@ -217,13 +217,14 @@ class ItemGrid:
             self.next_cost_template_index += 1
         self.next_cost_template_index = max(self.next_cost_template_index, max_digit + 1)
 
-    def match_template(self, image, similarity=None):
+    def match_template(self, image, similarity=None, threshold=30):
         """
         Match templates, try most frequent hit templates first.
 
         Args:
             image (np.ndarray):
             similarity (float):
+            threshold (int):
 
         Returns:
             str: Template name.
@@ -236,7 +237,7 @@ class ItemGrid:
         # Match known templates first
         names = [name for name in names if not name.isdigit()] + [name for name in names if name.isdigit()]
         for name in names:
-            if color_similar(color1=color, color2=self.colors[name], threshold=30):
+            if color_similar(color1=color, color2=self.colors[name], threshold=threshold):
                 res = cv2.matchTemplate(image, self.templates[name], cv2.TM_CCOEFF_NORMED)
                 _, sim, _, _ = cv2.minMaxLoc(res)
                 if sim > similarity:
