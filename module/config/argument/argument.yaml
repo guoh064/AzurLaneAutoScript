@@ -766,6 +766,13 @@ OpsiCheckLeveling:
   LastRun: 2020-01-01 00:00:00
   DelayAfterFull: false
 
+# =================== Island ====================
+IslandSeasonTask:
+  TaskDict:
+    type: textarea
+    value: |-
+    
+
 # ==================== Tools ====================
 
 Daemon:
