@@ -52,7 +52,6 @@ class OSCampaignRun(OSMapOperation):
     def opsi_meowfficer_farming(self):
         try:
             self.load_campaign()
-            self.campaign.os_check_leveling()
             self.campaign.os_meowfficer_farming()
         except ActionPointLimit:
             if get_os_reset_remain() > 0:
@@ -68,7 +67,6 @@ class OSCampaignRun(OSMapOperation):
     def opsi_hazard1_leveling(self):
         try:
             self.load_campaign()
-            self.campaign.os_check_leveling()
             self.campaign.os_hazard1_leveling()
         except ActionPointLimit:
             self.config.task_delay(server_update=True)
