@@ -288,7 +288,7 @@ The new files (`ship_exp.py`, `ship_exp_data.py`) should apply cleanly. For `ope
 1. **New files** (`module/os/ship_exp.py`, `module/os/ship_exp_data.py`) - These should apply without conflicts
 2. **`module/os/operation_siren.py`** conflicts:
    - Your CL1 level checking logic should go to `module/os/tasks/hazard_leveling.py`
-   - Add necessary imports at the top of `hazard_leveling.py`:
+   - Add necessary imports at the top of `hazard_leveling.py` (verify these match your actual function/constant names in your branch):
      ```python
      from module.os.ship_exp import ship_info_get_level_exp
      from module.os.ship_exp_data import LIST_SHIP_EXP
@@ -430,9 +430,9 @@ git cherry-pick d203e6d95404f060095ee4f1f0462848ee9f4cd9  # os_collective
 
 | Your Branch | Original Location | New Location |
 |-------------|-------------------|--------------|
-| `os_ap_optimize` | `operation_siren.py` (CL1 AP logic) | `tasks/hazard_leveling.py` |
-| `cl1_level_check` | `operation_siren.py` (level checking) | `tasks/hazard_leveling.py` or new `tasks/cl1_leveling.py` |
-| `os_collective` | `operation_siren.py` (target features) | New `tasks/target.py` |
+| `os_ap_optimize` | `module/os/operation_siren.py` (CL1 AP logic) | `module/os/tasks/hazard_leveling.py` |
+| `cl1_level_check` | `module/os/operation_siren.py` (level checking) | `module/os/tasks/hazard_leveling.py` or new `module/os/tasks/cl1_leveling.py` |
+| `os_collective` | `module/os/operation_siren.py` (target features) | New `module/os/tasks/target.py` |
 
 ---
 
