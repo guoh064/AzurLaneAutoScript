@@ -206,6 +206,236 @@ Your branch is now **4 commits behind** upstream master, with the OpSi refactori
 
 ---
 
+## Detailed Instructions for Your Three Branches
+
+Based on your request, here are step-by-step instructions for rebasing each of your three branches:
+
+---
+
+### Branch 1: `os_ap_optimize`
+
+**Branch Info:**
+- **Commit**: `b112131de0d42dbaa8c57baba5a3f94e691b841d`
+- **Message**: "Opt: call all ap consuming tasks when cl1 cannot continue"
+- **Files Modified**: `module/os/operation_siren.py` (+10 lines)
+
+**Analysis:**
+This branch adds logic for calling AP-consuming tasks when CL1 cannot continue. The changes likely affect the `os_hazard1_leveling()` method or related CL1 logic.
+
+**Rebase Steps:**
+
+```bash
+# 1. Fetch latest upstream
+git fetch upstream
+
+# 2. Create a new branch based on upstream/master
+git checkout -b os_ap_optimize_rebased upstream/master
+
+# 3. View your original changes
+git show b112131de0d42dbaa8c57baba5a3f94e691b841d --stat
+
+# 4. Cherry-pick your commit
+git cherry-pick b112131de0d42dbaa8c57baba5a3f94e691b841d
+```
+
+**Conflict Resolution:**
+When conflicts arise in `operation_siren.py`:
+1. Your changes should now go to `module/os/tasks/hazard_leveling.py`
+2. Open both files and locate the `os_hazard1_leveling()` method in the new file
+3. Apply your AP optimization logic to the `OpsiHazard1Leveling` class
+4. Complete the merge:
+   ```bash
+   git add module/os/tasks/hazard_leveling.py
+   git cherry-pick --continue
+   ```
+
+**Your Change Context:**
+Your commit adds 10 lines to handle AP-consuming tasks when CL1 cannot continue. This should be added to the loop in `os_hazard1_leveling()` method in `module/os/tasks/hazard_leveling.py`, likely near the action point checking logic.
+
+---
+
+### Branch 2: `cl1_level_check` (Note: Branch name is `cl1_level_check`, not `cl1_level_checking`)
+
+**Branch Info:**
+- **Commit**: `71a086f4504a436049d14fb11aaf8c8d89139d34`
+- **Message**: "Add: check leveling in cl1 daily"
+- **Files Modified**: Multiple files including:
+  - `module/os/operation_siren.py` (+52 lines)
+  - `module/os/ship_exp.py` (new file, +83 lines)
+  - `module/os/ship_exp_data.py` (new file, +130 lines)
+  - `module/os/assets.py` (+1 line)
+  - Config files and assets
+
+**Analysis:**
+This is a larger feature that adds ship level/exp checking for CL1 daily tasks. It introduces new modules (`ship_exp.py`, `ship_exp_data.py`) and modifies the OpSi logic.
+
+**Rebase Steps:**
+
+```bash
+# 1. Fetch latest upstream
+git fetch upstream
+
+# 2. Create a new branch based on upstream/master
+git checkout -b cl1_level_check_rebased upstream/master
+
+# 3. Cherry-pick your commit
+git cherry-pick 71a086f4504a436049d14fb11aaf8c8d89139d34
+```
+
+**Conflict Resolution:**
+The new files (`ship_exp.py`, `ship_exp_data.py`) should apply cleanly. For `operation_siren.py` conflicts:
+
+1. **New files** (`module/os/ship_exp.py`, `module/os/ship_exp_data.py`) - These should apply without conflicts
+2. **`module/os/operation_siren.py`** conflicts:
+   - Your CL1 level checking logic should go to `module/os/tasks/hazard_leveling.py`
+   - Add necessary imports at the top of `hazard_leveling.py`:
+     ```python
+     from module.os.ship_exp import ship_info_get_level_exp
+     from module.os.ship_exp_data import LIST_SHIP_EXP
+     ```
+   - Add your level checking methods to the `OpsiHazard1Leveling` class
+
+3. **Alternative approach** - Create a new task file:
+   ```python
+   # module/os/tasks/cl1_leveling.py
+   from module.logger import logger
+   from module.os.ship_exp import ship_info_get_level_exp
+   from module.os.ship_exp_data import LIST_SHIP_EXP
+   from module.os.tasks.hazard_leveling import OpsiHazard1Leveling
+
+   class OpsiCL1Leveling(OpsiHazard1Leveling):
+       # Your level checking methods here
+       pass
+   ```
+   Then update `operation_siren.py` to include your new class in the inheritance chain.
+
+4. Complete the merge:
+   ```bash
+   git add module/os/tasks/hazard_leveling.py  # or your new task file
+   git add module/os/ship_exp.py
+   git add module/os/ship_exp_data.py
+   # ... add other files
+   git cherry-pick --continue
+   ```
+
+---
+
+### Branch 3: `os_collective`
+
+**Branch Info:**
+- **Commit**: `d203e6d95404f060095ee4f1f0462848ee9f4cd9`
+- **Message**: "Feature: Opsi Target"
+- **Files Modified**: Multiple new asset files + new OpSi target functionality
+  - Many new PNG assets in `assets/cn/os_handler/`, `assets/en/os_handler/`, `assets/jp/os_handler/`
+  - Target zone navigation features
+
+**Analysis:**
+This feature adds OpSi Target functionality (zone navigation via targets). The assets should apply cleanly, but any Python code changes need to be migrated.
+
+**Rebase Steps:**
+
+```bash
+# 1. Fetch latest upstream
+git fetch upstream
+
+# 2. Create a new branch based on upstream/master
+git checkout -b os_collective_rebased upstream/master
+
+# 3. Cherry-pick your commit
+git cherry-pick d203e6d95404f060095ee4f1f0462848ee9f4cd9
+```
+
+**Conflict Resolution:**
+1. **Asset files** - Should apply cleanly (they're new files)
+2. **Python code** - If you added target-related methods to `operation_siren.py`:
+   - Create a new task file: `module/os/tasks/target.py`
+   ```python
+   # module/os/tasks/target.py
+   from module.logger import logger
+   from module.os.map import OSMap
+
+   class OpsiTarget(OSMap):
+       # Your target zone navigation methods here
+       pass
+   ```
+   - Update `module/os/operation_siren.py` to include `OpsiTarget`:
+   ```python
+   from module.os.tasks.target import OpsiTarget
+
+   class OperationSiren(
+       OpsiDaily,
+       OpsiShop,
+       OpsiVoucher,
+       OpsiMeowfficerFarming,
+       OpsiHazard1Leveling,
+       OpsiObscure,
+       OpsiAbyssal,
+       OpsiArchive,
+       OpsiStronghold,
+       OpsiMonthBoss,
+       OpsiExplore,
+       OpsiCrossMonth,
+       OpsiTarget,  # Add your new class
+   ):
+       pass
+   ```
+
+3. Complete the merge:
+   ```bash
+   git add module/os/tasks/target.py
+   git add module/os/operation_siren.py
+   # ... add asset files
+   git cherry-pick --continue
+   ```
+
+---
+
+## Merging All Three Branches into `test`
+
+After rebasing all three branches:
+
+```bash
+# 1. Update test branch to latest upstream first
+git checkout test
+git fetch upstream
+git merge upstream/master
+
+# 2. Merge each rebased branch
+git merge os_ap_optimize_rebased
+git merge cl1_level_check_rebased
+git merge os_collective_rebased
+
+# If there are conflicts between your branches, resolve them manually
+```
+
+**Alternative: Single Combined Rebase**
+
+If you prefer to combine all changes in one go:
+
+```bash
+# 1. Create combined branch from upstream
+git checkout -b combined_features upstream/master
+
+# 2. Cherry-pick all your commits in order
+git cherry-pick b112131de0d42dbaa8c57baba5a3f94e691b841d  # os_ap_optimize
+git cherry-pick 71a086f4504a436049d14fb11aaf8c8d89139d34  # cl1_level_check
+git cherry-pick d203e6d95404f060095ee4f1f0462848ee9f4cd9  # os_collective
+
+# 3. Resolve conflicts as they come up
+```
+
+---
+
+## Quick Reference: File Mapping
+
+| Your Branch | Original Location | New Location |
+|-------------|-------------------|--------------|
+| `os_ap_optimize` | `operation_siren.py` (CL1 AP logic) | `tasks/hazard_leveling.py` |
+| `cl1_level_check` | `operation_siren.py` (level checking) | `tasks/hazard_leveling.py` or new `tasks/cl1_leveling.py` |
+| `os_collective` | `operation_siren.py` (target features) | New `tasks/target.py` |
+
+---
+
 ## Questions to Consider
 
 1. **Did you modify any OpSi-related methods?** If yes, identify which ones.
