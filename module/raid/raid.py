@@ -83,6 +83,8 @@ def raid_name_shorten(name):
         return "RPG"
     elif name == 'raid_20250116':
         return 'CHIENWU'
+    elif name == 'raid_20260212':
+        return 'CHANGWU'
     else:
         raise ScriptError(f'Unknown raid name: {name}')
 
@@ -158,6 +160,11 @@ def raid_ocr(raid, mode):
             return Digit(button, letter=(247, 223, 222), threshold=128)
         else:
             return DigitCounter(button, letter=(0, 0, 0), threshold=128)
+    elif raid == 'CHANGWU':
+        if mode == 'ex':
+            return Digit(button, letter=(255, 239, 215), threshold=128)
+        else:
+            return DigitCounter(button, lang='cnocr', letter=(154, 148, 133), threshold=128)
 
 
 def pt_ocr(raid):
@@ -187,6 +194,8 @@ def pt_ocr(raid):
         return HuanChangPtOcr(button, letter=(23, 20, 6), threshold=128)
     elif raid == 'CHIENWU':
         return Digit(button, letter=(255, 231, 231), threshold=128)
+    elif raid == 'CHANGWU':
+        return Digit(button, letter=(255, 239, 215), threshold=128)
 
 
 class Raid(MapOperation, RaidCombat, CampaignEvent):
@@ -196,9 +205,7 @@ class Raid(MapOperation, RaidCombat, CampaignEvent):
         Game devs are too asshole to drop oil display for UI design
         https://github.com/LmeSzinc/AzurLaneAutoScript/issues/5214
         """
-        if self.config.Campaign_Event == 'raid_20240328':
-            return False
-        return True
+        return False
 
     def triggered_stop_condition(self, oil_check=False, pt_check=False, coin_check=False):
         """
