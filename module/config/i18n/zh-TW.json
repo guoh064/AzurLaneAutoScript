@@ -78,6 +78,10 @@
       "name": "共鬥活動",
       "help": ""
     },
+    "RaidScuttle": {
+      "name": "Task.RaidScuttle.name",
+      "help": "Task.RaidScuttle.help"
+    },
     "Hospital": {
       "name": "深谷来信",
       "help": ""
@@ -1282,6 +1286,18 @@
     "UseTicket": {
       "name": "使用演習券",
       "help": ""
+    }
+  },
+  "RaidScuttle": {
+    "_info": {
+      "name": "RaidScuttle._info.name",
+      "help": "RaidScuttle._info.help"
+    },
+    "Sacrifice": {
+      "name": "RaidScuttle.Sacrifice.name",
+      "help": "RaidScuttle.Sacrifice.help",
+      "vanguard": "vanguard",
+      "flagship": "flagship"
     }
   },
   "RaidDaily": {
