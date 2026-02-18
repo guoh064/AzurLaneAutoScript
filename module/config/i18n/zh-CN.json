@@ -82,6 +82,10 @@
       "name": "共斗活动",
       "help": ""
     },
+    "RaidScuttle": {
+      "name": "共斗沉船",
+      "help": ""
+    },
     "Hospital": {
       "name": "深谷来信",
       "help": ""
@@ -928,7 +932,8 @@
       "combat_auto": "自律战斗",
       "combat_manual": "手操",
       "stand_still_in_the_middle": "中路站桩",
-      "hide_in_bottom_left": "躲左下角"
+      "hide_in_bottom_left": "躲左下角",
+      "hide_in_upper_left": "躲左上角"
     },
     "Fleet1Step": {
       "name": "一队步长",
@@ -962,7 +967,8 @@
       "combat_auto": "自律战斗",
       "combat_manual": "手操",
       "stand_still_in_the_middle": "中路站桩",
-      "hide_in_bottom_left": "躲左下角"
+      "hide_in_bottom_left": "躲左下角",
+      "hide_in_upper_left": "躲左上角"
     },
     "Fleet2Step": {
       "name": "二队步长",
@@ -1307,6 +1313,18 @@
     "UseTicket": {
       "name": "使用演习券",
       "help": ""
+    }
+  },
+  "RaidScuttle": {
+    "_info": {
+      "name": "共斗沉船",
+      "help": ""
+    },
+    "Sacrifice": {
+      "name": "牺牲船位置",
+      "help": "",
+      "vanguard": "前排",
+      "flagship": "旗舰"
     }
   },
   "RaidDaily": {

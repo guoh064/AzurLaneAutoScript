@@ -82,6 +82,10 @@
       "name": "Raid",
       "help": ""
     },
+    "RaidScuttle": {
+      "name": "Task.RaidScuttle.name",
+      "help": "Task.RaidScuttle.help"
+    },
     "Hospital": {
       "name": "病院探訪",
       "help": ""
@@ -928,7 +932,8 @@
       "combat_auto": "combat_auto",
       "combat_manual": "combat_manual",
       "stand_still_in_the_middle": "stand_still_in_the_middle",
-      "hide_in_bottom_left": "hide_in_bottom_left"
+      "hide_in_bottom_left": "hide_in_bottom_left",
+      "hide_in_upper_left": "hide_in_upper_left"
     },
     "Fleet1Step": {
       "name": "Fleet.Fleet1Step.name",
@@ -962,7 +967,8 @@
       "combat_auto": "combat_auto",
       "combat_manual": "combat_manual",
       "stand_still_in_the_middle": "stand_still_in_the_middle",
-      "hide_in_bottom_left": "hide_in_bottom_left"
+      "hide_in_bottom_left": "hide_in_bottom_left",
+      "hide_in_upper_left": "hide_in_upper_left"
     },
     "Fleet2Step": {
       "name": "Fleet.Fleet2Step.name",
@@ -1307,6 +1313,18 @@
     "UseTicket": {
       "name": "Raid.UseTicket.name",
       "help": "Raid.UseTicket.help"
+    }
+  },
+  "RaidScuttle": {
+    "_info": {
+      "name": "RaidScuttle._info.name",
+      "help": "RaidScuttle._info.help"
+    },
+    "Sacrifice": {
+      "name": "RaidScuttle.Sacrifice.name",
+      "help": "RaidScuttle.Sacrifice.help",
+      "vanguard": "vanguard",
+      "flagship": "flagship"
     }
   },
   "RaidDaily": {

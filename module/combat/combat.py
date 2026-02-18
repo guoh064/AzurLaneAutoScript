@@ -272,7 +272,7 @@ class Combat(Level, HPBalancer, Retirement, SubmarineCall, CombatAuto, CombatMan
         if not self._automation_set_timer.reached():
             return False
 
-        if self.appear(AUTOMATION_ON):
+        if self.appear(AUTOMATION_ON, offset=(60, 10)):
             logger.info('[Automation] ON')
             if not auto:
                 self.device.click(AUTOMATION_SWITCH)
@@ -280,7 +280,7 @@ class Combat(Level, HPBalancer, Retirement, SubmarineCall, CombatAuto, CombatMan
                 self._automation_set_timer.reset()
                 return True
 
-        if self.appear(AUTOMATION_OFF):
+        if self.appear(AUTOMATION_OFF, offset=(60, 10)):
             logger.info('[Automation] OFF')
             if auto:
                 self.device.click(AUTOMATION_SWITCH)

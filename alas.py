@@ -379,6 +379,10 @@ class AzurLaneAutoScript:
         from module.raid.run import RaidRun
         RaidRun(config=self.config, device=self.device).run()
 
+    def raid_scuttle(self):
+        from module.raid.scuttle import RaidScuttleRun
+        RaidScuttleRun(config=self.config, device=self.device).run()
+
     def hospital(self):
         from module.event_hospital.hospital import Hospital
         Hospital(config=self.config, device=self.device).run()

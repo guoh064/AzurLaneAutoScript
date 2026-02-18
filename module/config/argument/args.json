@@ -563,7 +563,8 @@
           "combat_auto",
           "combat_manual",
           "stand_still_in_the_middle",
-          "hide_in_bottom_left"
+          "hide_in_bottom_left",
+          "hide_in_upper_left"
         ]
       },
       "Fleet1Step": {
@@ -605,7 +606,8 @@
           "combat_auto",
           "combat_manual",
           "stand_still_in_the_middle",
-          "hide_in_bottom_left"
+          "hide_in_bottom_left",
+          "hide_in_upper_left"
         ]
       },
       "Fleet2Step": {
@@ -940,7 +942,8 @@
           "combat_auto",
           "combat_manual",
           "stand_still_in_the_middle",
-          "hide_in_bottom_left"
+          "hide_in_bottom_left",
+          "hide_in_upper_left"
         ]
       },
       "Fleet1Step": {
@@ -982,7 +985,8 @@
           "combat_auto",
           "combat_manual",
           "stand_still_in_the_middle",
-          "hide_in_bottom_left"
+          "hide_in_bottom_left",
+          "hide_in_upper_left"
         ]
       },
       "Fleet2Step": {
@@ -1317,7 +1321,8 @@
           "combat_auto",
           "combat_manual",
           "stand_still_in_the_middle",
-          "hide_in_bottom_left"
+          "hide_in_bottom_left",
+          "hide_in_upper_left"
         ]
       },
       "Fleet1Step": {
@@ -1359,7 +1364,8 @@
           "combat_auto",
           "combat_manual",
           "stand_still_in_the_middle",
-          "hide_in_bottom_left"
+          "hide_in_bottom_left",
+          "hide_in_upper_left"
         ]
       },
       "Fleet2Step": {
@@ -1771,7 +1777,8 @@
           "combat_auto",
           "combat_manual",
           "stand_still_in_the_middle",
-          "hide_in_bottom_left"
+          "hide_in_bottom_left",
+          "hide_in_upper_left"
         ]
       },
       "Fleet1Step": {
@@ -1813,7 +1820,8 @@
           "combat_auto",
           "combat_manual",
           "stand_still_in_the_middle",
-          "hide_in_bottom_left"
+          "hide_in_bottom_left",
+          "hide_in_upper_left"
         ]
       },
       "Fleet2Step": {
@@ -2167,7 +2175,8 @@
           "combat_auto",
           "combat_manual",
           "stand_still_in_the_middle",
-          "hide_in_bottom_left"
+          "hide_in_bottom_left",
+          "hide_in_upper_left"
         ]
       },
       "Fleet1Step": {
@@ -2209,7 +2218,8 @@
           "combat_auto",
           "combat_manual",
           "stand_still_in_the_middle",
-          "hide_in_bottom_left"
+          "hide_in_bottom_left",
+          "hide_in_upper_left"
         ]
       },
       "Fleet2Step": {
@@ -2562,7 +2572,8 @@
           "combat_auto",
           "combat_manual",
           "stand_still_in_the_middle",
-          "hide_in_bottom_left"
+          "hide_in_bottom_left",
+          "hide_in_upper_left"
         ]
       },
       "Fleet1Step": {
@@ -2604,7 +2615,8 @@
           "combat_auto",
           "combat_manual",
           "stand_still_in_the_middle",
-          "hide_in_bottom_left"
+          "hide_in_bottom_left",
+          "hide_in_upper_left"
         ]
       },
       "Fleet2Step": {
@@ -2980,6 +2992,404 @@
           "prevent_yellow_face",
           "prevent_red_face"
         ]
+      },
+      "Fleet1Recover": {
+        "type": "select",
+        "value": "not_in_dormitory",
+        "option": [
+          "not_in_dormitory",
+          "dormitory_floor_1",
+          "dormitory_floor_2"
+        ]
+      },
+      "Fleet1Oath": {
+        "type": "checkbox",
+        "value": false
+      },
+      "Fleet2Value": {
+        "type": "input",
+        "value": 119,
+        "display": "hide"
+      },
+      "Fleet2Record": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime",
+        "display": "hide"
+      },
+      "Fleet2Control": {
+        "type": "select",
+        "value": "prevent_yellow_face",
+        "option": [
+          "keep_exp_bonus",
+          "prevent_green_face",
+          "prevent_yellow_face",
+          "prevent_red_face"
+        ],
+        "display": "hide"
+      },
+      "Fleet2Recover": {
+        "type": "select",
+        "value": "not_in_dormitory",
+        "option": [
+          "not_in_dormitory",
+          "dormitory_floor_1",
+          "dormitory_floor_2"
+        ],
+        "display": "hide"
+      },
+      "Fleet2Oath": {
+        "type": "checkbox",
+        "value": false,
+        "display": "hide"
+      }
+    },
+    "Storage": {
+      "Storage": {
+        "type": "storage",
+        "value": {},
+        "valuetype": "ignore",
+        "display": "disabled"
+      }
+    }
+  },
+  "RaidScuttle": {
+    "Scheduler": {
+      "Enable": {
+        "type": "checkbox",
+        "value": false,
+        "option": [
+          true,
+          false
+        ]
+      },
+      "NextRun": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime"
+      },
+      "Command": {
+        "type": "input",
+        "value": "RaidScuttle",
+        "display": "hide"
+      },
+      "SuccessInterval": {
+        "type": "input",
+        "value": 0,
+        "display": "hide"
+      },
+      "FailureInterval": {
+        "type": "input",
+        "value": 120,
+        "display": "hide"
+      },
+      "ServerUpdate": {
+        "type": "input",
+        "value": "00:00",
+        "display": "hide"
+      }
+    },
+    "RaidScuttle": {
+      "Sacrifice": {
+        "type": "select",
+        "value": "vanguard",
+        "option": [
+          "vanguard",
+          "flagship"
+        ]
+      }
+    },
+    "Raid": {
+      "Mode": {
+        "type": "select",
+        "value": "hard",
+        "option": [
+          "easy",
+          "normal",
+          "hard",
+          "ex"
+        ]
+      },
+      "UseTicket": {
+        "type": "checkbox",
+        "value": false
+      }
+    },
+    "Campaign": {
+      "Name": {
+        "type": "input",
+        "value": "dynamic",
+        "display": "hide"
+      },
+      "Event": {
+        "type": "state",
+        "value": "campaign_main",
+        "option": [
+          "raid_20260212"
+        ],
+        "option_cn": [
+          "raid_20260212"
+        ],
+        "option_en": [
+          "raid_20260212"
+        ],
+        "option_jp": [
+          "raid_20260212"
+        ],
+        "option_tw": [
+          "raid_20260212"
+        ],
+        "option_bold": [
+          "raid_20260212"
+        ]
+      },
+      "Mode": {
+        "type": "select",
+        "value": "normal",
+        "option": [
+          "normal",
+          "hard"
+        ],
+        "display": "hide"
+      },
+      "UseClearMode": {
+        "type": "checkbox",
+        "value": true,
+        "display": "hide"
+      },
+      "UseFleetLock": {
+        "type": "checkbox",
+        "value": true,
+        "display": "hide"
+      },
+      "UseAutoSearch": {
+        "type": "checkbox",
+        "value": false,
+        "display": "hide"
+      },
+      "Use2xBook": {
+        "type": "checkbox",
+        "value": false,
+        "display": "hide"
+      },
+      "AmbushEvade": {
+        "type": "checkbox",
+        "value": true,
+        "display": "hide"
+      }
+    },
+    "StopCondition": {
+      "OilLimit": {
+        "type": "input",
+        "value": 1000
+      },
+      "RunCount": {
+        "type": "input",
+        "value": 0
+      },
+      "MapAchievement": {
+        "type": "select",
+        "value": "non_stop",
+        "option": [
+          "non_stop",
+          "100_percent_clear",
+          "map_3_stars",
+          "threat_safe",
+          "threat_safe_without_3_stars"
+        ],
+        "display": "hide"
+      },
+      "StageIncrease": {
+        "type": "checkbox",
+        "value": false,
+        "display": "hide"
+      },
+      "GetNewShip": {
+        "type": "checkbox",
+        "value": false,
+        "display": "hide"
+      },
+      "ReachLevel": {
+        "type": "input",
+        "value": 0,
+        "display": "hide"
+      }
+    },
+    "Fleet": {
+      "Fleet1": {
+        "type": "select",
+        "value": 1,
+        "option": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "display": "hide"
+      },
+      "Fleet1Formation": {
+        "type": "select",
+        "value": "double_line",
+        "option": [
+          "line_ahead",
+          "double_line",
+          "diamond"
+        ],
+        "display": "hide"
+      },
+      "Fleet1Mode": {
+        "type": "select",
+        "value": "combat_manual",
+        "option": [
+          "combat_manual",
+          "stand_still_in_the_middle",
+          "hide_in_bottom_left",
+          "hide_in_upper_left"
+        ],
+        "display": "display"
+      },
+      "Fleet1Step": {
+        "type": "select",
+        "value": 3,
+        "option": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "display": "hide"
+      },
+      "Fleet2": {
+        "type": "select",
+        "value": 2,
+        "option": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "display": "hide"
+      },
+      "Fleet2Formation": {
+        "type": "select",
+        "value": "double_line",
+        "option": [
+          "line_ahead",
+          "double_line",
+          "diamond"
+        ],
+        "display": "hide"
+      },
+      "Fleet2Mode": {
+        "type": "select",
+        "value": "combat_auto",
+        "option": [
+          "combat_auto",
+          "combat_manual",
+          "stand_still_in_the_middle",
+          "hide_in_bottom_left",
+          "hide_in_upper_left"
+        ],
+        "display": "hide"
+      },
+      "Fleet2Step": {
+        "type": "select",
+        "value": 3,
+        "option": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "display": "hide"
+      },
+      "FleetOrder": {
+        "type": "select",
+        "value": "fleet1_all_fleet2_standby",
+        "option": [
+          "fleet1_mob_fleet2_boss",
+          "fleet1_boss_fleet2_mob",
+          "fleet1_all_fleet2_standby",
+          "fleet1_standby_fleet2_all"
+        ],
+        "display": "hide"
+      }
+    },
+    "Submarine": {
+      "Fleet": {
+        "type": "select",
+        "value": 0,
+        "option": [
+          0,
+          1,
+          2
+        ]
+      },
+      "Mode": {
+        "type": "select",
+        "value": "do_not_use",
+        "option": [
+          "do_not_use",
+          "every_combat"
+        ],
+        "display": "display"
+      },
+      "AutoSearchMode": {
+        "type": "select",
+        "value": "sub_standby",
+        "option": [
+          "sub_standby",
+          "sub_auto_call"
+        ],
+        "display": "hide"
+      },
+      "DistanceToBoss": {
+        "type": "select",
+        "value": "2_grid_to_boss",
+        "option": [
+          "to_boss_position",
+          "1_grid_to_boss",
+          "2_grid_to_boss",
+          "use_open_ocean_support"
+        ],
+        "display": "hide"
+      }
+    },
+    "Emotion": {
+      "Mode": {
+        "type": "select",
+        "value": "calculate",
+        "option": [
+          "calculate",
+          "ignore",
+          "calculate_ignore"
+        ]
+      },
+      "Fleet1Value": {
+        "type": "input",
+        "value": 119
+      },
+      "Fleet1Record": {
+        "type": "datetime",
+        "value": "2020-01-01 00:00:00",
+        "validate": "datetime",
+        "display": "disabled"
+      },
+      "Fleet1Control": {
+        "type": "select",
+        "value": "prevent_yellow_face",
+        "option": [
+          "keep_exp_bonus",
+          "prevent_green_face",
+          "prevent_yellow_face",
+          "prevent_red_face"
+        ],
+        "display": "hide"
       },
       "Fleet1Recover": {
         "type": "select",
@@ -3951,7 +4361,8 @@
           "combat_auto",
           "combat_manual",
           "stand_still_in_the_middle",
-          "hide_in_bottom_left"
+          "hide_in_bottom_left",
+          "hide_in_upper_left"
         ]
       },
       "Fleet1Step": {
@@ -3993,7 +4404,8 @@
           "combat_auto",
           "combat_manual",
           "stand_still_in_the_middle",
-          "hide_in_bottom_left"
+          "hide_in_bottom_left",
+          "hide_in_upper_left"
         ]
       },
       "Fleet2Step": {
@@ -4363,7 +4775,8 @@
           "combat_auto",
           "combat_manual",
           "stand_still_in_the_middle",
-          "hide_in_bottom_left"
+          "hide_in_bottom_left",
+          "hide_in_upper_left"
         ]
       },
       "Fleet1Step": {
@@ -4405,7 +4818,8 @@
           "combat_auto",
           "combat_manual",
           "stand_still_in_the_middle",
-          "hide_in_bottom_left"
+          "hide_in_bottom_left",
+          "hide_in_upper_left"
         ]
       },
       "Fleet2Step": {
@@ -4775,7 +5189,8 @@
           "combat_auto",
           "combat_manual",
           "stand_still_in_the_middle",
-          "hide_in_bottom_left"
+          "hide_in_bottom_left",
+          "hide_in_upper_left"
         ]
       },
       "Fleet1Step": {
@@ -4817,7 +5232,8 @@
           "combat_auto",
           "combat_manual",
           "stand_still_in_the_middle",
-          "hide_in_bottom_left"
+          "hide_in_bottom_left",
+          "hide_in_upper_left"
         ]
       },
       "Fleet2Step": {
@@ -5187,7 +5603,8 @@
           "combat_auto",
           "combat_manual",
           "stand_still_in_the_middle",
-          "hide_in_bottom_left"
+          "hide_in_bottom_left",
+          "hide_in_upper_left"
         ]
       },
       "Fleet1Step": {
@@ -5229,7 +5646,8 @@
           "combat_auto",
           "combat_manual",
           "stand_still_in_the_middle",
-          "hide_in_bottom_left"
+          "hide_in_bottom_left",
+          "hide_in_upper_left"
         ]
       },
       "Fleet2Step": {
@@ -5599,7 +6017,8 @@
           "combat_auto",
           "combat_manual",
           "stand_still_in_the_middle",
-          "hide_in_bottom_left"
+          "hide_in_bottom_left",
+          "hide_in_upper_left"
         ]
       },
       "Fleet1Step": {
@@ -5641,7 +6060,8 @@
           "combat_auto",
           "combat_manual",
           "stand_still_in_the_middle",
-          "hide_in_bottom_left"
+          "hide_in_bottom_left",
+          "hide_in_upper_left"
         ]
       },
       "Fleet2Step": {
@@ -6001,7 +6421,8 @@
           "combat_auto",
           "combat_manual",
           "stand_still_in_the_middle",
-          "hide_in_bottom_left"
+          "hide_in_bottom_left",
+          "hide_in_upper_left"
         ]
       },
       "Fleet1Step": {
@@ -6043,7 +6464,8 @@
           "combat_auto",
           "combat_manual",
           "stand_still_in_the_middle",
-          "hide_in_bottom_left"
+          "hide_in_bottom_left",
+          "hide_in_upper_left"
         ]
       },
       "Fleet2Step": {

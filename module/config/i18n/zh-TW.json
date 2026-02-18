@@ -82,6 +82,10 @@
       "name": "共鬥活動",
       "help": ""
     },
+    "RaidScuttle": {
+      "name": "Task.RaidScuttle.name",
+      "help": "Task.RaidScuttle.help"
+    },
     "Hospital": {
       "name": "深谷来信",
       "help": ""
@@ -928,7 +932,8 @@
       "combat_auto": "自律戰鬥",
       "combat_manual": "手動",
       "stand_still_in_the_middle": "中路站樁",
-      "hide_in_bottom_left": "躲左下角"
+      "hide_in_bottom_left": "躲左下角",
+      "hide_in_upper_left": "躲左上角"
     },
     "Fleet1Step": {
       "name": "一隊步幅",
@@ -962,7 +967,8 @@
       "combat_auto": "自律戰鬥",
       "combat_manual": "手動",
       "stand_still_in_the_middle": "中路站樁",
-      "hide_in_bottom_left": "躲左下角"
+      "hide_in_bottom_left": "躲左下角",
+      "hide_in_upper_left": "躲左上角"
     },
     "Fleet2Step": {
       "name": "二隊步幅",
@@ -1307,6 +1313,18 @@
     "UseTicket": {
       "name": "使用演習券",
       "help": ""
+    }
+  },
+  "RaidScuttle": {
+    "_info": {
+      "name": "RaidScuttle._info.name",
+      "help": "RaidScuttle._info.help"
+    },
+    "Sacrifice": {
+      "name": "RaidScuttle.Sacrifice.name",
+      "help": "RaidScuttle.Sacrifice.help",
+      "vanguard": "vanguard",
+      "flagship": "flagship"
     }
   },
   "RaidDaily": {
