@@ -25,9 +25,12 @@ class EmotionDigit(Digit):
         if server.server == 'jp':
             image_gray = extract_letters(image, letter=(255, 255, 255), threshold=self.threshold)
             right_side = np.nonzero(image_gray[0:16, :].max(axis=0) > 192)[-1]
+            delta = right_side[0]
             for i, col in enumerate(right_side):
-                if i < col:
+                if col - i > delta:
                     break
+            else:
+                i = -1
             image = image[:, :i]
         image = super().pre_process(image)
         return image
@@ -338,6 +341,33 @@ class ShipScanner(Scanner):
 
         self.set_limitation(
             level=level, emotion=emotion, rarity=rarity, fleet=fleet, status=status)
+
+    def pre_process(self, image, alpha=0.85, mask_rgb=(38, 36, 50), delta=3, threshold=50) -> Image:
+        image_list = [crop(image, button.area) for button in self.grids.buttons]
+        mr, mg, mb = mask_rgb
+        for grid_image, button in zip(image_list, self.grids.buttons):
+            r, g, b = cv2.split(grid_image)
+            beta = 1.0 - alpha
+            legal = (
+                    (r >= alpha * mr - delta) & (r <= beta * 255 + alpha * mr + delta) &
+                    (g >= alpha * mg - delta) & (g <= beta * 255 + alpha * mg + delta) &
+                    (b >= alpha * mb - delta) & (b <= beta * 255 + alpha * mb + delta)
+            )
+
+            if np.sum(1 - legal) <= threshold:
+                r_orig = (r - alpha * mr) / beta
+                g_orig = (g - alpha * mg) / beta
+                b_orig = (b - alpha * mb) / beta
+
+                r_orig = np.clip(np.round(r_orig), 0, 255).astype(np.uint8)
+                g_orig = np.clip(np.round(g_orig), 0, 255).astype(np.uint8)
+                b_orig = np.clip(np.round(b_orig), 0, 255).astype(np.uint8)
+
+                grid_image_new = cv2.merge([r_orig, g_orig, b_orig])
+                grid_image_old = crop(image, button.area, copy=False)
+                cv2.copyTo(grid_image_new, None, grid_image_old)
+
+        return image
 
     def _scan(self, image) -> List:
         for scanner in self.sub_scanners.values():
