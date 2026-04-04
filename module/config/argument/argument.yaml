@@ -311,6 +311,10 @@ RaidDaily:
     hard > normal > easy
 Hospital:
   UseRecommendFleet: true
+Scuttle:
+  Sacrifice:
+    value: vanguard
+    option: [ vanguard, flagship ]
 Coalition:
   Mode:
     value: hard

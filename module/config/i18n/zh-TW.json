@@ -82,6 +82,10 @@
       "name": "共鬥活動",
       "help": ""
     },
+    "RaidScuttle": {
+      "name": "共鬥鑿船",
+      "help": ""
+    },
     "Hospital": {
       "name": "深谷来信",
       "help": ""
@@ -1332,6 +1336,18 @@
     "UseRecommendFleet": {
       "name": "使用艦隊推薦",
       "help": "如果關閉，需要事先手動為所有15個關卡配隊"
+    }
+  },
+  "Scuttle": {
+    "_info": {
+      "name": "鑿船設定",
+      "help": ""
+    },
+    "Sacrifice": {
+      "name": "牺牲船位置",
+      "help": "",
+      "vanguard": "前排",
+      "flagship": "旗舰"
     }
   },
   "Coalition": {
