@@ -184,6 +184,9 @@ class GeneratedConfig:
     # Group `MaritimeEscort`
     MaritimeEscort_Enable = True
 
+    # Group `Scuttle`
+    Scuttle_Sacrifice = 'vanguard'  # vanguard, flagship
+
     # Group `Coalition`
     Coalition_Mode = 'hard'  # easy, normal, hard, sp
     Coalition_Fleet = 'single'  # single, multi

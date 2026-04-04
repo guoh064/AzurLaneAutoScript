@@ -82,6 +82,10 @@
       "name": "共鬥活動",
       "help": ""
     },
+    "RaidScuttle": {
+      "name": "共鬥鑿船",
+      "help": ""
+    },
     "Hospital": {
       "name": "深谷来信",
       "help": ""
@@ -1346,6 +1350,18 @@
     "Enable": {
       "name": "啟用商船護航",
       "help": ""
+    }
+  },
+  "Scuttle": {
+    "_info": {
+      "name": "鑿船設定",
+      "help": ""
+    },
+    "Sacrifice": {
+      "name": "牺牲船位置",
+      "help": "",
+      "vanguard": "前排",
+      "flagship": "旗舰"
     }
   },
   "Coalition": {
