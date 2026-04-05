@@ -95,6 +95,15 @@ Event:
       - Campaign
       - StopCondition
       - Emotion
+    RaidScuttle:
+      - Scheduler
+      - RaidScuttle
+      - Raid
+      - Campaign
+      - StopCondition
+      - Fleet
+      - Submarine
+      - Emotion
     Hospital:
       - Scheduler
       - Hospital

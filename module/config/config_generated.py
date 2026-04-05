@@ -170,6 +170,9 @@ class GeneratedConfig:
     Raid_Mode = 'hard'  # easy, normal, hard, ex
     Raid_UseTicket = False
 
+    # Group `RaidScuttle`
+    RaidScuttle_Sacrifice = 'vanguard'  # vanguard, flagship
+
     # Group `RaidDaily`
     RaidDaily_StageFilter = 'hard > normal > easy'
 
