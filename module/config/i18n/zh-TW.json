@@ -2368,6 +2368,10 @@
     "EnsureFullyCollected": {
       "name": "保證收集滿每日200信標數據",
       "help": "在收集滿為前，暫時無視保留行動力設定，需要同時開啟 \"短貓相接\""
+    },
+    "AutoCollectShip": {
+      "name": "OpsiAshBeacon.AutoCollectShip.name",
+      "help": "OpsiAshBeacon.AutoCollectShip.help"
     }
   },
   "OpsiFleetFilter": {
