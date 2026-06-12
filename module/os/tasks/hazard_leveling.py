@@ -38,7 +38,8 @@ class OpsiHazard1Leveling(OSMap):
             if self.config.OpsiGeneral_BuyActionPointLimit > 0:
                 keep_current_ap = False
             self.action_point_set(cost=70, keep_current_ap=keep_current_ap, check_rest_ap=True)
-            if self._action_point_total >= 3000:
+            preserve = min(self.get_action_point_limit(), self.config.cross_get('OpsiMeowfficerFarming.OpsiMeowfficerFarming.ActionPointPreserve'))
+            if self._action_point_total >= preserve + 2000:
                 with self.config.multi_set():
                     self.config.task_delay(server_update=True)
                     if not self.is_in_opsi_explore():

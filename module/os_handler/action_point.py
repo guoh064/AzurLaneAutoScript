@@ -141,9 +141,9 @@ class ActionPointHandler(UI, MapEventHandler):
         self._action_point_current = current
         self._action_point_box = box
         self._action_point_total = total
-        # handle exceeds
-        if total > 3000:
-            self.config.override(OpsiGeneral_DoRandomMapEvent=False)
+        # # handle exceeds
+        # if total > 3000:
+        #     self.config.override(OpsiGeneral_DoRandomMapEvent=False)
 
     def action_point_safe_get(self):
         timeout = Timer(3, count=6).start()
