@@ -332,6 +332,10 @@ class IslandRecipe(IslandShop):
             self.device.screenshot()
 
     def scan_all_recipe_stocks(self):
+        for _ in self.loop(timeout=3):
+            # use ISLAND_RECIPE_AMOUNT_MAX as a check to ensure the recipe page is fully loaded
+            if self.appear(ISLAND_RECIPE_AMOUNT_MAX, offset=(0, 20)):
+                break
         all_stocks = {}
         drag_count = 0
         for _ in self.loop(timeout=30):
