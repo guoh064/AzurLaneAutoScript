@@ -210,7 +210,7 @@ class IslandOrder(IslandUI):
                 self.device.click(order_button)
                 click_timer.reset()
                 continue
-            if self.appear(ISLAND_ORDER_REQUIREMENTS_CHECK, offset=(20, 20)):
+            if self.appear(ISLAND_ORDER_REQUIREMENTS_CHECK, offset=(0, 20)):
                 logger.info('Clicked order button, requirements page appeared')
                 break
             if self.appear(ISLAND_ORDER_COOLDOWN_SPEED_UP, offset=(20, 20)):
