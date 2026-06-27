@@ -504,8 +504,11 @@ class IslandRecipe(IslandShop):
             return None
 
         counter_grids = ingredient_grids.crop((-10, 66, 92, 83), name='counter_grids')
-        counter_images = [self.image_crop(button.area, copy=True) for button in counter_grids.buttons]
-        counters = RECIPE_INGREDIENT_COUNTER_OCR.ocr(counter_images, direct_ocr=True)
+        for _ in self.loop(timeout=3):
+            counter_images = [self.image_crop(button.area, copy=True) for button in counter_grids.buttons]
+            counters = RECIPE_INGREDIENT_COUNTER_OCR.ocr(counter_images, direct_ocr=True)
+            if (0, 0, 0) not in counters:
+                break
         return counters
 
     def set_recipe(self, recipe_id):
