@@ -116,8 +116,8 @@ class Screenshot(Adb, WSA, DroidCast, AScreenCap, Scrcpy, NemuIpc, LDOpenGL):
         except ValueError:
             logger.error(f'Error_ScreenshotLength={self.config.Error_ScreenshotLength} is not an integer')
             raise RequestHumanTakeover
-        # Limit in 1~300
-        length = max(1, min(length, 300))
+        # Limit in 1~400
+        length = max(1, min(length, 400))
         return deque(maxlen=length)
 
     def save_screenshot(self, genre='items', interval=None, to_base_folder=False):
