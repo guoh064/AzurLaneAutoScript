@@ -7,6 +7,7 @@ from module.exception import ScriptEnd, ScriptError
 from module.logger import logger
 from module.ocr.ocr import Digit
 from module.ui.page import page_campaign_menu
+from module.log_res import LogRes
 
 
 class AcademyPtOcr(Digit):
@@ -72,7 +73,8 @@ class Coalition(CoalitionCombat, CampaignEvent):
                 break
         else:
             logger.warning('Wait PT timeout, assume it is')
-
+        LogRes(self.config).Pt = pt
+        self.config.update()
         return pt
 
     @property
