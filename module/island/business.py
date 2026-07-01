@@ -79,10 +79,13 @@ class IslandBusiness(IslandRestaurant):
             TEMPLATE_ISLAND_BUSINESS_GRILL: 604,
             TEMPLATE_ISLAND_BUSINESS_CAFE: 901
         }
-        image = self.image_crop(button, copy=True)
-        for template, id in template_to_id.items():
-            if template.match(image):
-                return id
+        for _ in self.loop(timeout=4):
+            image = self.image_crop(button, copy=True)
+            for template, id in template_to_id.items():
+                if template.match(image):
+                    return id
+        else:
+            logger.warning("Failed to recognize restaurant")
         return None
 
     def is_restaurant_running(self, button):
@@ -100,11 +103,20 @@ class IslandBusiness(IslandRestaurant):
     index = None
     shifted = None
 
+    def current_restaurant_button(self):
+        if self.shifted:
+            buttons = self.business_grid_shifted.buttons
+        else:
+            buttons = self.business_grid.buttons
+        if self.index >= len(buttons):
+            return None
+        return buttons[self.index]
+
     def next_restaurant(self):
         self.index += 1
-        if self.index >= 3 and not self.shifted:
+        if self.index >= len(self.business_grid.buttons) and not self.shifted:
             self.restaurant_swipe_to_bottom()
-        elif self.index >= 3 and self.shifted:
+        elif self.index >= len(self.business_grid_shifted.buttons) and self.shifted:
             logger.info("No more restaurants")
 
     def run(self):
@@ -121,16 +133,16 @@ class IslandBusiness(IslandRestaurant):
             901: get_server_next_update('00:00') if not self.skip_restaurant[901] else datetime.now() + timedelta(days=3)
         }
         while unchecked_restaurants:
-            if self.shifted:
-                button = self.business_grid_shifted.buttons[self.index]
-            else:
-                button = self.business_grid.buttons[self.index]
+            button = self.current_restaurant_button()
+            if button is None:
+                logger.warning(f"Restaurant index exhausted, unchecked restaurants: {unchecked_restaurants}")
+                break
             restaurant_id = self.get_restaurant_id(button)
-            if restaurant_id not in unchecked_restaurants:
-                self.next_restaurant()
-                continue
             if restaurant_id is None:
                 logger.warning("Unrecognized restaurant, should check assets")
+                self.next_restaurant()
+                continue
+            if restaurant_id not in unchecked_restaurants:
                 self.next_restaurant()
                 continue
             entrance_button = button.crop(BUSINESS_ENTRANCE_AREA)
