@@ -1,7 +1,6 @@
 import yaml
 
 from module.base.timer import Timer
-from module.base.utils import random_rectangle_point, point2str
 from module.device.method.utils import HierarchyButton
 from module.equipment.assets import *
 from module.logger import logger
@@ -10,6 +9,7 @@ from module.storage.assets import EQUIPMENT_FULL
 from module.storage.storage import StorageHandler
 
 EMPTY_CODE = "MC8wLzAvMC8wXDA="
+U2_CONTROL_METHODS = {'uiautomator2', 'minitouch', 'MaaTouch'}
 EQUIPMENT_PREVIEW = list([
     EQUIPMENT_CODE_EQUIP_0,
     EQUIPMENT_CODE_EQUIP_1,
@@ -21,6 +21,17 @@ EQUIPMENT_PREVIEW = list([
 
 class EquipmentCodeHandler(StorageHandler):
     last_code: str = None
+
+    def equipment_code_supported(self):
+        method = self.config.Emulator_ControlMethod
+        if method in U2_CONTROL_METHODS:
+            return True
+
+        logger.warning(
+            f"Equipment code requires uiautomator2 based control method, "
+            f"current control method is {method}, skip equipment change"
+        )
+        return False
 
     def get_code(self, name):
         try:
@@ -130,9 +141,7 @@ class EquipmentCodeHandler(StorageHandler):
             def appear_then_click(xpath):
                 b = HierarchyButton(h, xpath)
                 if b:
-                    point = random_rectangle_point(b.button)
-                    logger.info(f'Click {point2str(*point)} @ {b}')
-                    self.device.click_adb(*point)
+                    self.device.click(b)
                     return True
                 else:
                     return False
@@ -150,6 +159,14 @@ class EquipmentCodeHandler(StorageHandler):
 
         self.device.adb_shell(['input', 'keyevent', '4'])
 
+    def set_fastinput_ime(self):
+        d = self.device.u2
+        try:
+            d.set_fastinput_ime(True)
+        except Exception:
+            logger.warning("FastInputIME not enabled, trying to enable it")
+            self.fastinput_ime_enable()
+
     def _code_input(self, code):
         logger.info(f"Code input: {code}")
         d = self.device.u2
@@ -158,12 +175,7 @@ class EquipmentCodeHandler(StorageHandler):
             name, shown = d.current_ime()
             if shown:
                 if name != 'com.github.uiautomator/.FastInputIME':
-                    try:
-                        d.set_fastinput_ime(True)
-                        continue
-                    except Exception:
-                        logger.warning("FastInputIME not enabled, trying to enable it")
-                    self.fastinput_ime_enable()
+                    self.set_fastinput_ime()
                     continue
                 else:
                     break
@@ -229,19 +241,25 @@ class EquipmentCodeHandler(StorageHandler):
         return code
 
     def code_clear(self, name=None):
+        if not self.equipment_code_supported():
+            return False
+
         self._code_enter()
         if name is None:
             name = self.current_ship()
         if self.config.EquipmentCode_ExportToConfig and self.get_code(name=name) is None:
             self.last_code = self._code_export()
             self.set_code(name=name, code=self.last_code)
-        self._code_apply(code=None)
+        return self._code_apply(code=None)
 
     def code_apply(self, name=None):
+        if not self.equipment_code_supported():
+            return False
+
         self._code_enter()
         if name is None:
             name = self.current_ship()
         code = self.get_code(name=name)
         if code is None:
             code = self.last_code
-        self._code_apply(code=code)
+        return self._code_apply(code=code)
