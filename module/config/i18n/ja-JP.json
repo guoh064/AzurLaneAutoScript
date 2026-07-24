@@ -86,6 +86,10 @@
       "name": "Task.RaidScuttle.name",
       "help": "Task.RaidScuttle.help"
     },
+    "CoalitionScuttle": {
+      "name": "Task.CoalitionScuttle.name",
+      "help": "Task.CoalitionScuttle.help"
+    },
     "Hospital": {
       "name": "病院探訪",
       "help": ""
