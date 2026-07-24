@@ -86,6 +86,14 @@
       "name": "Raid",
       "help": ""
     },
+    "RaidScuttle": {
+      "name": "Task.RaidScuttle.name",
+      "help": "Task.RaidScuttle.help"
+    },
+    "CoalitionScuttle": {
+      "name": "Task.CoalitionScuttle.name",
+      "help": "Task.CoalitionScuttle.help"
+    },
     "Hospital": {
       "name": "病院探訪",
       "help": ""
@@ -1354,6 +1362,18 @@
       "help": "Raid.UseTicket.help"
     }
   },
+  "RaidScuttle": {
+    "_info": {
+      "name": "RaidScuttle._info.name",
+      "help": "RaidScuttle._info.help"
+    },
+    "Sacrifice": {
+      "name": "RaidScuttle.Sacrifice.name",
+      "help": "RaidScuttle.Sacrifice.help",
+      "vanguard": "vanguard",
+      "flagship": "flagship"
+    }
+  },
   "RaidDaily": {
     "_info": {
       "name": "RaidDaily._info.name",
@@ -1382,6 +1402,18 @@
     "Enable": {
       "name": "MaritimeEscort.Enable.name",
       "help": "MaritimeEscort.Enable.help"
+    }
+  },
+  "CoalitionScuttle": {
+    "_info": {
+      "name": "CoalitionScuttle._info.name",
+      "help": "CoalitionScuttle._info.help"
+    },
+    "Sacrifice": {
+      "name": "CoalitionScuttle.Sacrifice.name",
+      "help": "CoalitionScuttle.Sacrifice.help",
+      "vanguard": "vanguard",
+      "flagship": "flagship"
     }
   },
   "Coalition": {
