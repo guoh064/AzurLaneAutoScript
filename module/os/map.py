@@ -1,4 +1,5 @@
 import time
+from sys import maxsize
 
 import inflection
 
@@ -419,7 +420,7 @@ class OSMap(OSFleet, Map, GlobeCamera, StrategicSearchHandler):
             return 300
         else:
             logger.info('Not close to OpSi reset')
-            return 2000
+            return maxsize
 
     def handle_after_auto_search(self):
         logger.hr('After auto search', level=2)
@@ -434,7 +435,7 @@ class OSMap(OSFleet, Map, GlobeCamera, StrategicSearchHandler):
         Keeping enough startup AP to run CL1.
         """
         if self.is_cl1_enabled and get_os_reset_remain() > 2 \
-                and self.get_yellow_coins() > self.config.OS_CL1_YELLOW_COINS_PRESERVE:
+                and self.get_yellow_coins() > self.yellow_coins_preserve:
             logger.info('Keep 1000 AP when CL1 available')
             if not self.action_point_check(1000):
                 self.config.opsi_task_delay(cl1_preserve=True)
@@ -822,10 +823,10 @@ class OSMap(OSFleet, Map, GlobeCamera, StrategicSearchHandler):
         if 'is_scanning_device' not in self._solved_map_event and grids and grids[0].is_scanning_device:
             grid = grids[0]
             logger.info(f'Found scanning device on {grid}')
-            if self.is_in_task_cl1_leveling:
-                logger.info('In CL1 leveling, mark scanning device as solved')
-                self._solved_map_event.add('is_scanning_device')
-                return True
+            # if self.is_in_task_cl1_leveling:
+            #     logger.info('In CL1 leveling, mark scanning device as solved')
+            #     self._solved_map_event.add('is_scanning_device')
+            #     return True
 
             self.device.click(grid)
             with self.config.temporary(STORY_ALLOW_SKIP=False):
