@@ -66,6 +66,10 @@
       "name": "Event General",
       "help": ""
     },
+    "Coalition": {
+      "name": "Authentic Horror Story",
+      "help": ""
+    },
     "Event": {
       "name": "Event",
       "help": ""
@@ -82,10 +86,6 @@
       "name": "Valley Hospital",
       "help": ""
     },
-    "Coalition": {
-      "name": "Light & Shadow Fashion Shoot",
-      "help": ""
-    },
     "MaritimeEscort": {
       "name": "Maritime Escort",
       "help": ""
@@ -97,6 +97,10 @@
     "WarArchives": {
       "name": "War Archives",
       "help": "Due to the lack of maintenance of war archives, continuous clear may not work normally, if Alas runs abnormally, Please manually finish clearing and use auto search"
+    },
+    "CoalitionSp": {
+      "name": "Authentic Horror Story SP",
+      "help": ""
     },
     "EventA": {
       "name": "Event Daily A",
@@ -120,10 +124,6 @@
     },
     "RaidDaily": {
       "name": "Raid Daily",
-      "help": ""
-    },
-    "CoalitionSp": {
-      "name": "Light & Shadow Fashion Shoot SP",
       "help": ""
     },
     "Commission": {
@@ -383,6 +383,7 @@
       "cn_android-26": "[国服] 冬月计划",
       "cn_android-27": "[国服] 长弓计划",
       "cn_android-28": "[国服] 裁决协议",
+      "cn_android-29": "[国服] 帷幕计划",
       "cn_ios-0": "[国服] 夏威夷",
       "cn_ios-1": "[国服] 珊瑚海",
       "cn_ios-2": "[国服] 中途岛",
@@ -692,6 +693,7 @@
       "coalition_20250626": "The Neon City Investigator",
       "coalition_20251120": "DATE A LANE",
       "coalition_20260122": "Light & Shadow Fashion Shoot!",
+      "coalition_20260723": "Authentic Horror Story",
       "event_20200227_cn": "Northern Overture",
       "event_20200312_cn": "The Solomon Ranger Rerun",
       "event_20200326_cn": "Microlayer Medley",
@@ -1203,6 +1205,12 @@
       "name": "Commission Farming Settings",
       "help": "Warning: This task allows players to get a small amount of gems, but not an efficient way to farm.\nPlayers who have recently started Azur Lane are easily superstitious about 0LB and low oil consumption, while being ignorant about character leveling.\nRunning this function will only make you feel fulfilled however in reality your account will not actually progress very much.\nThe main purpose of this task is to get extra cubes for players with a formed lineup. Please rationally treat gems as a by-product.\n\nFleet 1 is expected to consist of 1 0LB CV/CVL and 1 0LB Vanguard, Fleet 2 is expected to consist of support ships such as New Jersey or Shinano to provide external battle assistance.\nFor information about the drop mechanism/rate of urgent commissions, you can refer to <https://bbs.nga.cn/read.php?tid=27134956> (in Chinese Simplified)"
     },
+    "ChangeFlagship": {
+      "name": "Change Flagship",
+      "help": "Change flagship if flagship level >= 32 or either flagship or vanguard are emotion exhausted. If you choose not to change, your fleet will ignore the low emotion warning and continue combat.\nSwitch out to new common CV/CVL whose level is in range of 1 to 31, after current has reached level 32+. Meanwhile, abandoned flagships will be retired. Any common CV/CVL whose level is 2+ will be regarded as targets. Do confirm that your own ships which is not a target has been locked\n\nThe flagship's equipment is replaced when being switched out by first recording the current setup\nOnly populated equipment slots will be replaced. If the CV/CVL preference has been configured, all 5 slots will be populated otherwise only the auxiliary slots will be populated.",
+      "ship": "Change Ship",
+      "ship_equip": "Change Ship + Gears"
+    },
     "CommonCV": {
       "name": "Flagship Common CV/CVL Preference",
       "help": "",
@@ -1216,7 +1224,8 @@
       "name": "Change Vanguard",
       "help": "Change vanguard if flagship or vanguard are emotion exhausted. If you choose not to change, your fleet will ignore the low emotion warning and continue combat.\nSwitch out to new level 100(70) common vanguard from eagle or ironblood after current flagship has reached level 32+ (Only CN players'0 limit break ship can reach level 100)",
       "disabled": "Don't Change",
-      "ship": "Change Ship"
+      "ship": "Change Ship",
+      "ship_equip": "Change Ship + Gears"
     },
     "CommonDD": {
       "name": "Flagship Common DD Preference",
@@ -1230,6 +1239,20 @@
     "CommissionLimit": {
       "name": "Prevent Too Many Urgent Commissions",
       "help": "When running 7x24, prevent having a lot of urgent commissions and not being able to complete daily commissions. It is recommended to select only short-terms and high-yields in the commission filter"
+    }
+  },
+  "EquipmentCode": {
+    "_info": {
+      "name": "Gear Code",
+      "help": ""
+    },
+    "ExportToConfig": {
+      "name": "Export to config",
+      "help": "Only exports if corresponding key has no value. Delete specific row to trigger later update."
+    },
+    "Config": {
+      "name": "Gear code config",
+      "help": "Format is yaml"
     }
   },
   "EventGeneral": {
@@ -1500,6 +1523,9 @@
       "name": "Preset Filter Select",
       "help": "See research drops rates and spawn rates in https://azur-stats.lyoko.io/. People without a basic knowledge of these are recommended to use pre-optimized presets instead of writing custom filters",
       "custom": "custom",
+      "series_9_blueprint_ta152": "Series 9 Blueprints+Ta152",
+      "series_9_blueprint_only": "Series 9 Blueprints Only",
+      "series_9_ta152_only": "Series 9 Ta152 Only",
       "series_8_blueprint_305": "Series 8 Blueprints+305",
       "series_8_blueprint_only": "Series 8 Blueprints Only",
       "series_8_305_only": "Series 8 305 Only",
@@ -1578,6 +1604,10 @@
     "FortChoreMeowfficer": {
       "name": "Do Fort Chores",
       "help": "Completes all 3 chores; clean, feed, and play with meowfficer to get fort exp"
+    },
+    "OverflowCoins": {
+      "name": "Buy Boxes On Coin Overflow",
+      "help": "When coins are above this value, keep buying boxes until coins drop to it or boxes run out; -1 to disable"
     }
   },
   "MeowfficerTrain": {
