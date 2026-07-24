@@ -86,6 +86,10 @@
       "name": "Raid Scuttle",
       "help": ""
     },
+    "CoalitionScuttle": {
+      "name": "Coalition Scuttle",
+      "help": ""
+    },
     "Hospital": {
       "name": "Valley Hospital",
       "help": ""
