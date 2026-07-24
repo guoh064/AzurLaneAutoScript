@@ -387,6 +387,10 @@ class AzurLaneAutoScript:
         from module.coalition.coalition import Coalition
         Coalition(config=self.config, device=self.device).run()
 
+    def coalition_scuttle(self):
+        from module.coalition.scuttle import CoalitionScuttleRun
+        CoalitionScuttleRun(config=self.config, device=self.device).run()
+
     def coalition_sp(self):
         from module.coalition.coalition_sp import CoalitionSP
         CoalitionSP(config=self.config, device=self.device).run()

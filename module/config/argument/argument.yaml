@@ -317,6 +317,10 @@ Hospital:
   UseRecommendFleet: true
 MaritimeEscort:
   Enable: true
+CoalitionScuttle:
+  Sacrifice:
+    value: vanguard
+    option: [ vanguard, flagship ]
 Coalition:
   Mode:
     value: hard

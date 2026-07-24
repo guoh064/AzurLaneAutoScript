@@ -113,6 +113,15 @@ Event:
       - Fleet
       - Submarine
       - Emotion
+    CoalitionScuttle:
+      - Scheduler
+      - CoalitionScuttle
+      - Campaign
+      - Coalition
+      - StopCondition
+      - Fleet
+      - Submarine
+      - Emotion
     Hospital:
       - Scheduler
       - Hospital

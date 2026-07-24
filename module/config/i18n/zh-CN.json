@@ -86,6 +86,10 @@
       "name": "共斗沉船",
       "help": ""
     },
+    "CoalitionScuttle": {
+      "name": "协斗沉船",
+      "help": ""
+    },
     "Hospital": {
       "name": "深谷来信",
       "help": ""
@@ -1362,6 +1366,18 @@
     "Enable": {
       "name": "启用商船护航",
       "help": ""
+    }
+  },
+  "CoalitionScuttle": {
+    "_info": {
+      "name": "协斗沉船",
+      "help": ""
+    },
+    "Sacrifice": {
+      "name": "牺牲船位置",
+      "help": "",
+      "vanguard": "前排",
+      "flagship": "旗舰"
     }
   },
   "Coalition": {
