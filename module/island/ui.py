@@ -12,7 +12,7 @@ from module.island.assets import *
 from module.logger import logger
 from module.ui.navbar import Navbar
 from module.ui.ui import UI
-from module.ui_white.assets import BACK_ARROW_WHITE
+from module.ui_white.assets import BACK_ARROW_WHITE, POPUP_CONFIRM_WHITE_ISLAND
 
 
 class NestedNavbar:
@@ -258,6 +258,14 @@ class IslandUI(UI):
     def handle_island_level_up(self):
         if self.appear(ISLAND_LEVEL_UP, offset=(20, 20), interval=3):
             self.device.click(ISLAND_CLICK_SAFE_AREA)
+            return True
+        return False
+
+    def handle_island_popup_confirm(self, name='', offset=None, interval=2):
+        if self.appear(POPUP_CONFIRM_WHITE_ISLAND, offset=offset, interval=interval):
+            POPUP_CONFIRM_WHITE_ISLAND.name = POPUP_CONFIRM_WHITE_ISLAND.name + '_' + name
+            self.device.click(POPUP_CONFIRM_WHITE_ISLAND)
+            POPUP_CONFIRM_WHITE_ISLAND.name = POPUP_CONFIRM_WHITE_ISLAND.name[:-len(name) - 1]
             return True
         return False
 
