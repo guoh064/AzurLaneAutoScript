@@ -181,8 +181,8 @@ class GeneratedConfig:
     # Group `Hospital`
     Hospital_UseRecommendFleet = True
 
-    # Group `MaritimeEscort`
-    MaritimeEscort_Enable = True
+    # Group `Scuttle`
+    Scuttle_Sacrifice = 'vanguard'  # vanguard, flagship
 
     # Group `Coalition`
     Coalition_Mode = 'hard'  # easy, normal, hard, sp

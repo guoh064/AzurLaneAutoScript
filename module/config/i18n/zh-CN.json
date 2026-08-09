@@ -82,12 +82,16 @@
       "name": "共斗活动",
       "help": ""
     },
-    "Hospital": {
-      "name": "深谷来信",
+    "RaidScuttle": {
+      "name": "共斗沉船",
       "help": ""
     },
-    "MaritimeEscort": {
-      "name": "商船护航",
+    "CoalitionScuttle": {
+      "name": "协斗沉船",
+      "help": ""
+    },
+    "Hospital": {
+      "name": "深谷来信",
       "help": ""
     },
     "WarArchives": {
@@ -1338,14 +1342,16 @@
       "help": "如果关闭，需要事先手动为所有15个关卡配队"
     }
   },
-  "MaritimeEscort": {
+  "Scuttle": {
     "_info": {
-      "name": "商船护航",
-      "help": "进一下就撤退，能拿约70%的奖励"
-    },
-    "Enable": {
-      "name": "启用商船护航",
+      "name": "沉船设置",
       "help": ""
+    },
+    "Sacrifice": {
+      "name": "牺牲船位置",
+      "help": "",
+      "vanguard": "前排",
+      "flagship": "旗舰"
     }
   },
   "Coalition": {

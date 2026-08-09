@@ -82,12 +82,16 @@
       "name": "Raid",
       "help": ""
     },
-    "Hospital": {
-      "name": "Valley Hospital",
+    "RaidScuttle": {
+      "name": "Raid Scuttle",
       "help": ""
     },
-    "MaritimeEscort": {
-      "name": "Maritime Escort",
+    "CoalitionScuttle": {
+      "name": "Coalition Scuttle",
+      "help": ""
+    },
+    "Hospital": {
+      "name": "Valley Hospital",
       "help": ""
     },
     "WarArchives": {
@@ -1338,14 +1342,16 @@
       "help": "If turned off, you need to manually prepare fleets of all 15 stages in advance"
     }
   },
-  "MaritimeEscort": {
+  "Scuttle": {
     "_info": {
-      "name": "Maritime Escort",
-      "help": "Enter then retreat, get about 70% of maximum rewards"
-    },
-    "Enable": {
-      "name": "Enable maritime Escort",
+      "name": "Scuttle Settings",
       "help": ""
+    },
+    "Sacrifice": {
+      "name": "Ship to sacrifice",
+      "help": "",
+      "vanguard": "Vanguard",
+      "flagship": "Flagship"
     }
   },
   "Coalition": {

@@ -311,8 +311,10 @@ RaidDaily:
     hard > normal > easy
 Hospital:
   UseRecommendFleet: true
-MaritimeEscort:
-  Enable: true
+Scuttle:
+  Sacrifice:
+    value: vanguard
+    option: [ vanguard, flagship ]
 Coalition:
   Mode:
     value: hard
