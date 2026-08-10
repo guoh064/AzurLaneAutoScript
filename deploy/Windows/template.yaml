@@ -79,6 +79,14 @@ Deploy:
     # Address of ocr server for alas instance to connect
     # [Default] 127.0.0.1:22268
     OcrClientAddress: 127.0.0.1:22268
+    # Use higher-performance backend for OCR instead of MXNet
+    # Available backends: onnx
+    # [Default] onnx
+    OcrBackend: onnx
+    # Number of threads used for intra-op parallelism in the ONNX session
+    # Leave as default if you are unsure of the impact
+    # [Default] null
+    IntraOpThreads: null
 
   Update:
     # Use auto update and builtin updater feature
