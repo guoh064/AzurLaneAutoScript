@@ -392,6 +392,7 @@ class CampaignRun(CampaignEvent, ShopStatus):
 
             # Log
             logger.hr(name, level=1)
+            logger.info(f'Campaign run: event="{folder}", name={name}')
             if self.config.StopCondition_RunCount > 0:
                 logger.info(f'Count remain: {self.config.StopCondition_RunCount}')
             else:
