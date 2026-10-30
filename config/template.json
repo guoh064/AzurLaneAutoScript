@@ -2087,7 +2087,8 @@
       "DailyBufferItems": "{}",
       "ManualBufferItems": "{}",
       "IdleAccumulatingItems": "{}",
-      "SkipBufferSurplus": true
+      "SkipBufferSurplus": true,
+      "UseWorkerjuuByDefault": true
     },
     "Storage": {
       "Storage": {}
