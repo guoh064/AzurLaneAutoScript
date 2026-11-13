@@ -102,6 +102,7 @@
     "menu": "collapse",
     "page": "setting",
     "tasks": [
+      "IslandGeneral",
       "IslandProduction",
       "IslandOrder",
       "IslandTransport",
