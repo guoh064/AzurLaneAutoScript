@@ -10620,10 +10620,10 @@
       },
       "KoiWaitress1": {
         "type": "select",
-        "value": "any",
+        "value": "business_grade",
         "option": [
           "none",
-          "any",
+          "business_grade",
           "Chao_Ho",
           "Chang_Feng"
         ]
@@ -10633,7 +10633,7 @@
         "value": "none",
         "option": [
           "none",
-          "any",
+          "business_grade",
           "Chao_Ho",
           "Chang_Feng"
         ]
@@ -10654,10 +10654,10 @@
       },
       "BearWaitress1": {
         "type": "select",
-        "value": "any",
+        "value": "business_grade",
         "option": [
           "none",
-          "any",
+          "business_grade",
           "Cheshire",
           "Chang_Feng"
         ]
@@ -10667,7 +10667,7 @@
         "value": "none",
         "option": [
           "none",
-          "any",
+          "business_grade",
           "Cheshire",
           "Chang_Feng"
         ]
@@ -10688,10 +10688,10 @@
       },
       "EateryWaitress1": {
         "type": "select",
-        "value": "any",
+        "value": "business_grade",
         "option": [
           "none",
-          "any",
+          "business_grade",
           "Helena",
           "Prinz_Eugen",
           "Chang_Feng"
@@ -10702,7 +10702,7 @@
         "value": "none",
         "option": [
           "none",
-          "any",
+          "business_grade",
           "Helena",
           "Prinz_Eugen",
           "Chang_Feng"
@@ -10724,10 +10724,10 @@
       },
       "GrillWaitress1": {
         "type": "select",
-        "value": "any",
+        "value": "business_grade",
         "option": [
           "none",
-          "any",
+          "business_grade",
           "August_von_Parseval",
           "Prinz_Eugen",
           "Chang_Feng"
@@ -10738,7 +10738,7 @@
         "value": "none",
         "option": [
           "none",
-          "any",
+          "business_grade",
           "August_von_Parseval",
           "Prinz_Eugen",
           "Chang_Feng"
@@ -10760,10 +10760,10 @@
       },
       "CafeWaitress1": {
         "type": "select",
-        "value": "any",
+        "value": "business_grade",
         "option": [
           "none",
-          "any",
+          "business_grade",
           "Cheshire",
           "Belfast",
           "Chang_Feng"
@@ -10774,7 +10774,7 @@
         "value": "none",
         "option": [
           "none",
-          "any",
+          "business_grade",
           "Cheshire",
           "Belfast",
           "Chang_Feng"
