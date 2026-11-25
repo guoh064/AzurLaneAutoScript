@@ -23,13 +23,13 @@
     "page": "setting",
     "tasks": [
       "EventGeneral",
+      "Coalition",
       "Event",
       "Event2",
       "Raid",
       "RaidScuttle",
       "CoalitionScuttle",
       "Hospital",
-      "Coalition",
       "EventShop",
       "WarArchives"
     ]
@@ -38,13 +38,13 @@
     "menu": "collapse",
     "page": "setting",
     "tasks": [
+      "CoalitionSp",
       "EventA",
       "EventB",
       "EventC",
       "EventD",
       "EventSp",
-      "RaidDaily",
-      "CoalitionSp"
+      "RaidDaily"
     ]
   },
   "Reward": {
